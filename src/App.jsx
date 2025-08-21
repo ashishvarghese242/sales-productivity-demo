@@ -9,31 +9,23 @@ const LEVERS = [
   'Data Hygiene',
 ]
 
-// ---- Demo mapping from LRS topics → levers (kept for compatibility if you add lrs_events later) ----
-const LEVER_TOPIC_MAP = {
-  'Pipeline Discipline': ['Discovery', 'Industry'],
-  'Deal Execution': ['Demo', 'Objection Handling', 'Negotiation', 'Proposal'],
-  'Value Co-Creation': ['ROI', 'Industry'],
-  'Capability Uptake': ['Discovery', 'Demo', 'Objection Handling', 'Proposal', 'Negotiation', 'Security', 'ROI', 'Industry'],
-  'Data Hygiene': ['Security'],
-}
-
 // ------------------------------ Data hooks ------------------------------
 function useData() {
   const [hris, setHris] = useState([])
   const [crm, setCrm] = useState([])
-  const [lrs, setLrs] = useState({ catalog: [], consumption: [] })
-  const [lrsEvents, setLrsEvents] = useState([]) // optional
+  const [lrs, setLrs] = useState({ catalog: [], consumption: [] }) // legacy aggregate (for Capability Uptake)
+  const [lrsCatalog, setLrsCatalog] = useState([])                 // NEW: activities catalog (lever + impact + fluff)
+  const [lrsEvents, setLrsEvents] = useState([])                   // NEW: per-person activity events
 
   useEffect(() => {
-    fetch('/data/hris.json').then((r) => r.json()).then(setHris)
-    fetch('/data/crm_agg.json').then((r) => r.json()).then(setCrm)
-    fetch('/data/lrs.json').then((r) => r.json()).then(setLrs)
-    // optional file; if missing that’s fine
-    fetch('/data/lrs_events.json').then((r) => r.json()).then(setLrsEvents).catch(() => setLrsEvents([]))
+    fetch('/data/hris.json').then(r => r.json()).then(setHris)
+    fetch('/data/crm_agg.json').then(r => r.json()).then(setCrm)
+    fetch('/data/lrs.json').then(r => r.json()).then(setLrs).catch(() => setLrs({ catalog: [], consumption: [] }))
+    fetch('/data/lrs_catalog.json').then(r => r.json()).then(setLrsCatalog).catch(() => setLrsCatalog([]))
+    fetch('/data/lrs_activity_events.json').then(r => r.json()).then(setLrsEvents).catch(() => setLrsEvents([]))
   }, [])
 
-  return { hris, crm, lrs, lrsEvents }
+  return { hris, crm, lrs, lrsCatalog, lrsEvents }
 }
 
 // ------------------------------ Scoring logic (performance) ------------------------------
@@ -43,15 +35,15 @@ function computeScores(personId, crmRow, lrsRow) {
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0
 
   if (crmRow) {
-    // Pipeline Discipline
+    // PIPELINE DISCIPLINE
     const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100) // 3.5x target
     const stalledScore = (1 - crmRow.stalled_ratio) * 100 // lower stalled is better
-    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100) // 6/mo strong
+    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100) // 6/mo is strong
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore)
 
-    // Deal Execution
+    // DEAL EXECUTION
     const winScore = crmRow.win_rate * 100
-    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2) // 30 ideal
+    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2) // 30 days ideal
     const meddpiccScore =
       (crmRow.meddpicc.metrics_pct +
         crmRow.meddpicc.econ_buyer_pct +
@@ -63,14 +55,14 @@ function computeScores(personId, crmRow, lrsRow) {
         crmRow.meddpicc.competition_pct) / 8
     de = clamp(0.4 * winScore + 0.3 * cycleScore + 0.3 * meddpiccScore)
 
-    // Value Co-Creation
+    // VALUE CO-CREATION
     const bc = crmRow.value_co.business_case_rate * 100
     const qi = crmRow.value_co.quantified_impact_rate * 100
     const execMtg = Math.min(100, (crmRow.value_co.exec_meetings_90d / 8) * 100)
     const msp = crmRow.value_co.mutual_success_plan_rate * 100
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp)
 
-    // Data Hygiene
+    // DATA HYGIENE
     const ns = crmRow.hygiene.next_step_filled_pct
     const nm = crmRow.hygiene.next_meeting_set_pct
     const sd = crmRow.hygiene.stage_date_present_pct
@@ -79,14 +71,17 @@ function computeScores(personId, crmRow, lrsRow) {
     dh = clamp((ns + nm + sd + fc + cd) / 5)
   }
 
-  // Capability Uptake (roll-up from LRS aggregates)
+  // CAPABILITY UPTAKE (still from legacy LRS aggregates until we fully migrate to events)
   if (lrsRow) {
     const comp = Math.min(100, (lrsRow.completions / 8) * 100)
     const minutes = Math.min(100, (lrsRow.minutes / 600) * 100) // 10h cap
     const recency = Math.max(0, 100 - lrsRow.recency_days * 2)
     const assess = lrsRow.assessment_score_avg
     const certs = Math.min(100, lrsRow.certifications * 25)
-    cu = Math.max(0, Math.min(100, Math.round(0.25 * comp + 0.25 * minutes + 0.2 * recency + 0.2 * assess + 0.1 * certs)))
+    const raw = 0.25 * comp + 0.25 * minutes + 0.2 * recency + 0.2 * assess + 0.1 * certs
+    const cuScore = Math.max(0, Math.min(100, Math.round(raw)))
+    // Only set if non-zero row; else leave 0 (when no lrsRow exists)
+    if (!Number.isNaN(cuScore)) cu = cuScore
   }
 
   return {
@@ -104,9 +99,7 @@ function indexById(arr, key = 'person_id') {
 }
 
 function averageScoresForPeople(people, crmById, lrsById) {
-  if (!people.length) {
-    return Object.fromEntries(LEVERS.map(l => [l, 0]))
-  }
+  if (!people.length) return Object.fromEntries(LEVERS.map(l => [l, 0]))
   const sums = Object.fromEntries(LEVERS.map(l => [l, 0]))
   people.forEach((p) => {
     const s = computeScores(p.person_id, crmById[p.person_id], lrsById[p.person_id])
@@ -122,61 +115,75 @@ function compositeOf(person, crmById, lrsById) {
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
-// ------------------------------ NEW: LRS overlay (consumption coverage) ------------------------------
-// You can store per-person values directly in lrs.consumption[i].lever_consumption = { 'Pipeline Discipline': 72, ... }.
-// If missing, we generate deterministic fake values (40–90) so you can demo now.
-function seededNumber(personId, min = 40, max = 90, salt = 0) {
-  // simple deterministic hash-based pseudo-random
-  let h = 0
-  for (let i = 0; i < personId.length; i++) h = (h * 31 + personId.charCodeAt(i)) >>> 0
-  h = (h + salt * 2654435761) >>> 0
-  const r = (h % 1000) / 1000 // 0..0.999
-  return Math.round(min + r * (max - min))
-}
-
-function getLeverConsumptionForPerson(personId, lrsById) {
-  const row = lrsById[personId]
-  if (row && row.lever_consumption) {
-    // clamp 0..100 just in case
-    const out = {}
-    LEVERS.forEach(l => {
-      const v = row.lever_consumption[l]
-      out[l] = Math.max(0, Math.min(100, Math.round(v ?? 0)))
-    })
-    return out
+// ------------------------------ NEW: Impact-weighted LRS overlay per lever ------------------------------
+/**
+ * We draw the purple polygon from the NEW LRS data:
+ * - lrsCatalog: [{asset_id, lever, impact_score, is_fluff, ...}]
+ * - lrsEvents:  [{person_id, asset_id, completed, ...}]
+ *
+ * For each person and lever:
+ *   coverage_person_lever = (sum impact_score of COMPLETED, NON-FLUFF assets mapped to this lever)
+ *                           / (sum impact_score of ALL NON-FLUFF assets for this lever) * 100
+ * Group view (“All”) = average coverage across the selected people (0–100).
+ */
+function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
+  if (!personIds?.length || !lrsCatalog?.length) {
+    return Object.fromEntries(LEVERS.map(l => [l, 0]))
   }
-  // FAKE deterministic values if not provided
-  const fake = {}
-  LEVERS.forEach((l, idx) => {
-    fake[l] = seededNumber(personId, 40, 90, idx + 1)
-  })
-  return fake
-}
 
-// Aggregate LRS coverage for a set of people (average 0–100)
-function lrsCoverageForPeople(personIds, lrsById) {
-  if (!personIds.length) return Object.fromEntries(LEVERS.map(l => [l, 0]))
-  const sums = Object.fromEntries(LEVERS.map(l => [l, 0]))
-  personIds.forEach(pid => {
-    const per = getLeverConsumptionForPerson(pid, lrsById)
-    LEVERS.forEach(l => sums[l] += per[l] || 0)
+  // Build lever → impactful assets list and denominator sums
+  const leverAssets = {}
+  const leverDenom = {}
+  LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
+  lrsCatalog.forEach(a => {
+    if (!LEVERS.includes(a.lever)) return
+    if (a.is_fluff) return // ignore fluff for effectiveness
+    leverAssets[a.lever].push(a)
+    leverDenom[a.lever] += (a.impact_score || 0)
   })
-  const avg = {}
-  LEVERS.forEach(l => avg[l] = Math.round(sums[l] / personIds.length))
-  return avg
+
+  // Quick index of events by person → set of completed asset_ids
+  const completedByPerson = {}
+  personIds.forEach(pid => completedByPerson[pid] = new Set())
+  lrsEvents.forEach(e => {
+    if (!completedByPerson.hasOwnProperty(e.person_id)) return
+    // only count completed attempts
+    if (e.completed) completedByPerson[e.person_id].add(e.asset_id)
+  })
+
+  // Per-person coverage then averaged
+  const perLeverSums = Object.fromEntries(LEVERS.map(l => [l, 0]))
+  personIds.forEach(pid => {
+    LEVERS.forEach(lever => {
+      const denom = leverDenom[lever] || 0
+      if (denom === 0) return // nothing to measure
+      let num = 0
+      leverAssets[lever].forEach(a => {
+        if (completedByPerson[pid].has(a.asset_id)) num += (a.impact_score || 0)
+      })
+      const pct = Math.max(0, Math.min(100, Math.round((num / denom) * 100)))
+      perLeverSums[lever] += pct
+    })
+  })
+
+  const avgCoverage = {}
+  LEVERS.forEach(lever => {
+    avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length)
+  })
+  return avgCoverage
 }
 
 // ------------------------------ App ------------------------------
 export default function App() {
-  const { hris, crm, lrs } = useData()
+  const { hris, crm, lrs, lrsCatalog, lrsEvents } = useData()
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState('All') // default All
+  const [personId, setPersonId] = useState('All') // default: aggregate
 
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
-  const [showLRS, setShowLRS] = useState(true) // turn on by default so it’s obvious
+  const [showLRS, setShowLRS] = useState(true) // show LRS overlay by default (it’s useful)
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -191,7 +198,7 @@ export default function App() {
       .filter((h) => (manager === 'All' || h.manager_name === manager))
   }, [hris, geo, manager])
 
-  // Validate selection on filter change
+  // Keep selection valid when filters change
   useEffect(() => {
     if (personId === 'All') return
     const stillVisible = filteredPeople.find((p) => p.person_id === personId)
@@ -211,6 +218,7 @@ export default function App() {
     [lrs, personId]
   )
 
+  // Performance scores (blue polygon)
   const selectedScores = useMemo(() => {
     if (personId === 'All') {
       return averageScoresForPeople(filteredPeople, crmById, lrsById)
@@ -218,44 +226,36 @@ export default function App() {
     return computeScores(personId, crmRow, lrsRow)
   }, [personId, filteredPeople, crmById, lrsById, crmRow, lrsRow])
 
-  // Top/bottom 20% groups WITHIN current filters
-  const { topAvgScores, bottomAvgScores, topIds, bottomIds, topCut, bottomCut } = useMemo(() => {
+  // Top/Bottom 20% (by composite) within current filters
+  const { topAvgScores, bottomAvgScores, topCut, bottomCut } = useMemo(() => {
     if (!filteredPeople.length) {
-      return { topAvgScores: null, bottomAvgScores: null, topIds: [], bottomIds: [], topCut: 0, bottomCut: 0 }
+      return { topAvgScores: null, bottomAvgScores: null, topCut: 0, bottomCut: 0 }
     }
     const scored = filteredPeople.map((p) => ({
       person: p,
       comp: compositeOf(p, crmById, lrsById),
     }))
     scored.sort((a, b) => a.comp - b.comp)
-
     const n = scored.length
     const groupSize = Math.max(1, Math.floor(n * 0.2)) // 20%
-    const bottomGroup = scored.slice(0, groupSize)
-    const topGroup = scored.slice(-groupSize)
-
-    const topPeople = topGroup.map(x => x.person)
-    const bottomPeople = bottomGroup.map(x => x.person)
-
-    const topAvg = averageScoresForPeople(topPeople, crmById, lrsById)
-    const bottomAvg = averageScoresForPeople(bottomPeople, crmById, lrsById)
+    const bottomGroup = scored.slice(0, groupSize).map(x => x.person)
+    const topGroup = scored.slice(-groupSize).map(x => x.person)
 
     return {
-      topAvgScores: topAvg,
-      bottomAvgScores: bottomAvg,
-      topIds: topPeople.map(p => p.person_id),
-      bottomIds: bottomPeople.map(p => p.person_id),
+      topAvgScores: averageScoresForPeople(topGroup, crmById, lrsById),
+      bottomAvgScores: averageScoresForPeople(bottomGroup, crmById, lrsById),
       topCut: Math.round(scored[n - groupSize]?.comp || 0),
       bottomCut: Math.round(scored[groupSize - 1]?.comp || 0),
     }
   }, [filteredPeople, crmById, lrsById])
 
-  // --- LRS overlay values (0–100) for selected entity (All or one person), drawn from dataset or faked deterministically
+  // NEW: LRS overlay (purple polygon) from catalog + events, impact-weighted, 0–100
   const lrsOverlay = useMemo(() => {
-    const pids = personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
-    return lrsCoverageForPeople(pids, lrsById)
-  }, [personId, filteredPeople, lrsById])
+    const personIds = personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
+    return lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents)
+  }, [personId, filteredPeople, lrsCatalog, lrsEvents])
 
+  // Assemble chart rows
   const radarData = useMemo(() => {
     return LEVERS.map((l) => ({
       lever: l,
@@ -266,6 +266,7 @@ export default function App() {
     }))
   }, [selectedScores, showTop, showBottom, showLRS, topAvgScores, bottomAvgScores, lrsOverlay])
 
+  // Composite for the card
   const selectedComposite = useMemo(() => {
     const s = selectedScores
     const comp =
@@ -278,12 +279,12 @@ export default function App() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
         <p className="text-sm text-slate-600">
-          Pentagon radar with fake HRIS / CRM / LRS data (Last 90 Days)
+          Pentagon radar with HRIS / CRM / LRS (impact-weighted overlay, last 90 days)
         </p>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* LEFT: Filters + Entity card */}
+        {/* LEFT: Filters + Card */}
         <div className="lg:col-span-1 space-y-4">
           <div className="p-4 rounded-2xl border">
             <h2 className="font-semibold mb-3">Filters</h2>
@@ -328,7 +329,7 @@ export default function App() {
                 </label>
                 <label className="flex items-center gap-2 text-sm col-span-2">
                   <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>LRS Overlay (Enablement Consumption)</span>
+                  <span>LRS Overlay (Impact-weighted consumption)</span>
                 </label>
               </div>
 
@@ -338,7 +339,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Entity card */}
           <div className="p-4 rounded-2xl border">
             <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
             <div className="text-sm space-y-1">
