@@ -1,0 +1,3080 @@
+[
+  {
+    "person_id": "P001",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 68,
+    "completed": 1,
+    "last_access_days": 69
+  },
+  {
+    "person_id": "P001",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 65,
+    "completed": 1,
+    "last_access_days": 77
+  },
+  {
+    "person_id": "P001",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 172,
+    "completed": 1,
+    "last_access_days": 83
+  },
+  {
+    "person_id": "P001",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 11,
+    "completed": 0,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P001",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 118,
+    "completed": 1,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 7,
+    "minutes": 98,
+    "completed": 0,
+    "last_access_days": 5
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 127,
+    "completed": 0,
+    "last_access_days": 48
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 151,
+    "completed": 1,
+    "last_access_days": 80
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 5,
+    "minutes": 109,
+    "completed": 0,
+    "last_access_days": 90
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 84,
+    "completed": 0,
+    "last_access_days": 29
+  },
+  {
+    "person_id": "P002",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 35,
+    "completed": 1,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 28,
+    "completed": 0,
+    "last_access_days": 21
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 72,
+    "completed": 1,
+    "last_access_days": 48
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 173,
+    "completed": 0,
+    "last_access_days": 28
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 100,
+    "completed": 0,
+    "last_access_days": 7
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 4,
+    "minutes": 78,
+    "completed": 1,
+    "last_access_days": 72
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 90,
+    "completed": 1,
+    "last_access_days": 63
+  },
+  {
+    "person_id": "P003",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 5,
+    "minutes": 194,
+    "completed": 0,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 22,
+    "completed": 0,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 50,
+    "completed": 0,
+    "last_access_days": 54
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 8,
+    "minutes": 64,
+    "completed": 1,
+    "last_access_days": 76
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 5,
+    "minutes": 12,
+    "completed": 0,
+    "last_access_days": 14
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 6,
+    "minutes": 147,
+    "completed": 0,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 38,
+    "completed": 1,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 47,
+    "completed": 0,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 8,
+    "minutes": 184,
+    "completed": 1,
+    "last_access_days": 81
+  },
+  {
+    "person_id": "P004",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 2,
+    "minutes": 173,
+    "completed": 0,
+    "last_access_days": 67
+  },
+  {
+    "person_id": "P005",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 30,
+    "completed": 1,
+    "last_access_days": 62
+  },
+  {
+    "person_id": "P005",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 7,
+    "minutes": 27,
+    "completed": 0,
+    "last_access_days": 68
+  },
+  {
+    "person_id": "P005",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 8,
+    "minutes": 63,
+    "completed": 1,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P005",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 142,
+    "completed": 0,
+    "last_access_days": 69
+  },
+  {
+    "person_id": "P005",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 176,
+    "completed": 1,
+    "last_access_days": 66
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 160,
+    "completed": 1,
+    "last_access_days": 9
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 197,
+    "completed": 1,
+    "last_access_days": 8
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 81,
+    "completed": 0,
+    "last_access_days": 27
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 8,
+    "minutes": 63,
+    "completed": 0,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 7,
+    "minutes": 114,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 9,
+    "minutes": 128,
+    "completed": 1,
+    "last_access_days": 52
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 6,
+    "minutes": 35,
+    "completed": 1,
+    "last_access_days": 43
+  },
+  {
+    "person_id": "P006",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 37,
+    "completed": 1,
+    "last_access_days": 24
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 150,
+    "completed": 1,
+    "last_access_days": 83
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 5,
+    "minutes": 13,
+    "completed": 0,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 5,
+    "minutes": 122,
+    "completed": 0,
+    "last_access_days": 27
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 109,
+    "completed": 1,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 3,
+    "minutes": 118,
+    "completed": 0,
+    "last_access_days": 71
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 142,
+    "completed": 1,
+    "last_access_days": 37
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 25,
+    "completed": 0,
+    "last_access_days": 7
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 167,
+    "completed": 0,
+    "last_access_days": 67
+  },
+  {
+    "person_id": "P007",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 1,
+    "minutes": 57,
+    "completed": 1,
+    "last_access_days": 8
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 3,
+    "minutes": 138,
+    "completed": 0,
+    "last_access_days": 72
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 90,
+    "completed": 1,
+    "last_access_days": 50
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 175,
+    "completed": 1,
+    "last_access_days": 40
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 37,
+    "completed": 1,
+    "last_access_days": 79
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 97,
+    "completed": 1,
+    "last_access_days": 44
+  },
+  {
+    "person_id": "P008",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 2,
+    "minutes": 122,
+    "completed": 0,
+    "last_access_days": 90
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 77,
+    "completed": 1,
+    "last_access_days": 13
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 151,
+    "completed": 1,
+    "last_access_days": 36
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 100,
+    "completed": 0,
+    "last_access_days": 26
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 9,
+    "minutes": 30,
+    "completed": 1,
+    "last_access_days": 54
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 7,
+    "minutes": 43,
+    "completed": 0,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 2,
+    "minutes": 123,
+    "completed": 0,
+    "last_access_days": 54
+  },
+  {
+    "person_id": "P009",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 51,
+    "completed": 1,
+    "last_access_days": 88
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 20,
+    "completed": 0,
+    "last_access_days": 26
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 9,
+    "minutes": 87,
+    "completed": 0,
+    "last_access_days": 45
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 51,
+    "completed": 0,
+    "last_access_days": 22
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 7,
+    "minutes": 36,
+    "completed": 1,
+    "last_access_days": 42
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 10,
+    "minutes": 56,
+    "completed": 1,
+    "last_access_days": 4
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 105,
+    "completed": 1,
+    "last_access_days": 29
+  },
+  {
+    "person_id": "P010",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 4,
+    "minutes": 94,
+    "completed": 1,
+    "last_access_days": 8
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 3,
+    "minutes": 55,
+    "completed": 0,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 37,
+    "completed": 0,
+    "last_access_days": 44
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 119,
+    "completed": 1,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 2,
+    "minutes": 113,
+    "completed": 1,
+    "last_access_days": 55
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 85,
+    "completed": 1,
+    "last_access_days": 8
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 111,
+    "completed": 0,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P011",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 151,
+    "completed": 1,
+    "last_access_days": 53
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 63,
+    "completed": 1,
+    "last_access_days": 74
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 5,
+    "minutes": 177,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 4,
+    "minutes": 64,
+    "completed": 0,
+    "last_access_days": 21
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 6,
+    "minutes": 31,
+    "completed": 1,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 8,
+    "minutes": 187,
+    "completed": 1,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 50,
+    "completed": 1,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 9,
+    "minutes": 193,
+    "completed": 1,
+    "last_access_days": 89
+  },
+  {
+    "person_id": "P012",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 196,
+    "completed": 0,
+    "last_access_days": 13
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 123,
+    "completed": 0,
+    "last_access_days": 64
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 183,
+    "completed": 1,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 193,
+    "completed": 1,
+    "last_access_days": 66
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 122,
+    "completed": 1,
+    "last_access_days": 42
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 69,
+    "completed": 1,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 64,
+    "completed": 1,
+    "last_access_days": 52
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 179,
+    "completed": 0,
+    "last_access_days": 7
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 10,
+    "minutes": 194,
+    "completed": 1,
+    "last_access_days": 2
+  },
+  {
+    "person_id": "P013",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 86,
+    "completed": 0,
+    "last_access_days": 53
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 124,
+    "completed": 1,
+    "last_access_days": 86
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 179,
+    "completed": 0,
+    "last_access_days": 50
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 128,
+    "completed": 1,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 122,
+    "completed": 1,
+    "last_access_days": 41
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 117,
+    "completed": 1,
+    "last_access_days": 10
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 4,
+    "minutes": 14,
+    "completed": 0,
+    "last_access_days": 6
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 67,
+    "completed": 0,
+    "last_access_days": 83
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 17,
+    "completed": 0,
+    "last_access_days": 25
+  },
+  {
+    "person_id": "P014",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 7,
+    "minutes": 15,
+    "completed": 0,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 3,
+    "minutes": 104,
+    "completed": 1,
+    "last_access_days": 77
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 39,
+    "completed": 0,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 37,
+    "completed": 0,
+    "last_access_days": 39
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 126,
+    "completed": 1,
+    "last_access_days": 25
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 94,
+    "completed": 0,
+    "last_access_days": 76
+  },
+  {
+    "person_id": "P015",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 179,
+    "completed": 1,
+    "last_access_days": 64
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 8,
+    "minutes": 165,
+    "completed": 0,
+    "last_access_days": 55
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 6,
+    "minutes": 201,
+    "completed": 0,
+    "last_access_days": 68
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 6,
+    "minutes": 161,
+    "completed": 1,
+    "last_access_days": 31
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 32,
+    "completed": 1,
+    "last_access_days": 57
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 128,
+    "completed": 0,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 4,
+    "minutes": 96,
+    "completed": 1,
+    "last_access_days": 41
+  },
+  {
+    "person_id": "P016",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 2,
+    "minutes": 134,
+    "completed": 1,
+    "last_access_days": 33
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 71,
+    "completed": 0,
+    "last_access_days": 62
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 71,
+    "completed": 0,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 158,
+    "completed": 1,
+    "last_access_days": 2
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 8,
+    "minutes": 107,
+    "completed": 1,
+    "last_access_days": 74
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 145,
+    "completed": 0,
+    "last_access_days": 70
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 88,
+    "completed": 1,
+    "last_access_days": 15
+  },
+  {
+    "person_id": "P017",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 59,
+    "completed": 1,
+    "last_access_days": 68
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 8,
+    "minutes": 83,
+    "completed": 1,
+    "last_access_days": 46
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 55,
+    "completed": 1,
+    "last_access_days": 6
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 135,
+    "completed": 1,
+    "last_access_days": 1
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 82,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 69,
+    "completed": 0,
+    "last_access_days": 32
+  },
+  {
+    "person_id": "P018",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 149,
+    "completed": 1,
+    "last_access_days": 80
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 7,
+    "minutes": 143,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 160,
+    "completed": 0,
+    "last_access_days": 39
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 186,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 50,
+    "completed": 1,
+    "last_access_days": 70
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 4,
+    "minutes": 73,
+    "completed": 1,
+    "last_access_days": 57
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 101,
+    "completed": 0,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 170,
+    "completed": 0,
+    "last_access_days": 25
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 39,
+    "completed": 0,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P019",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 93,
+    "completed": 0,
+    "last_access_days": 9
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 145,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 92,
+    "completed": 0,
+    "last_access_days": 3
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 68,
+    "completed": 0,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 5,
+    "minutes": 15,
+    "completed": 0,
+    "last_access_days": 86
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 78,
+    "completed": 0,
+    "last_access_days": 22
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 174,
+    "completed": 0,
+    "last_access_days": 35
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 33,
+    "completed": 0,
+    "last_access_days": 52
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 92,
+    "completed": 0,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P020",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 6,
+    "minutes": 155,
+    "completed": 1,
+    "last_access_days": 36
+  },
+  {
+    "person_id": "P021",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 7,
+    "minutes": 141,
+    "completed": 0,
+    "last_access_days": 0
+  },
+  {
+    "person_id": "P021",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 6,
+    "minutes": 148,
+    "completed": 0,
+    "last_access_days": 6
+  },
+  {
+    "person_id": "P021",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 150,
+    "completed": 1,
+    "last_access_days": 63
+  },
+  {
+    "person_id": "P021",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 43,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P021",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 7,
+    "minutes": 149,
+    "completed": 1,
+    "last_access_days": 80
+  },
+  {
+    "person_id": "P022",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 63,
+    "completed": 0,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P022",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 4,
+    "minutes": 150,
+    "completed": 0,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P022",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 4,
+    "minutes": 58,
+    "completed": 0,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P022",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 9,
+    "minutes": 70,
+    "completed": 0,
+    "last_access_days": 35
+  },
+  {
+    "person_id": "P022",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 78,
+    "completed": 0,
+    "last_access_days": 36
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 95,
+    "completed": 0,
+    "last_access_days": 69
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 155,
+    "completed": 0,
+    "last_access_days": 24
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 115,
+    "completed": 1,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 107,
+    "completed": 1,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 176,
+    "completed": 0,
+    "last_access_days": 63
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 42,
+    "completed": 0,
+    "last_access_days": 75
+  },
+  {
+    "person_id": "P023",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 73,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P024",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 87,
+    "completed": 1,
+    "last_access_days": 88
+  },
+  {
+    "person_id": "P024",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 146,
+    "completed": 1,
+    "last_access_days": 40
+  },
+  {
+    "person_id": "P024",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 6,
+    "minutes": 154,
+    "completed": 0,
+    "last_access_days": 4
+  },
+  {
+    "person_id": "P024",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 68,
+    "completed": 0,
+    "last_access_days": 55
+  },
+  {
+    "person_id": "P024",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 1,
+    "minutes": 172,
+    "completed": 0,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 105,
+    "completed": 1,
+    "last_access_days": 31
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 115,
+    "completed": 0,
+    "last_access_days": 23
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 3,
+    "minutes": 90,
+    "completed": 1,
+    "last_access_days": 48
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 69,
+    "completed": 0,
+    "last_access_days": 32
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 75,
+    "completed": 0,
+    "last_access_days": 59
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 5,
+    "minutes": 173,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 103,
+    "completed": 0,
+    "last_access_days": 38
+  },
+  {
+    "person_id": "P025",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 93,
+    "completed": 1,
+    "last_access_days": 45
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 100,
+    "completed": 1,
+    "last_access_days": 24
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 85,
+    "completed": 0,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 20,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 158,
+    "completed": 1,
+    "last_access_days": 16
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 1,
+    "minutes": 85,
+    "completed": 1,
+    "last_access_days": 53
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 4,
+    "minutes": 99,
+    "completed": 1,
+    "last_access_days": 69
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 52,
+    "completed": 1,
+    "last_access_days": 61
+  },
+  {
+    "person_id": "P026",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 85,
+    "completed": 0,
+    "last_access_days": 43
+  },
+  {
+    "person_id": "P027",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 152,
+    "completed": 1,
+    "last_access_days": 50
+  },
+  {
+    "person_id": "P027",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 1,
+    "minutes": 77,
+    "completed": 0,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P027",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 77,
+    "completed": 0,
+    "last_access_days": 81
+  },
+  {
+    "person_id": "P027",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 77,
+    "completed": 0,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P027",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 8,
+    "minutes": 90,
+    "completed": 0,
+    "last_access_days": 81
+  },
+  {
+    "person_id": "P028",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 34,
+    "completed": 1,
+    "last_access_days": 68
+  },
+  {
+    "person_id": "P028",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 123,
+    "completed": 0,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P028",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 35,
+    "completed": 0,
+    "last_access_days": 78
+  },
+  {
+    "person_id": "P028",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 4,
+    "minutes": 81,
+    "completed": 1,
+    "last_access_days": 47
+  },
+  {
+    "person_id": "P028",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 2,
+    "minutes": 123,
+    "completed": 1,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 58,
+    "completed": 0,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 179,
+    "completed": 1,
+    "last_access_days": 81
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 15,
+    "completed": 1,
+    "last_access_days": 42
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 82,
+    "completed": 0,
+    "last_access_days": 26
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 69,
+    "completed": 1,
+    "last_access_days": 18
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 8,
+    "minutes": 201,
+    "completed": 1,
+    "last_access_days": 18
+  },
+  {
+    "person_id": "P029",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 43,
+    "completed": 0,
+    "last_access_days": 3
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 117,
+    "completed": 0,
+    "last_access_days": 8
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 124,
+    "completed": 0,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 75,
+    "completed": 0,
+    "last_access_days": 28
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 17,
+    "completed": 1,
+    "last_access_days": 61
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 7,
+    "minutes": 112,
+    "completed": 1,
+    "last_access_days": 13
+  },
+  {
+    "person_id": "P030",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 137,
+    "completed": 1,
+    "last_access_days": 10
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 85,
+    "completed": 0,
+    "last_access_days": 77
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 4,
+    "minutes": 35,
+    "completed": 0,
+    "last_access_days": 14
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 8,
+    "minutes": 209,
+    "completed": 0,
+    "last_access_days": 70
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 146,
+    "completed": 1,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 3,
+    "minutes": 119,
+    "completed": 1,
+    "last_access_days": 32
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 59,
+    "completed": 0,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P031",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 120,
+    "completed": 1,
+    "last_access_days": 47
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 123,
+    "completed": 1,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 103,
+    "completed": 1,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 37,
+    "completed": 1,
+    "last_access_days": 71
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 71,
+    "completed": 0,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 7,
+    "minutes": 169,
+    "completed": 0,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P032",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 5,
+    "minutes": 16,
+    "completed": 0,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 60,
+    "completed": 0,
+    "last_access_days": 51
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 33,
+    "completed": 0,
+    "last_access_days": 27
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 4,
+    "minutes": 117,
+    "completed": 0,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 89,
+    "completed": 0,
+    "last_access_days": 72
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 31,
+    "completed": 0,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 168,
+    "completed": 1,
+    "last_access_days": 10
+  },
+  {
+    "person_id": "P033",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 154,
+    "completed": 0,
+    "last_access_days": 62
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 180,
+    "completed": 1,
+    "last_access_days": 28
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 163,
+    "completed": 1,
+    "last_access_days": 26
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 5,
+    "minutes": 89,
+    "completed": 0,
+    "last_access_days": 32
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 157,
+    "completed": 1,
+    "last_access_days": 48
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 6,
+    "minutes": 100,
+    "completed": 1,
+    "last_access_days": 5
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 4,
+    "minutes": 14,
+    "completed": 0,
+    "last_access_days": 9
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 90,
+    "completed": 0,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 4,
+    "minutes": 173,
+    "completed": 1,
+    "last_access_days": 14
+  },
+  {
+    "person_id": "P034",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 43,
+    "completed": 1,
+    "last_access_days": 21
+  },
+  {
+    "person_id": "P035",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 104,
+    "completed": 1,
+    "last_access_days": 28
+  },
+  {
+    "person_id": "P035",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 8,
+    "minutes": 66,
+    "completed": 0,
+    "last_access_days": 24
+  },
+  {
+    "person_id": "P035",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 175,
+    "completed": 0,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P035",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 47,
+    "completed": 1,
+    "last_access_days": 22
+  },
+  {
+    "person_id": "P035",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 49,
+    "completed": 0,
+    "last_access_days": 83
+  },
+  {
+    "person_id": "P036",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 154,
+    "completed": 0,
+    "last_access_days": 79
+  },
+  {
+    "person_id": "P036",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 170,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P036",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 1,
+    "minutes": 130,
+    "completed": 1,
+    "last_access_days": 38
+  },
+  {
+    "person_id": "P036",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 80,
+    "completed": 0,
+    "last_access_days": 45
+  },
+  {
+    "person_id": "P036",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 36,
+    "completed": 1,
+    "last_access_days": 57
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 20,
+    "completed": 1,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 6,
+    "minutes": 58,
+    "completed": 1,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 74,
+    "completed": 0,
+    "last_access_days": 57
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 172,
+    "completed": 0,
+    "last_access_days": 5
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 7,
+    "minutes": 166,
+    "completed": 0,
+    "last_access_days": 46
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 9,
+    "minutes": 105,
+    "completed": 0,
+    "last_access_days": 6
+  },
+  {
+    "person_id": "P037",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 108,
+    "completed": 1,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 5,
+    "minutes": 31,
+    "completed": 1,
+    "last_access_days": 48
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 6,
+    "minutes": 94,
+    "completed": 0,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 144,
+    "completed": 1,
+    "last_access_days": 85
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 156,
+    "completed": 1,
+    "last_access_days": 46
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 134,
+    "completed": 1,
+    "last_access_days": 17
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 55,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 5,
+    "minutes": 43,
+    "completed": 0,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 89,
+    "completed": 1,
+    "last_access_days": 79
+  },
+  {
+    "person_id": "P038",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 3,
+    "minutes": 70,
+    "completed": 0,
+    "last_access_days": 78
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 10,
+    "minutes": 93,
+    "completed": 1,
+    "last_access_days": 73
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 107,
+    "completed": 0,
+    "last_access_days": 53
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 69,
+    "completed": 0,
+    "last_access_days": 17
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 128,
+    "completed": 1,
+    "last_access_days": 13
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 79,
+    "completed": 1,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 121,
+    "completed": 1,
+    "last_access_days": 28
+  },
+  {
+    "person_id": "P039",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 125,
+    "completed": 0,
+    "last_access_days": 3
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 31,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 6,
+    "minutes": 163,
+    "completed": 0,
+    "last_access_days": 17
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 26,
+    "completed": 1,
+    "last_access_days": 19
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 2,
+    "minutes": 87,
+    "completed": 1,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 185,
+    "completed": 0,
+    "last_access_days": 58
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 4,
+    "minutes": 162,
+    "completed": 0,
+    "last_access_days": 80
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 189,
+    "completed": 1,
+    "last_access_days": 18
+  },
+  {
+    "person_id": "P040",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 71,
+    "completed": 0,
+    "last_access_days": 23
+  },
+  {
+    "person_id": "P041",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 151,
+    "completed": 1,
+    "last_access_days": 49
+  },
+  {
+    "person_id": "P041",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 3,
+    "minutes": 27,
+    "completed": 1,
+    "last_access_days": 84
+  },
+  {
+    "person_id": "P041",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 36,
+    "completed": 0,
+    "last_access_days": 42
+  },
+  {
+    "person_id": "P041",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 3,
+    "minutes": 55,
+    "completed": 1,
+    "last_access_days": 43
+  },
+  {
+    "person_id": "P041",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 205,
+    "completed": 1,
+    "last_access_days": 17
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 5,
+    "minutes": 172,
+    "completed": 0,
+    "last_access_days": 4
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 9,
+    "minutes": 34,
+    "completed": 0,
+    "last_access_days": 42
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 6,
+    "minutes": 128,
+    "completed": 0,
+    "last_access_days": 49
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 104,
+    "completed": 0,
+    "last_access_days": 66
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 3,
+    "minutes": 31,
+    "completed": 0,
+    "last_access_days": 10
+  },
+  {
+    "person_id": "P042",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 4,
+    "minutes": 164,
+    "completed": 0,
+    "last_access_days": 23
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 119,
+    "completed": 1,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 3,
+    "minutes": 124,
+    "completed": 1,
+    "last_access_days": 45
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 5,
+    "minutes": 121,
+    "completed": 1,
+    "last_access_days": 7
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 1,
+    "minutes": 173,
+    "completed": 1,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 50,
+    "completed": 0,
+    "last_access_days": 18
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 7,
+    "minutes": 165,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 1,
+    "minutes": 42,
+    "completed": 1,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 3,
+    "minutes": 116,
+    "completed": 1,
+    "last_access_days": 72
+  },
+  {
+    "person_id": "P043",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 4,
+    "minutes": 143,
+    "completed": 1,
+    "last_access_days": 9
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 4,
+    "minutes": 142,
+    "completed": 1,
+    "last_access_days": 71
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 1,
+    "minutes": 77,
+    "completed": 0,
+    "last_access_days": 90
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 81,
+    "completed": 0,
+    "last_access_days": 36
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 28,
+    "completed": 0,
+    "last_access_days": 56
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 1,
+    "minutes": 131,
+    "completed": 0,
+    "last_access_days": 90
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 3,
+    "minutes": 50,
+    "completed": 0,
+    "last_access_days": 89
+  },
+  {
+    "person_id": "P044",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 66,
+    "completed": 0,
+    "last_access_days": 65
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 175,
+    "completed": 1,
+    "last_access_days": 11
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 6,
+    "minutes": 132,
+    "completed": 0,
+    "last_access_days": 52
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 190,
+    "completed": 1,
+    "last_access_days": 40
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 98,
+    "completed": 1,
+    "last_access_days": 70
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 9,
+    "minutes": 197,
+    "completed": 1,
+    "last_access_days": 16
+  },
+  {
+    "person_id": "P045",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 2,
+    "minutes": 56,
+    "completed": 0,
+    "last_access_days": 38
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 6,
+    "minutes": 151,
+    "completed": 1,
+    "last_access_days": 80
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 181,
+    "completed": 0,
+    "last_access_days": 64
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 5,
+    "minutes": 164,
+    "completed": 1,
+    "last_access_days": 72
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 1,
+    "minutes": 17,
+    "completed": 1,
+    "last_access_days": 82
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 157,
+    "completed": 1,
+    "last_access_days": 26
+  },
+  {
+    "person_id": "P046",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 7,
+    "minutes": 156,
+    "completed": 1,
+    "last_access_days": 81
+  },
+  {
+    "person_id": "P047",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 4,
+    "minutes": 72,
+    "completed": 0,
+    "last_access_days": 87
+  },
+  {
+    "person_id": "P047",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 4,
+    "minutes": 86,
+    "completed": 0,
+    "last_access_days": 88
+  },
+  {
+    "person_id": "P047",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 4,
+    "minutes": 68,
+    "completed": 1,
+    "last_access_days": 61
+  },
+  {
+    "person_id": "P047",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 2,
+    "minutes": 90,
+    "completed": 0,
+    "last_access_days": 40
+  },
+  {
+    "person_id": "P047",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 6,
+    "minutes": 98,
+    "completed": 0,
+    "last_access_days": 16
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 3,
+    "minutes": 148,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 9,
+    "minutes": 192,
+    "completed": 1,
+    "last_access_days": 20
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A002",
+    "topic": "Demo",
+    "views": 2,
+    "minutes": 137,
+    "completed": 0,
+    "last_access_days": 59
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 88,
+    "completed": 0,
+    "last_access_days": 11
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 5,
+    "minutes": 166,
+    "completed": 1,
+    "last_access_days": 30
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 3,
+    "minutes": 136,
+    "completed": 0,
+    "last_access_days": 83
+  },
+  {
+    "person_id": "P048",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 6,
+    "minutes": 162,
+    "completed": 1,
+    "last_access_days": 1
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A012",
+    "topic": "Proposal",
+    "views": 7,
+    "minutes": 162,
+    "completed": 1,
+    "last_access_days": 70
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 4,
+    "minutes": 150,
+    "completed": 1,
+    "last_access_days": 79
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 9,
+    "minutes": 194,
+    "completed": 1,
+    "last_access_days": 12
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 3,
+    "minutes": 152,
+    "completed": 0,
+    "last_access_days": 18
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A001",
+    "topic": "Discovery",
+    "views": 2,
+    "minutes": 171,
+    "completed": 1,
+    "last_access_days": 64
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A004",
+    "topic": "Proposal",
+    "views": 9,
+    "minutes": 109,
+    "completed": 0,
+    "last_access_days": 66
+  },
+  {
+    "person_id": "P049",
+    "asset_id": "A008",
+    "topic": "Industry",
+    "views": 5,
+    "minutes": 45,
+    "completed": 1,
+    "last_access_days": 78
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A003",
+    "topic": "Objection Handling",
+    "views": 5,
+    "minutes": 135,
+    "completed": 0,
+    "last_access_days": 38
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A007",
+    "topic": "ROI",
+    "views": 4,
+    "minutes": 45,
+    "completed": 1,
+    "last_access_days": 86
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A010",
+    "topic": "Demo",
+    "views": 7,
+    "minutes": 171,
+    "completed": 1,
+    "last_access_days": 60
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A005",
+    "topic": "Negotiation",
+    "views": 3,
+    "minutes": 177,
+    "completed": 0,
+    "last_access_days": 74
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A006",
+    "topic": "Security",
+    "views": 5,
+    "minutes": 68,
+    "completed": 0,
+    "last_access_days": 74
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A009",
+    "topic": "Discovery",
+    "views": 7,
+    "minutes": 67,
+    "completed": 0,
+    "last_access_days": 79
+  },
+  {
+    "person_id": "P050",
+    "asset_id": "A011",
+    "topic": "Objection Handling",
+    "views": 2,
+    "minutes": 18,
+    "completed": 0,
+    "last_access_days": 89
+  }
+]
