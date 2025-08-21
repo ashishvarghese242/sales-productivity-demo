@@ -66,7 +66,7 @@ export default function RadarPentagon({ data, showTop, showBottom, showLRS }) {
 
           {showLRS && (
             <Radar
-              name="LRS Consumption (Impact-weighted)"
+              name="Enablement"
               dataKey="lrsOverlay"
               stroke="#7c3aed"    // purple-600
               fill="#7c3aed"
