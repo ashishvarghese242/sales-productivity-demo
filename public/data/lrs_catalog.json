@@ -1,0 +1,242 @@
+[
+  {
+    "asset_id": "A001",
+    "title": "Pipeline Review Playbook",
+    "type": "playbook",
+    "lever": "Pipeline Discipline",
+    "impact_score": 85,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A002",
+    "title": "Forecast Accuracy Training",
+    "type": "course",
+    "lever": "Pipeline Discipline",
+    "impact_score": 75,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A003",
+    "title": "Prospecting Cadence Microlearning",
+    "type": "microlearning",
+    "lever": "Pipeline Discipline",
+    "impact_score": 60,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A004",
+    "title": "Territory Planning Workshop",
+    "type": "workshop",
+    "lever": "Pipeline Discipline",
+    "impact_score": 70,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A005",
+    "title": "Advanced Pipeline Hygiene Tips",
+    "type": "guide",
+    "lever": "Pipeline Discipline",
+    "impact_score": 65,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A006",
+    "title": "Crucial Conversations at Work",
+    "type": "course",
+    "lever": "Pipeline Discipline",
+    "impact_score": 0,
+    "is_fluff": true
+  },
+  {
+    "asset_id": "A007",
+    "title": "Negotiation Masterclass",
+    "type": "course",
+    "lever": "Deal Execution",
+    "impact_score": 90,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A008",
+    "title": "Demo Excellence 201",
+    "type": "course",
+    "lever": "Deal Execution",
+    "impact_score": 80,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A009",
+    "title": "Mutual Close Plan Builder",
+    "type": "playbook",
+    "lever": "Deal Execution",
+    "impact_score": 75,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A010",
+    "title": "MEDDPICC Deep Dive",
+    "type": "course",
+    "lever": "Deal Execution",
+    "impact_score": 85,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A011",
+    "title": "Champions: Finding & Nurturing",
+    "type": "microlearning",
+    "lever": "Deal Execution",
+    "impact_score": 70,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A012",
+    "title": "How to Talk to C-Level Execs",
+    "type": "course",
+    "lever": "Deal Execution",
+    "impact_score": 0,
+    "is_fluff": true
+  },
+  {
+    "asset_id": "A013",
+    "title": "Customer Value Framework",
+    "type": "course",
+    "lever": "Value Co-Creation",
+    "impact_score": 85,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A014",
+    "title": "ROI Modeling in Practice",
+    "type": "workshop",
+    "lever": "Value Co-Creation",
+    "impact_score": 90,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A015",
+    "title": "Executive Alignment Guide",
+    "type": "guide",
+    "lever": "Value Co-Creation",
+    "impact_score": 75,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A016",
+    "title": "Industry POV Library",
+    "type": "guide",
+    "lever": "Value Co-Creation",
+    "impact_score": 65,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A017",
+    "title": "Co-Selling with Partners",
+    "type": "playbook",
+    "lever": "Value Co-Creation",
+    "impact_score": 70,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A018",
+    "title": "Personal Brand Building",
+    "type": "course",
+    "lever": "Value Co-Creation",
+    "impact_score": 0,
+    "is_fluff": true
+  },
+  {
+    "asset_id": "A019",
+    "title": "CloudEdge Product Launch",
+    "type": "course",
+    "lever": "Capability Uptake",
+    "impact_score": 80,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A020",
+    "title": "New Feature Drilldowns",
+    "type": "microlearning",
+    "lever": "Capability Uptake",
+    "impact_score": 70,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A021",
+    "title": "Competitive Landscape Update",
+    "type": "guide",
+    "lever": "Capability Uptake",
+    "impact_score": 65,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A022",
+    "title": "Solution Architecture Basics",
+    "type": "course",
+    "lever": "Capability Uptake",
+    "impact_score": 60,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A023",
+    "title": "Demo Scripts Repository",
+    "type": "guide",
+    "lever": "Capability Uptake",
+    "impact_score": 55,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A024",
+    "title": "Mindfulness at Work",
+    "type": "course",
+    "lever": "Capability Uptake",
+    "impact_score": 0,
+    "is_fluff": true
+  },
+  {
+    "asset_id": "A025",
+    "title": "CRM Hygiene 101",
+    "type": "course",
+    "lever": "Data Hygiene",
+    "impact_score": 85,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A026",
+    "title": "Data Accuracy Checklist",
+    "type": "guide",
+    "lever": "Data Hygiene",
+    "impact_score": 75,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A027",
+    "title": "Forecast Entry Best Practices",
+    "type": "guide",
+    "lever": "Data Hygiene",
+    "impact_score": 80,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A028",
+    "title": "Stage Progression Rules",
+    "type": "microlearning",
+    "lever": "Data Hygiene",
+    "impact_score": 70,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A029",
+    "title": "Next-Step & Close Date Standards",
+    "type": "playbook",
+    "lever": "Data Hygiene",
+    "impact_score": 75,
+    "is_fluff": false
+  },
+  {
+    "asset_id": "A030",
+    "title": "Email Signature Etiquette",
+    "type": "guide",
+    "lever": "Data Hygiene",
+    "impact_score": 0,
+    "is_fluff": true
+  }
+]
