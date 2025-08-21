@@ -65,7 +65,7 @@ function computeScores(personId, crmRow, lrsRow) {
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp)
   }
 
-  // CAPABILITY UPTAKE
+  // CAPABILITY UPTAKE (from LRS)
   let cu = 0
   if (lrsRow) {
     const comp = Math.min(100, (lrsRow.completions / 8) * 100)
@@ -96,31 +96,49 @@ function computeScores(personId, crmRow, lrsRow) {
   }
 }
 
-// --- NEW: Composite index + 75th percentile cutoff for Top Performers ---
-function buildCompositeIndex(hris, crm, lrs) {
-  if (!hris?.length) return { byId: {}, cutoff: 0 }
+// Build quick lookup maps
+function indexById(arr, key = 'person_id') {
+  return Object.fromEntries(arr.map((r) => [r[key], r]))
+}
 
-  const crmById = Object.fromEntries(crm.map((r) => [r.person_id, r]))
-  const lrsById = Object.fromEntries(lrs.consumption.map((r) => [r.person_id, r]))
-
-  const rows = hris.map((h) => {
-    const s = computeScores(h.person_id, crmById[h.person_id], lrsById[h.person_id])
-    const composite =
-      (s['Pipeline Discipline'] +
-        s['Deal Execution'] +
-        s['Value Co-Creation'] +
-        s['Capability Uptake'] +
-        s['Data Hygiene']) /
-      5
-    return { person_id: h.person_id, composite }
+// Average lever scores for a set of people
+function averageScoresForPeople(people, crmById, lrsById) {
+  if (!people.length) {
+    return {
+      'Pipeline Discipline': 0,
+      'Deal Execution': 0,
+      'Value Co-Creation': 0,
+      'Capability Uptake': 0,
+      'Data Hygiene': 0,
+    }
+  }
+  const sums = {
+    'Pipeline Discipline': 0,
+    'Deal Execution': 0,
+    'Value Co-Creation': 0,
+    'Capability Uptake': 0,
+    'Data Hygiene': 0,
+  }
+  people.forEach((p) => {
+    const s = computeScores(p.person_id, crmById[p.person_id], lrsById[p.person_id])
+    LEVERS.forEach((l) => (sums[l] += s[l] || 0))
   })
+  const avg = {}
+  LEVERS.forEach((l) => (avg[l] = Math.round(sums[l] / people.length)))
+  return avg
+}
 
-  const sorted = [...rows].sort((a, b) => a.composite - b.composite)
-  const idx = Math.floor(0.75 * (sorted.length - 1)) // 75th percentile
-  const cutoff = sorted[idx]?.composite ?? 0
-
-  const byId = Object.fromEntries(rows.map((r) => [r.person_id, r.composite]))
-  return { byId, cutoff }
+// Composite for sorting (mean of five levers)
+function compositeOf(person, crmById, lrsById) {
+  const s = computeScores(person.person_id, crmById[person.person_id], lrsById[person.person_id])
+  const comp =
+    (s['Pipeline Discipline'] +
+      s['Deal Execution'] +
+      s['Value Co-Creation'] +
+      s['Capability Uptake'] +
+      s['Data Hygiene']) /
+    5
+  return comp
 }
 
 // ------------------------------ App ------------------------------
@@ -130,62 +148,101 @@ export default function App() {
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
   const [personId, setPersonId] = useState(null)
-  const [topFilter, setTopFilter] = useState('All') // 'All' | 'Top Performers'
 
-  // Distinct filter values
+  // NEW: independent toggles
+  const [showTop, setShowTop] = useState(false)
+  const [showBottom, setShowBottom] = useState(false)
+
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
 
-  // Build composite index + cutoff for "Top Performers"
-  const compositeIndex = useMemo(() => buildCompositeIndex(hris, crm, lrs), [hris, crm, lrs])
+  const crmById = useMemo(() => indexById(crm), [crm])
+  const lrsById = useMemo(() => indexById(lrs.consumption || []), [lrs])
 
-  // People list with filters applied
-  const people = useMemo(() => {
-    let list = hris
+  // Apply base filters (Geo/Manager)
+  const filteredPeople = useMemo(() => {
+    return hris
       .filter((h) => (geo === 'All' || h.geo === geo))
       .filter((h) => (manager === 'All' || h.manager_name === manager))
+  }, [hris, geo, manager])
 
-    if (topFilter === 'Top Performers') {
-      list = list.filter((p) => {
-        const comp = compositeIndex.byId[p.person_id] ?? 0
-        return comp >= compositeIndex.cutoff
-      })
-    }
-    return list
-  }, [hris, geo, manager, topFilter, compositeIndex])
-
-  // Ensure a person is selected
+  // Ensure a selected person exists within filtered population
   useEffect(() => {
-    if (!personId && people.length > 0) setPersonId(people[0].person_id)
-    // If the current person falls out of the filtered list, reset
-    if (personId && people.length > 0 && !people.find((p) => p.person_id === personId)) {
-      setPersonId(people[0].person_id)
+    if (!personId && filteredPeople.length > 0) {
+      setPersonId(filteredPeople[0].person_id)
+    } else if (personId && filteredPeople.length > 0) {
+      const stillVisible = filteredPeople.find((p) => p.person_id === personId)
+      if (!stillVisible) setPersonId(filteredPeople[0].person_id)
     }
-  }, [people, personId])
+  }, [filteredPeople, personId])
 
-  // Selected person and their rows
-  const selected = useMemo(() => hris.find((h) => h.person_id === personId), [hris, personId])
+  const selected = useMemo(
+    () => hris.find((h) => h.person_id === personId),
+    [hris, personId]
+  )
   const crmRow = useMemo(() => crm.find((c) => c.person_id === personId), [crm, personId])
-  const lrsRow = useMemo(() => lrs.consumption.find((c) => c.person_id === personId), [lrs, personId])
-
-  // Scores + radar data
-  const scores = useMemo(() => computeScores(personId, crmRow, lrsRow), [personId, crmRow, lrsRow])
-  const radarData = useMemo(
-    () => LEVERS.map((l) => ({ lever: l, score: scores[l] || 0 })),
-    [scores]
+  const lrsRow = useMemo(
+    () => lrs.consumption.find((c) => c.person_id === personId),
+    [lrs, personId]
   )
 
+  // Selected person's scores
+  const selectedScores = useMemo(
+    () => computeScores(personId, crmRow, lrsRow),
+    [personId, crmRow, lrsRow]
+  )
+
+  // Determine top/bottom groups (20% each) WITHIN the filtered population
+  const { topAvgScores, bottomAvgScores, topCut, bottomCut } = useMemo(() => {
+    if (!filteredPeople.length) {
+      return { topAvgScores: null, bottomAvgScores: null, topCut: 0, bottomCut: 0 }
+    }
+    const scored = filteredPeople.map((p) => ({
+      person: p,
+      comp: compositeOf(p, crmById, lrsById),
+    }))
+    // sort by composite
+    scored.sort((a, b) => a.comp - b.comp)
+
+    const n = scored.length
+    const groupSize = Math.max(1, Math.floor(n * 0.2)) // 20%
+    const bottomGroup = scored.slice(0, groupSize).map((x) => x.person)
+    const topGroup = scored.slice(-groupSize).map((x) => x.person)
+
+    const topAvg = averageScoresForPeople(topGroup, crmById, lrsById)
+    const bottomAvg = averageScoresForPeople(bottomGroup, crmById, lrsById)
+
+    return {
+      topAvgScores: topAvg,
+      bottomAvgScores: bottomAvg,
+      topCut: Math.round(scored[n - groupSize]?.comp || 0),
+      bottomCut: Math.round(scored[groupSize - 1]?.comp || 0),
+    }
+  }, [filteredPeople, crmById, lrsById])
+
+  // Build chart data rows with optional overlays
+  const radarData = useMemo(() => {
+    return LEVERS.map((l) => ({
+      lever: l,
+      selectedScore: selectedScores[l] || 0,
+      topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+      bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+    }))
+  }, [selectedScores, showTop, showBottom, topAvgScores, bottomAvgScores])
+
+  // Composite for display
   const selectedComposite = useMemo(() => {
     if (!selected) return 0
+    const s = selectedScores
     const comp =
-      (scores['Pipeline Discipline'] +
-        scores['Deal Execution'] +
-        scores['Value Co-Creation'] +
-        scores['Capability Uptake'] +
-        scores['Data Hygiene']) /
+      (s['Pipeline Discipline'] +
+        s['Deal Execution'] +
+        s['Value Co-Creation'] +
+        s['Capability Uptake'] +
+        s['Data Hygiene']) /
       5
     return Math.round(comp)
-  }, [selected, scores])
+  }, [selected, selectedScores])
 
   return (
     <div className="min-h-screen p-6 bg-white text-slate-900">
@@ -231,19 +288,6 @@ export default function App() {
                 </select>
               </label>
 
-              {/* NEW: Top Performers toggle */}
-              <label className="block text-sm">
-                Show
-                <select
-                  className="w-full border rounded-lg px-2 py-1 mt-1"
-                  value={topFilter}
-                  onChange={(e) => setTopFilter(e.target.value)}
-                >
-                  <option value="All">All</option>
-                  <option value="Top Performers">Top Performers</option>
-                </select>
-              </label>
-
               <label className="block text-sm">
                 Person
                 <select
@@ -251,7 +295,7 @@ export default function App() {
                   value={personId || ''}
                   onChange={(e) => setPersonId(e.target.value)}
                 >
-                  {people.map((p) => (
+                  {filteredPeople.map((p) => (
                     <option key={p.person_id} value={p.person_id}>
                       {p.name} ({p.role_type})
                     </option>
@@ -259,12 +303,30 @@ export default function App() {
                 </select>
               </label>
 
-              {/* Cutoff helper (small, subtle note) */}
-              <div className="text-xs text-slate-500">
-                Top Performer Cutoff:&nbsp;
-                <span className="font-medium">
-                  {Math.round(compositeIndex.cutoff)} / 100
-                </span>
+              {/* NEW: Toggles for Top/Bottom overlays */}
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-green-600"
+                    checked={showTop}
+                    onChange={(e) => setShowTop(e.target.checked)}
+                  />
+                  <span>Top Performers</span>
+                </label>
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-red-600"
+                    checked={showBottom}
+                    onChange={(e) => setShowBottom(e.target.checked)}
+                  />
+                    <span>Bottom Performers</span>
+                </label>
+              </div>
+
+              <div className="text-xs text-slate-500 mt-1">
+                Top ≥ {topCut}/100 &nbsp;|&nbsp; Bottom ≤ {bottomCut}/100 (within current filters)
               </div>
             </div>
           </div>
@@ -293,17 +355,24 @@ export default function App() {
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold">Sales Productivity Pentagon</h2>
             <div className="text-xs text-slate-500">
-              Scores: PD / DE / VC / CU / DH
+              PD / DE / VC / CU / DH
             </div>
           </div>
-          <RadarPentagon data={radarData} />
+
+          <RadarPentagon
+            data={radarData}
+            showTop={showTop}
+            showBottom={showBottom}
+          />
 
           {/* Quick score stripes below the chart */}
           <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-2 text-sm">
             {LEVERS.map((l) => (
               <div key={l} className="rounded-lg border p-2">
                 <div className="text-slate-500">{l}</div>
-                <div className="text-lg font-semibold">{Math.round(scores[l] || 0)}</div>
+                <div className="text-lg font-semibold">
+                  {Math.round(selectedScores[l] || 0)}
+                </div>
               </div>
             ))}
           </div>
