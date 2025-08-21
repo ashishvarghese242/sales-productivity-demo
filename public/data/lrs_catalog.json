@@ -12,15 +12,15 @@
     "title": "Forecast Accuracy Training",
     "type": "course",
     "lever": "Pipeline Discipline",
-    "impact_score": 75,
+    "impact_score": 80,
     "is_fluff": false
   },
   {
     "asset_id": "A003",
-    "title": "Prospecting Cadence Microlearning",
+    "title": "Prospecting Cadence 2.0",
     "type": "microlearning",
     "lever": "Pipeline Discipline",
-    "impact_score": 60,
+    "impact_score": 65,
     "is_fluff": false
   },
   {
@@ -33,10 +33,10 @@
   },
   {
     "asset_id": "A005",
-    "title": "Advanced Pipeline Hygiene Tips",
+    "title": "Stage Exit Criteria Guide",
     "type": "guide",
     "lever": "Pipeline Discipline",
-    "impact_score": 65,
+    "impact_score": 60,
     "is_fluff": false
   },
   {
@@ -52,7 +52,7 @@
     "title": "Negotiation Masterclass",
     "type": "course",
     "lever": "Deal Execution",
-    "impact_score": 90,
+    "impact_score": 92,
     "is_fluff": false
   },
   {
@@ -60,7 +60,7 @@
     "title": "Demo Excellence 201",
     "type": "course",
     "lever": "Deal Execution",
-    "impact_score": 80,
+    "impact_score": 82,
     "is_fluff": false
   },
   {
@@ -68,7 +68,7 @@
     "title": "Mutual Close Plan Builder",
     "type": "playbook",
     "lever": "Deal Execution",
-    "impact_score": 75,
+    "impact_score": 78,
     "is_fluff": false
   },
   {
@@ -76,20 +76,20 @@
     "title": "MEDDPICC Deep Dive",
     "type": "course",
     "lever": "Deal Execution",
-    "impact_score": 85,
+    "impact_score": 88,
     "is_fluff": false
   },
   {
     "asset_id": "A011",
-    "title": "Champions: Finding & Nurturing",
+    "title": "Champion Development Mini",
     "type": "microlearning",
     "lever": "Deal Execution",
-    "impact_score": 70,
+    "impact_score": 72,
     "is_fluff": false
   },
   {
     "asset_id": "A012",
-    "title": "How to Talk to C-Level Execs",
+    "title": "How to Talk to C\u2011Level Execs",
     "type": "course",
     "lever": "Deal Execution",
     "impact_score": 0,
@@ -100,7 +100,7 @@
     "title": "Customer Value Framework",
     "type": "course",
     "lever": "Value Co-Creation",
-    "impact_score": 85,
+    "impact_score": 88,
     "is_fluff": false
   },
   {
@@ -108,7 +108,7 @@
     "title": "ROI Modeling in Practice",
     "type": "workshop",
     "lever": "Value Co-Creation",
-    "impact_score": 90,
+    "impact_score": 94,
     "is_fluff": false
   },
   {
@@ -116,7 +116,7 @@
     "title": "Executive Alignment Guide",
     "type": "guide",
     "lever": "Value Co-Creation",
-    "impact_score": 75,
+    "impact_score": 76,
     "is_fluff": false
   },
   {
@@ -124,15 +124,15 @@
     "title": "Industry POV Library",
     "type": "guide",
     "lever": "Value Co-Creation",
-    "impact_score": 65,
+    "impact_score": 68,
     "is_fluff": false
   },
   {
     "asset_id": "A017",
-    "title": "Co-Selling with Partners",
+    "title": "Partner Co\u2011Selling Playbook",
     "type": "playbook",
     "lever": "Value Co-Creation",
-    "impact_score": 70,
+    "impact_score": 74,
     "is_fluff": false
   },
   {
@@ -145,15 +145,15 @@
   },
   {
     "asset_id": "A019",
-    "title": "CloudEdge Product Launch",
+    "title": "CloudEdge Launch Readiness",
     "type": "course",
     "lever": "Capability Uptake",
-    "impact_score": 80,
+    "impact_score": 82,
     "is_fluff": false
   },
   {
     "asset_id": "A020",
-    "title": "New Feature Drilldowns",
+    "title": "Feature Drilldowns Weekly",
     "type": "microlearning",
     "lever": "Capability Uptake",
     "impact_score": 70,
@@ -161,10 +161,10 @@
   },
   {
     "asset_id": "A021",
-    "title": "Competitive Landscape Update",
+    "title": "Competitive Landscape Q3",
     "type": "guide",
     "lever": "Capability Uptake",
-    "impact_score": 65,
+    "impact_score": 66,
     "is_fluff": false
   },
   {
@@ -172,7 +172,7 @@
     "title": "Solution Architecture Basics",
     "type": "course",
     "lever": "Capability Uptake",
-    "impact_score": 60,
+    "impact_score": 62,
     "is_fluff": false
   },
   {
@@ -180,7 +180,7 @@
     "title": "Demo Scripts Repository",
     "type": "guide",
     "lever": "Capability Uptake",
-    "impact_score": 55,
+    "impact_score": 58,
     "is_fluff": false
   },
   {
@@ -196,7 +196,7 @@
     "title": "CRM Hygiene 101",
     "type": "course",
     "lever": "Data Hygiene",
-    "impact_score": 85,
+    "impact_score": 86,
     "is_fluff": false
   },
   {
@@ -204,15 +204,15 @@
     "title": "Data Accuracy Checklist",
     "type": "guide",
     "lever": "Data Hygiene",
-    "impact_score": 75,
+    "impact_score": 78,
     "is_fluff": false
   },
   {
     "asset_id": "A027",
-    "title": "Forecast Entry Best Practices",
+    "title": "Forecast Entry Standards",
     "type": "guide",
     "lever": "Data Hygiene",
-    "impact_score": 80,
+    "impact_score": 84,
     "is_fluff": false
   },
   {
@@ -220,15 +220,15 @@
     "title": "Stage Progression Rules",
     "type": "microlearning",
     "lever": "Data Hygiene",
-    "impact_score": 70,
+    "impact_score": 72,
     "is_fluff": false
   },
   {
     "asset_id": "A029",
-    "title": "Next-Step & Close Date Standards",
+    "title": "Next\u2011Step & Close\u2011Date Rules",
     "type": "playbook",
     "lever": "Data Hygiene",
-    "impact_score": 75,
+    "impact_score": 76,
     "is_fluff": false
   },
   {
