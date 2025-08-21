@@ -117,7 +117,7 @@ function compositeOf(person, crmById, lrsById) {
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
-// ------------------------------ NEW: Impact-weighted LRS overlay per lever ------------------------------
+// ------------------------------ NEW: Impact-weighted Enablement overlay per lever ------------------------------
 /**
  * coverage_person_lever =
  *   ( SUM impact_score of COMPLETED, NON-FLUFF assets for lever × LRS_OVERLAY_MULTIPLIER )
@@ -180,7 +180,7 @@ export default function App() {
 
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
-  const [showLRS, setShowLRS] = useState(false)
+  const [showLRS, setShowLRS] = useState(false) // DEFAULT OFF
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -188,12 +188,14 @@ export default function App() {
   const crmById = useMemo(() => indexById(crm), [crm])
   const lrsById = useMemo(() => indexById(lrs.consumption || []), [lrs])
 
+  // Filter people
   const filteredPeople = useMemo(() => {
     return hris
       .filter((h) => (geo === 'All' || h.geo === geo))
       .filter((h) => (manager === 'All' || h.manager_name === manager))
   }, [hris, geo, manager])
 
+  // Keep selection valid if filters change
   useEffect(() => {
     if (personId === 'All') return
     const stillVisible = filteredPeople.find((p) => p.person_id === personId)
@@ -213,6 +215,7 @@ export default function App() {
     [lrs, personId]
   )
 
+  // Performance (blue)
   const selectedScores = useMemo(() => {
     if (personId === 'All') {
       return averageScoresForPeople(filteredPeople, crmById, lrsById)
@@ -220,6 +223,7 @@ export default function App() {
     return computeScores(personId, crmRow, lrsRow)
   }, [personId, filteredPeople, crmById, lrsById, crmRow, lrsRow])
 
+  // Top/Bottom 20%
   const { topAvgScores, bottomAvgScores, topCut, bottomCut } = useMemo(() => {
     if (!filteredPeople.length) {
       return { topAvgScores: null, bottomAvgScores: null, topCut: 0, bottomCut: 0 }
@@ -242,11 +246,13 @@ export default function App() {
     }
   }, [filteredPeople, crmById, lrsById])
 
+  // Enablement overlay (purple)
   const lrsOverlay = useMemo(() => {
     const personIds = personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
     return lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents)
   }, [personId, filteredPeople, lrsCatalog, lrsEvents])
 
+  // Assemble chart rows
   const radarData = useMemo(() => {
     return LEVERS.map((l) => ({
       lever: l,
@@ -269,7 +275,7 @@ export default function App() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
         <p className="text-sm text-slate-600">
-          Pentagon radar with HRIS / CRM / LRS (impact-weighted overlay, last 90 days)
+          Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
         </p>
       </header>
 
@@ -319,7 +325,7 @@ export default function App() {
                 </label>
                 <label className="flex items-center gap-2 text-sm col-span-2">
                   <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>Enablement</span>
+                  <span>Enablement (Impact-weighted)</span>
                 </label>
               </div>
 
@@ -365,10 +371,25 @@ export default function App() {
             <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
           </div>
 
-<RadarPentagon
-  data={radarData}
-  showTop={showTop}
-  showBottom={showBottom}
-  showLRS={showLRS}
-/>
- ​:contentReference[oaicite:0]{index=0}​
+          <RadarPentagon
+            data={radarData}
+            showTop={showTop}
+            showBottom={showBottom}
+            showLRS={showLRS}
+          />
+
+          {/* Quick score stripes */}
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-2 text-sm">
+            {LEVERS.map((l) => (
+              <div key={l} className="rounded-lg border p-2">
+                <div className="text-slate-500">{l}</div>
+                <div className="text-lg font-semibold">{Math.round(selectedScores[l] || 0)}</div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+}
