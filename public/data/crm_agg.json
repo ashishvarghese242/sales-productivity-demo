@@ -1,0 +1,1552 @@
+[
+  {
+    "person_id": "P001",
+    "pipeline_coverage": 3.74,
+    "stalled_ratio": 0.17,
+    "new_opps_last_30": 6,
+    "win_rate": 0.53,
+    "avg_cycle_days": 44,
+    "meddpicc": {
+      "metrics_pct": 75.0,
+      "econ_buyer_pct": 66.0,
+      "decision_criteria_pct": 74.0,
+      "decision_process_pct": 60.0,
+      "paper_process_pct": 80.0,
+      "identify_pain_pct": 73.0,
+      "champion_pct": 67.0,
+      "competition_pct": 86.0
+    },
+    "value_co": {
+      "business_case_rate": 0.8,
+      "quantified_impact_rate": 0.26,
+      "exec_meetings_90d": 8,
+      "mutual_success_plan_rate": 0.54
+    },
+    "hygiene": {
+      "next_step_filled_pct": 69.0,
+      "next_meeting_set_pct": 74.0,
+      "stage_date_present_pct": 71.0,
+      "forecast_cat_set_pct": 79.0,
+      "close_date_valid_pct": 92.0
+    }
+  },
+  {
+    "person_id": "P002",
+    "pipeline_coverage": 4.53,
+    "stalled_ratio": 0.14,
+    "new_opps_last_30": 8,
+    "win_rate": 0.4,
+    "avg_cycle_days": 55,
+    "meddpicc": {
+      "metrics_pct": 76.0,
+      "econ_buyer_pct": 90.0,
+      "decision_criteria_pct": 90.0,
+      "decision_process_pct": 91.0,
+      "paper_process_pct": 56.0,
+      "identify_pain_pct": 60.0,
+      "champion_pct": 66.0,
+      "competition_pct": 83.0
+    },
+    "value_co": {
+      "business_case_rate": 0.67,
+      "quantified_impact_rate": 0.69,
+      "exec_meetings_90d": 0,
+      "mutual_success_plan_rate": 0.48
+    },
+    "hygiene": {
+      "next_step_filled_pct": 74.0,
+      "next_meeting_set_pct": 85.0,
+      "stage_date_present_pct": 87.0,
+      "forecast_cat_set_pct": 61.0,
+      "close_date_valid_pct": 70.0
+    }
+  },
+  {
+    "person_id": "P003",
+    "pipeline_coverage": 3.59,
+    "stalled_ratio": 0.32,
+    "new_opps_last_30": 9,
+    "win_rate": 0.25,
+    "avg_cycle_days": 52,
+    "meddpicc": {
+      "metrics_pct": 86.0,
+      "econ_buyer_pct": 72.0,
+      "decision_criteria_pct": 78.0,
+      "decision_process_pct": 83.0,
+      "paper_process_pct": 80.0,
+      "identify_pain_pct": 74.0,
+      "champion_pct": 91.0,
+      "competition_pct": 70.0
+    },
+    "value_co": {
+      "business_case_rate": 0.54,
+      "quantified_impact_rate": 0.76,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.74
+    },
+    "hygiene": {
+      "next_step_filled_pct": 78.0,
+      "next_meeting_set_pct": 85.0,
+      "stage_date_present_pct": 79.0,
+      "forecast_cat_set_pct": 60.0,
+      "close_date_valid_pct": 90.0
+    }
+  },
+  {
+    "person_id": "P004",
+    "pipeline_coverage": 4.04,
+    "stalled_ratio": 0.24,
+    "new_opps_last_30": 8,
+    "win_rate": 0.52,
+    "avg_cycle_days": 34,
+    "meddpicc": {
+      "metrics_pct": 62.0,
+      "econ_buyer_pct": 83.0,
+      "decision_criteria_pct": 91.0,
+      "decision_process_pct": 94.0,
+      "paper_process_pct": 77.0,
+      "identify_pain_pct": 72.0,
+      "champion_pct": 77.0,
+      "competition_pct": 57.0
+    },
+    "value_co": {
+      "business_case_rate": 0.74,
+      "quantified_impact_rate": 0.41,
+      "exec_meetings_90d": 1,
+      "mutual_success_plan_rate": 0.68
+    },
+    "hygiene": {
+      "next_step_filled_pct": 85.0,
+      "next_meeting_set_pct": 56.0,
+      "stage_date_present_pct": 91.0,
+      "forecast_cat_set_pct": 97.0,
+      "close_date_valid_pct": 98.0
+    }
+  },
+  {
+    "person_id": "P005",
+    "pipeline_coverage": 4.45,
+    "stalled_ratio": 0.06,
+    "new_opps_last_30": 2,
+    "win_rate": 0.26,
+    "avg_cycle_days": 66,
+    "meddpicc": {
+      "metrics_pct": 88.0,
+      "econ_buyer_pct": 59.0,
+      "decision_criteria_pct": 91.0,
+      "decision_process_pct": 95.0,
+      "paper_process_pct": 83.0,
+      "identify_pain_pct": 73.0,
+      "champion_pct": 62.0,
+      "competition_pct": 62.0
+    },
+    "value_co": {
+      "business_case_rate": 0.78,
+      "quantified_impact_rate": 0.29,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.23
+    },
+    "hygiene": {
+      "next_step_filled_pct": 64.0,
+      "next_meeting_set_pct": 70.0,
+      "stage_date_present_pct": 72.0,
+      "forecast_cat_set_pct": 62.0,
+      "close_date_valid_pct": 82.0
+    }
+  },
+  {
+    "person_id": "P006",
+    "pipeline_coverage": 4.6,
+    "stalled_ratio": 0.31,
+    "new_opps_last_30": 3,
+    "win_rate": 0.18,
+    "avg_cycle_days": 30,
+    "meddpicc": {
+      "metrics_pct": 68.0,
+      "econ_buyer_pct": 79.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 93.0,
+      "paper_process_pct": 70.0,
+      "identify_pain_pct": 57.0,
+      "champion_pct": 83.0,
+      "competition_pct": 61.0
+    },
+    "value_co": {
+      "business_case_rate": 0.68,
+      "quantified_impact_rate": 0.55,
+      "exec_meetings_90d": 8,
+      "mutual_success_plan_rate": 0.53
+    },
+    "hygiene": {
+      "next_step_filled_pct": 68.0,
+      "next_meeting_set_pct": 58.0,
+      "stage_date_present_pct": 77.0,
+      "forecast_cat_set_pct": 92.0,
+      "close_date_valid_pct": 71.0
+    }
+  },
+  {
+    "person_id": "P007",
+    "pipeline_coverage": 5.41,
+    "stalled_ratio": 0.29,
+    "new_opps_last_30": 6,
+    "win_rate": 0.35,
+    "avg_cycle_days": 49,
+    "meddpicc": {
+      "metrics_pct": 62.0,
+      "econ_buyer_pct": 84.0,
+      "decision_criteria_pct": 81.0,
+      "decision_process_pct": 58.0,
+      "paper_process_pct": 82.0,
+      "identify_pain_pct": 59.0,
+      "champion_pct": 60.0,
+      "competition_pct": 79.0
+    },
+    "value_co": {
+      "business_case_rate": 0.44,
+      "quantified_impact_rate": 0.78,
+      "exec_meetings_90d": 7,
+      "mutual_success_plan_rate": 0.78
+    },
+    "hygiene": {
+      "next_step_filled_pct": 64.0,
+      "next_meeting_set_pct": 76.0,
+      "stage_date_present_pct": 86.0,
+      "forecast_cat_set_pct": 75.0,
+      "close_date_valid_pct": 92.0
+    }
+  },
+  {
+    "person_id": "P008",
+    "pipeline_coverage": 5.31,
+    "stalled_ratio": 0.18,
+    "new_opps_last_30": 4,
+    "win_rate": 0.46,
+    "avg_cycle_days": 30,
+    "meddpicc": {
+      "metrics_pct": 94.0,
+      "econ_buyer_pct": 82.0,
+      "decision_criteria_pct": 88.0,
+      "decision_process_pct": 61.0,
+      "paper_process_pct": 80.0,
+      "identify_pain_pct": 69.0,
+      "champion_pct": 64.0,
+      "competition_pct": 68.0
+    },
+    "value_co": {
+      "business_case_rate": 0.67,
+      "quantified_impact_rate": 0.46,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.43
+    },
+    "hygiene": {
+      "next_step_filled_pct": 87.0,
+      "next_meeting_set_pct": 69.0,
+      "stage_date_present_pct": 79.0,
+      "forecast_cat_set_pct": 84.0,
+      "close_date_valid_pct": 97.0
+    }
+  },
+  {
+    "person_id": "P009",
+    "pipeline_coverage": 3.27,
+    "stalled_ratio": 0.06,
+    "new_opps_last_30": 4,
+    "win_rate": 0.45,
+    "avg_cycle_days": 50,
+    "meddpicc": {
+      "metrics_pct": 58.0,
+      "econ_buyer_pct": 56.0,
+      "decision_criteria_pct": 62.0,
+      "decision_process_pct": 63.0,
+      "paper_process_pct": 75.0,
+      "identify_pain_pct": 92.0,
+      "champion_pct": 81.0,
+      "competition_pct": 69.0
+    },
+    "value_co": {
+      "business_case_rate": 0.56,
+      "quantified_impact_rate": 0.43,
+      "exec_meetings_90d": 9,
+      "mutual_success_plan_rate": 0.75
+    },
+    "hygiene": {
+      "next_step_filled_pct": 72.0,
+      "next_meeting_set_pct": 73.0,
+      "stage_date_present_pct": 76.0,
+      "forecast_cat_set_pct": 85.0,
+      "close_date_valid_pct": 63.0
+    }
+  },
+  {
+    "person_id": "P010",
+    "pipeline_coverage": 5.04,
+    "stalled_ratio": 0.31,
+    "new_opps_last_30": 8,
+    "win_rate": 0.24,
+    "avg_cycle_days": 41,
+    "meddpicc": {
+      "metrics_pct": 59.0,
+      "econ_buyer_pct": 88.0,
+      "decision_criteria_pct": 85.0,
+      "decision_process_pct": 82.0,
+      "paper_process_pct": 56.0,
+      "identify_pain_pct": 91.0,
+      "champion_pct": 69.0,
+      "competition_pct": 85.0
+    },
+    "value_co": {
+      "business_case_rate": 0.49,
+      "quantified_impact_rate": 0.29,
+      "exec_meetings_90d": 0,
+      "mutual_success_plan_rate": 0.6
+    },
+    "hygiene": {
+      "next_step_filled_pct": 78.0,
+      "next_meeting_set_pct": 93.0,
+      "stage_date_present_pct": 73.0,
+      "forecast_cat_set_pct": 85.0,
+      "close_date_valid_pct": 71.0
+    }
+  },
+  {
+    "person_id": "P011",
+    "pipeline_coverage": 4.36,
+    "stalled_ratio": 0.27,
+    "new_opps_last_30": 3,
+    "win_rate": 0.19,
+    "avg_cycle_days": 70,
+    "meddpicc": {
+      "metrics_pct": 56.0,
+      "econ_buyer_pct": 64.0,
+      "decision_criteria_pct": 58.0,
+      "decision_process_pct": 71.0,
+      "paper_process_pct": 94.0,
+      "identify_pain_pct": 70.0,
+      "champion_pct": 67.0,
+      "competition_pct": 74.0
+    },
+    "value_co": {
+      "business_case_rate": 0.47,
+      "quantified_impact_rate": 0.69,
+      "exec_meetings_90d": 7,
+      "mutual_success_plan_rate": 0.3
+    },
+    "hygiene": {
+      "next_step_filled_pct": 69.0,
+      "next_meeting_set_pct": 82.0,
+      "stage_date_present_pct": 97.0,
+      "forecast_cat_set_pct": 85.0,
+      "close_date_valid_pct": 76.0
+    }
+  },
+  {
+    "person_id": "P012",
+    "pipeline_coverage": 5.41,
+    "stalled_ratio": 0.05,
+    "new_opps_last_30": 1,
+    "win_rate": 0.35,
+    "avg_cycle_days": 68,
+    "meddpicc": {
+      "metrics_pct": 71.0,
+      "econ_buyer_pct": 57.0,
+      "decision_criteria_pct": 77.0,
+      "decision_process_pct": 95.0,
+      "paper_process_pct": 76.0,
+      "identify_pain_pct": 69.0,
+      "champion_pct": 59.0,
+      "competition_pct": 58.0
+    },
+    "value_co": {
+      "business_case_rate": 0.84,
+      "quantified_impact_rate": 0.54,
+      "exec_meetings_90d": 7,
+      "mutual_success_plan_rate": 0.23
+    },
+    "hygiene": {
+      "next_step_filled_pct": 69.0,
+      "next_meeting_set_pct": 57.0,
+      "stage_date_present_pct": 82.0,
+      "forecast_cat_set_pct": 62.0,
+      "close_date_valid_pct": 70.0
+    }
+  },
+  {
+    "person_id": "P013",
+    "pipeline_coverage": 3.43,
+    "stalled_ratio": 0.14,
+    "new_opps_last_30": 1,
+    "win_rate": 0.5,
+    "avg_cycle_days": 85,
+    "meddpicc": {
+      "metrics_pct": 94.0,
+      "econ_buyer_pct": 62.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 71.0,
+      "paper_process_pct": 76.0,
+      "identify_pain_pct": 58.0,
+      "champion_pct": 68.0,
+      "competition_pct": 59.0
+    },
+    "value_co": {
+      "business_case_rate": 0.63,
+      "quantified_impact_rate": 0.8,
+      "exec_meetings_90d": 9,
+      "mutual_success_plan_rate": 0.25
+    },
+    "hygiene": {
+      "next_step_filled_pct": 88.0,
+      "next_meeting_set_pct": 80.0,
+      "stage_date_present_pct": 83.0,
+      "forecast_cat_set_pct": 74.0,
+      "close_date_valid_pct": 76.0
+    }
+  },
+  {
+    "person_id": "P014",
+    "pipeline_coverage": 4.69,
+    "stalled_ratio": 0.21,
+    "new_opps_last_30": 3,
+    "win_rate": 0.45,
+    "avg_cycle_days": 83,
+    "meddpicc": {
+      "metrics_pct": 85.0,
+      "econ_buyer_pct": 83.0,
+      "decision_criteria_pct": 91.0,
+      "decision_process_pct": 95.0,
+      "paper_process_pct": 77.0,
+      "identify_pain_pct": 61.0,
+      "champion_pct": 74.0,
+      "competition_pct": 86.0
+    },
+    "value_co": {
+      "business_case_rate": 0.46,
+      "quantified_impact_rate": 0.49,
+      "exec_meetings_90d": 2,
+      "mutual_success_plan_rate": 0.28
+    },
+    "hygiene": {
+      "next_step_filled_pct": 63.0,
+      "next_meeting_set_pct": 65.0,
+      "stage_date_present_pct": 72.0,
+      "forecast_cat_set_pct": 76.0,
+      "close_date_valid_pct": 82.0
+    }
+  },
+  {
+    "person_id": "P015",
+    "pipeline_coverage": 2.86,
+    "stalled_ratio": 0.07,
+    "new_opps_last_30": 4,
+    "win_rate": 0.2,
+    "avg_cycle_days": 37,
+    "meddpicc": {
+      "metrics_pct": 87.0,
+      "econ_buyer_pct": 90.0,
+      "decision_criteria_pct": 90.0,
+      "decision_process_pct": 58.0,
+      "paper_process_pct": 86.0,
+      "identify_pain_pct": 70.0,
+      "champion_pct": 86.0,
+      "competition_pct": 55.0
+    },
+    "value_co": {
+      "business_case_rate": 0.47,
+      "quantified_impact_rate": 0.81,
+      "exec_meetings_90d": 2,
+      "mutual_success_plan_rate": 0.54
+    },
+    "hygiene": {
+      "next_step_filled_pct": 77.0,
+      "next_meeting_set_pct": 88.0,
+      "stage_date_present_pct": 89.0,
+      "forecast_cat_set_pct": 96.0,
+      "close_date_valid_pct": 88.0
+    }
+  },
+  {
+    "person_id": "P016",
+    "pipeline_coverage": 4.45,
+    "stalled_ratio": 0.13,
+    "new_opps_last_30": 7,
+    "win_rate": 0.39,
+    "avg_cycle_days": 45,
+    "meddpicc": {
+      "metrics_pct": 58.0,
+      "econ_buyer_pct": 62.0,
+      "decision_criteria_pct": 66.0,
+      "decision_process_pct": 82.0,
+      "paper_process_pct": 66.0,
+      "identify_pain_pct": 58.0,
+      "champion_pct": 86.0,
+      "competition_pct": 77.0
+    },
+    "value_co": {
+      "business_case_rate": 0.32,
+      "quantified_impact_rate": 0.28,
+      "exec_meetings_90d": 2,
+      "mutual_success_plan_rate": 0.7
+    },
+    "hygiene": {
+      "next_step_filled_pct": 77.0,
+      "next_meeting_set_pct": 65.0,
+      "stage_date_present_pct": 98.0,
+      "forecast_cat_set_pct": 61.0,
+      "close_date_valid_pct": 80.0
+    }
+  },
+  {
+    "person_id": "P017",
+    "pipeline_coverage": 2.44,
+    "stalled_ratio": 0.11,
+    "new_opps_last_30": 6,
+    "win_rate": 0.18,
+    "avg_cycle_days": 62,
+    "meddpicc": {
+      "metrics_pct": 80.0,
+      "econ_buyer_pct": 62.0,
+      "decision_criteria_pct": 94.0,
+      "decision_process_pct": 66.0,
+      "paper_process_pct": 79.0,
+      "identify_pain_pct": 80.0,
+      "champion_pct": 61.0,
+      "competition_pct": 86.0
+    },
+    "value_co": {
+      "business_case_rate": 0.56,
+      "quantified_impact_rate": 0.51,
+      "exec_meetings_90d": 5,
+      "mutual_success_plan_rate": 0.39
+    },
+    "hygiene": {
+      "next_step_filled_pct": 95.0,
+      "next_meeting_set_pct": 73.0,
+      "stage_date_present_pct": 83.0,
+      "forecast_cat_set_pct": 77.0,
+      "close_date_valid_pct": 89.0
+    }
+  },
+  {
+    "person_id": "P018",
+    "pipeline_coverage": 5.28,
+    "stalled_ratio": 0.21,
+    "new_opps_last_30": 8,
+    "win_rate": 0.4,
+    "avg_cycle_days": 31,
+    "meddpicc": {
+      "metrics_pct": 60.0,
+      "econ_buyer_pct": 89.0,
+      "decision_criteria_pct": 82.0,
+      "decision_process_pct": 63.0,
+      "paper_process_pct": 55.0,
+      "identify_pain_pct": 91.0,
+      "champion_pct": 64.0,
+      "competition_pct": 83.0
+    },
+    "value_co": {
+      "business_case_rate": 0.51,
+      "quantified_impact_rate": 0.53,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.37
+    },
+    "hygiene": {
+      "next_step_filled_pct": 68.0,
+      "next_meeting_set_pct": 77.0,
+      "stage_date_present_pct": 80.0,
+      "forecast_cat_set_pct": 89.0,
+      "close_date_valid_pct": 69.0
+    }
+  },
+  {
+    "person_id": "P019",
+    "pipeline_coverage": 3.23,
+    "stalled_ratio": 0.12,
+    "new_opps_last_30": 1,
+    "win_rate": 0.41,
+    "avg_cycle_days": 50,
+    "meddpicc": {
+      "metrics_pct": 69.0,
+      "econ_buyer_pct": 61.0,
+      "decision_criteria_pct": 65.0,
+      "decision_process_pct": 70.0,
+      "paper_process_pct": 59.0,
+      "identify_pain_pct": 71.0,
+      "champion_pct": 85.0,
+      "competition_pct": 66.0
+    },
+    "value_co": {
+      "business_case_rate": 0.85,
+      "quantified_impact_rate": 0.73,
+      "exec_meetings_90d": 5,
+      "mutual_success_plan_rate": 0.49
+    },
+    "hygiene": {
+      "next_step_filled_pct": 78.0,
+      "next_meeting_set_pct": 76.0,
+      "stage_date_present_pct": 73.0,
+      "forecast_cat_set_pct": 68.0,
+      "close_date_valid_pct": 86.0
+    }
+  },
+  {
+    "person_id": "P020",
+    "pipeline_coverage": 2.36,
+    "stalled_ratio": 0.23,
+    "new_opps_last_30": 3,
+    "win_rate": 0.48,
+    "avg_cycle_days": 26,
+    "meddpicc": {
+      "metrics_pct": 68.0,
+      "econ_buyer_pct": 56.0,
+      "decision_criteria_pct": 67.0,
+      "decision_process_pct": 70.0,
+      "paper_process_pct": 74.0,
+      "identify_pain_pct": 83.0,
+      "champion_pct": 71.0,
+      "competition_pct": 94.0
+    },
+    "value_co": {
+      "business_case_rate": 0.79,
+      "quantified_impact_rate": 0.8,
+      "exec_meetings_90d": 8,
+      "mutual_success_plan_rate": 0.6
+    },
+    "hygiene": {
+      "next_step_filled_pct": 80.0,
+      "next_meeting_set_pct": 87.0,
+      "stage_date_present_pct": 81.0,
+      "forecast_cat_set_pct": 83.0,
+      "close_date_valid_pct": 86.0
+    }
+  },
+  {
+    "person_id": "P021",
+    "pipeline_coverage": 3.83,
+    "stalled_ratio": 0.14,
+    "new_opps_last_30": 2,
+    "win_rate": 0.19,
+    "avg_cycle_days": 74,
+    "meddpicc": {
+      "metrics_pct": 69.0,
+      "econ_buyer_pct": 78.0,
+      "decision_criteria_pct": 85.0,
+      "decision_process_pct": 84.0,
+      "paper_process_pct": 67.0,
+      "identify_pain_pct": 92.0,
+      "champion_pct": 66.0,
+      "competition_pct": 84.0
+    },
+    "value_co": {
+      "business_case_rate": 0.34,
+      "quantified_impact_rate": 0.7,
+      "exec_meetings_90d": 10,
+      "mutual_success_plan_rate": 0.78
+    },
+    "hygiene": {
+      "next_step_filled_pct": 71.0,
+      "next_meeting_set_pct": 69.0,
+      "stage_date_present_pct": 93.0,
+      "forecast_cat_set_pct": 95.0,
+      "close_date_valid_pct": 83.0
+    }
+  },
+  {
+    "person_id": "P022",
+    "pipeline_coverage": 3.97,
+    "stalled_ratio": 0.19,
+    "new_opps_last_30": 2,
+    "win_rate": 0.51,
+    "avg_cycle_days": 40,
+    "meddpicc": {
+      "metrics_pct": 69.0,
+      "econ_buyer_pct": 86.0,
+      "decision_criteria_pct": 72.0,
+      "decision_process_pct": 94.0,
+      "paper_process_pct": 82.0,
+      "identify_pain_pct": 70.0,
+      "champion_pct": 85.0,
+      "competition_pct": 76.0
+    },
+    "value_co": {
+      "business_case_rate": 0.42,
+      "quantified_impact_rate": 0.66,
+      "exec_meetings_90d": 5,
+      "mutual_success_plan_rate": 0.43
+    },
+    "hygiene": {
+      "next_step_filled_pct": 64.0,
+      "next_meeting_set_pct": 83.0,
+      "stage_date_present_pct": 86.0,
+      "forecast_cat_set_pct": 87.0,
+      "close_date_valid_pct": 74.0
+    }
+  },
+  {
+    "person_id": "P023",
+    "pipeline_coverage": 5.1,
+    "stalled_ratio": 0.11,
+    "new_opps_last_30": 5,
+    "win_rate": 0.48,
+    "avg_cycle_days": 76,
+    "meddpicc": {
+      "metrics_pct": 80.0,
+      "econ_buyer_pct": 91.0,
+      "decision_criteria_pct": 62.0,
+      "decision_process_pct": 80.0,
+      "paper_process_pct": 86.0,
+      "identify_pain_pct": 64.0,
+      "champion_pct": 58.0,
+      "competition_pct": 78.0
+    },
+    "value_co": {
+      "business_case_rate": 0.8,
+      "quantified_impact_rate": 0.78,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.45
+    },
+    "hygiene": {
+      "next_step_filled_pct": 76.0,
+      "next_meeting_set_pct": 76.0,
+      "stage_date_present_pct": 96.0,
+      "forecast_cat_set_pct": 71.0,
+      "close_date_valid_pct": 71.0
+    }
+  },
+  {
+    "person_id": "P024",
+    "pipeline_coverage": 4.12,
+    "stalled_ratio": 0.34,
+    "new_opps_last_30": 3,
+    "win_rate": 0.34,
+    "avg_cycle_days": 34,
+    "meddpicc": {
+      "metrics_pct": 60.0,
+      "econ_buyer_pct": 78.0,
+      "decision_criteria_pct": 79.0,
+      "decision_process_pct": 62.0,
+      "paper_process_pct": 63.0,
+      "identify_pain_pct": 79.0,
+      "champion_pct": 81.0,
+      "competition_pct": 83.0
+    },
+    "value_co": {
+      "business_case_rate": 0.74,
+      "quantified_impact_rate": 0.29,
+      "exec_meetings_90d": 7,
+      "mutual_success_plan_rate": 0.28
+    },
+    "hygiene": {
+      "next_step_filled_pct": 80.0,
+      "next_meeting_set_pct": 58.0,
+      "stage_date_present_pct": 75.0,
+      "forecast_cat_set_pct": 78.0,
+      "close_date_valid_pct": 75.0
+    }
+  },
+  {
+    "person_id": "P025",
+    "pipeline_coverage": 5.16,
+    "stalled_ratio": 0.32,
+    "new_opps_last_30": 8,
+    "win_rate": 0.49,
+    "avg_cycle_days": 25,
+    "meddpicc": {
+      "metrics_pct": 63.0,
+      "econ_buyer_pct": 61.0,
+      "decision_criteria_pct": 59.0,
+      "decision_process_pct": 61.0,
+      "paper_process_pct": 80.0,
+      "identify_pain_pct": 59.0,
+      "champion_pct": 85.0,
+      "competition_pct": 84.0
+    },
+    "value_co": {
+      "business_case_rate": 0.79,
+      "quantified_impact_rate": 0.73,
+      "exec_meetings_90d": 8,
+      "mutual_success_plan_rate": 0.77
+    },
+    "hygiene": {
+      "next_step_filled_pct": 84.0,
+      "next_meeting_set_pct": 94.0,
+      "stage_date_present_pct": 73.0,
+      "forecast_cat_set_pct": 64.0,
+      "close_date_valid_pct": 62.0
+    }
+  },
+  {
+    "person_id": "P026",
+    "pipeline_coverage": 2.72,
+    "stalled_ratio": 0.16,
+    "new_opps_last_30": 8,
+    "win_rate": 0.51,
+    "avg_cycle_days": 72,
+    "meddpicc": {
+      "metrics_pct": 86.0,
+      "econ_buyer_pct": 65.0,
+      "decision_criteria_pct": 93.0,
+      "decision_process_pct": 74.0,
+      "paper_process_pct": 55.0,
+      "identify_pain_pct": 94.0,
+      "champion_pct": 93.0,
+      "competition_pct": 60.0
+    },
+    "value_co": {
+      "business_case_rate": 0.3,
+      "quantified_impact_rate": 0.48,
+      "exec_meetings_90d": 5,
+      "mutual_success_plan_rate": 0.77
+    },
+    "hygiene": {
+      "next_step_filled_pct": 63.0,
+      "next_meeting_set_pct": 85.0,
+      "stage_date_present_pct": 91.0,
+      "forecast_cat_set_pct": 71.0,
+      "close_date_valid_pct": 64.0
+    }
+  },
+  {
+    "person_id": "P027",
+    "pipeline_coverage": 3.68,
+    "stalled_ratio": 0.16,
+    "new_opps_last_30": 4,
+    "win_rate": 0.52,
+    "avg_cycle_days": 49,
+    "meddpicc": {
+      "metrics_pct": 61.0,
+      "econ_buyer_pct": 91.0,
+      "decision_criteria_pct": 81.0,
+      "decision_process_pct": 86.0,
+      "paper_process_pct": 59.0,
+      "identify_pain_pct": 59.0,
+      "champion_pct": 71.0,
+      "competition_pct": 93.0
+    },
+    "value_co": {
+      "business_case_rate": 0.34,
+      "quantified_impact_rate": 0.51,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.45
+    },
+    "hygiene": {
+      "next_step_filled_pct": 69.0,
+      "next_meeting_set_pct": 82.0,
+      "stage_date_present_pct": 72.0,
+      "forecast_cat_set_pct": 70.0,
+      "close_date_valid_pct": 64.0
+    }
+  },
+  {
+    "person_id": "P028",
+    "pipeline_coverage": 3.67,
+    "stalled_ratio": 0.35,
+    "new_opps_last_30": 9,
+    "win_rate": 0.49,
+    "avg_cycle_days": 79,
+    "meddpicc": {
+      "metrics_pct": 92.0,
+      "econ_buyer_pct": 59.0,
+      "decision_criteria_pct": 69.0,
+      "decision_process_pct": 87.0,
+      "paper_process_pct": 55.0,
+      "identify_pain_pct": 86.0,
+      "champion_pct": 69.0,
+      "competition_pct": 56.0
+    },
+    "value_co": {
+      "business_case_rate": 0.45,
+      "quantified_impact_rate": 0.52,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.72
+    },
+    "hygiene": {
+      "next_step_filled_pct": 63.0,
+      "next_meeting_set_pct": 94.0,
+      "stage_date_present_pct": 76.0,
+      "forecast_cat_set_pct": 91.0,
+      "close_date_valid_pct": 60.0
+    }
+  },
+  {
+    "person_id": "P029",
+    "pipeline_coverage": 3.82,
+    "stalled_ratio": 0.34,
+    "new_opps_last_30": 8,
+    "win_rate": 0.37,
+    "avg_cycle_days": 28,
+    "meddpicc": {
+      "metrics_pct": 61.0,
+      "econ_buyer_pct": 86.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 89.0,
+      "paper_process_pct": 93.0,
+      "identify_pain_pct": 81.0,
+      "champion_pct": 80.0,
+      "competition_pct": 78.0
+    },
+    "value_co": {
+      "business_case_rate": 0.43,
+      "quantified_impact_rate": 0.5,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.69
+    },
+    "hygiene": {
+      "next_step_filled_pct": 91.0,
+      "next_meeting_set_pct": 72.0,
+      "stage_date_present_pct": 96.0,
+      "forecast_cat_set_pct": 61.0,
+      "close_date_valid_pct": 91.0
+    }
+  },
+  {
+    "person_id": "P030",
+    "pipeline_coverage": 2.58,
+    "stalled_ratio": 0.15,
+    "new_opps_last_30": 5,
+    "win_rate": 0.47,
+    "avg_cycle_days": 52,
+    "meddpicc": {
+      "metrics_pct": 88.0,
+      "econ_buyer_pct": 58.0,
+      "decision_criteria_pct": 70.0,
+      "decision_process_pct": 71.0,
+      "paper_process_pct": 63.0,
+      "identify_pain_pct": 61.0,
+      "champion_pct": 70.0,
+      "competition_pct": 55.0
+    },
+    "value_co": {
+      "business_case_rate": 0.68,
+      "quantified_impact_rate": 0.71,
+      "exec_meetings_90d": 7,
+      "mutual_success_plan_rate": 0.25
+    },
+    "hygiene": {
+      "next_step_filled_pct": 86.0,
+      "next_meeting_set_pct": 56.0,
+      "stage_date_present_pct": 82.0,
+      "forecast_cat_set_pct": 66.0,
+      "close_date_valid_pct": 85.0
+    }
+  },
+  {
+    "person_id": "P031",
+    "pipeline_coverage": 4.62,
+    "stalled_ratio": 0.2,
+    "new_opps_last_30": 6,
+    "win_rate": 0.4,
+    "avg_cycle_days": 33,
+    "meddpicc": {
+      "metrics_pct": 74.0,
+      "econ_buyer_pct": 58.0,
+      "decision_criteria_pct": 70.0,
+      "decision_process_pct": 80.0,
+      "paper_process_pct": 56.0,
+      "identify_pain_pct": 87.0,
+      "champion_pct": 58.0,
+      "competition_pct": 60.0
+    },
+    "value_co": {
+      "business_case_rate": 0.69,
+      "quantified_impact_rate": 0.45,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.29
+    },
+    "hygiene": {
+      "next_step_filled_pct": 80.0,
+      "next_meeting_set_pct": 94.0,
+      "stage_date_present_pct": 90.0,
+      "forecast_cat_set_pct": 63.0,
+      "close_date_valid_pct": 64.0
+    }
+  },
+  {
+    "person_id": "P032",
+    "pipeline_coverage": 4.25,
+    "stalled_ratio": 0.16,
+    "new_opps_last_30": 6,
+    "win_rate": 0.52,
+    "avg_cycle_days": 60,
+    "meddpicc": {
+      "metrics_pct": 78.0,
+      "econ_buyer_pct": 94.0,
+      "decision_criteria_pct": 65.0,
+      "decision_process_pct": 78.0,
+      "paper_process_pct": 66.0,
+      "identify_pain_pct": 77.0,
+      "champion_pct": 84.0,
+      "competition_pct": 60.0
+    },
+    "value_co": {
+      "business_case_rate": 0.59,
+      "quantified_impact_rate": 0.67,
+      "exec_meetings_90d": 0,
+      "mutual_success_plan_rate": 0.21
+    },
+    "hygiene": {
+      "next_step_filled_pct": 68.0,
+      "next_meeting_set_pct": 64.0,
+      "stage_date_present_pct": 91.0,
+      "forecast_cat_set_pct": 69.0,
+      "close_date_valid_pct": 72.0
+    }
+  },
+  {
+    "person_id": "P033",
+    "pipeline_coverage": 4.82,
+    "stalled_ratio": 0.12,
+    "new_opps_last_30": 7,
+    "win_rate": 0.51,
+    "avg_cycle_days": 74,
+    "meddpicc": {
+      "metrics_pct": 56.0,
+      "econ_buyer_pct": 67.0,
+      "decision_criteria_pct": 73.0,
+      "decision_process_pct": 81.0,
+      "paper_process_pct": 92.0,
+      "identify_pain_pct": 70.0,
+      "champion_pct": 76.0,
+      "competition_pct": 84.0
+    },
+    "value_co": {
+      "business_case_rate": 0.86,
+      "quantified_impact_rate": 0.82,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.38
+    },
+    "hygiene": {
+      "next_step_filled_pct": 66.0,
+      "next_meeting_set_pct": 92.0,
+      "stage_date_present_pct": 72.0,
+      "forecast_cat_set_pct": 77.0,
+      "close_date_valid_pct": 88.0
+    }
+  },
+  {
+    "person_id": "P034",
+    "pipeline_coverage": 3.85,
+    "stalled_ratio": 0.17,
+    "new_opps_last_30": 9,
+    "win_rate": 0.29,
+    "avg_cycle_days": 60,
+    "meddpicc": {
+      "metrics_pct": 70.0,
+      "econ_buyer_pct": 71.0,
+      "decision_criteria_pct": 73.0,
+      "decision_process_pct": 58.0,
+      "paper_process_pct": 55.0,
+      "identify_pain_pct": 78.0,
+      "champion_pct": 78.0,
+      "competition_pct": 57.0
+    },
+    "value_co": {
+      "business_case_rate": 0.75,
+      "quantified_impact_rate": 0.32,
+      "exec_meetings_90d": 2,
+      "mutual_success_plan_rate": 0.42
+    },
+    "hygiene": {
+      "next_step_filled_pct": 73.0,
+      "next_meeting_set_pct": 88.0,
+      "stage_date_present_pct": 84.0,
+      "forecast_cat_set_pct": 65.0,
+      "close_date_valid_pct": 65.0
+    }
+  },
+  {
+    "person_id": "P035",
+    "pipeline_coverage": 2.88,
+    "stalled_ratio": 0.06,
+    "new_opps_last_30": 5,
+    "win_rate": 0.32,
+    "avg_cycle_days": 65,
+    "meddpicc": {
+      "metrics_pct": 87.0,
+      "econ_buyer_pct": 83.0,
+      "decision_criteria_pct": 79.0,
+      "decision_process_pct": 90.0,
+      "paper_process_pct": 92.0,
+      "identify_pain_pct": 88.0,
+      "champion_pct": 79.0,
+      "competition_pct": 78.0
+    },
+    "value_co": {
+      "business_case_rate": 0.84,
+      "quantified_impact_rate": 0.46,
+      "exec_meetings_90d": 1,
+      "mutual_success_plan_rate": 0.21
+    },
+    "hygiene": {
+      "next_step_filled_pct": 62.0,
+      "next_meeting_set_pct": 88.0,
+      "stage_date_present_pct": 84.0,
+      "forecast_cat_set_pct": 93.0,
+      "close_date_valid_pct": 62.0
+    }
+  },
+  {
+    "person_id": "P036",
+    "pipeline_coverage": 4.06,
+    "stalled_ratio": 0.09,
+    "new_opps_last_30": 9,
+    "win_rate": 0.41,
+    "avg_cycle_days": 64,
+    "meddpicc": {
+      "metrics_pct": 78.0,
+      "econ_buyer_pct": 76.0,
+      "decision_criteria_pct": 83.0,
+      "decision_process_pct": 83.0,
+      "paper_process_pct": 84.0,
+      "identify_pain_pct": 79.0,
+      "champion_pct": 57.0,
+      "competition_pct": 84.0
+    },
+    "value_co": {
+      "business_case_rate": 0.48,
+      "quantified_impact_rate": 0.56,
+      "exec_meetings_90d": 8,
+      "mutual_success_plan_rate": 0.63
+    },
+    "hygiene": {
+      "next_step_filled_pct": 63.0,
+      "next_meeting_set_pct": 81.0,
+      "stage_date_present_pct": 94.0,
+      "forecast_cat_set_pct": 65.0,
+      "close_date_valid_pct": 89.0
+    }
+  },
+  {
+    "person_id": "P037",
+    "pipeline_coverage": 2.91,
+    "stalled_ratio": 0.14,
+    "new_opps_last_30": 1,
+    "win_rate": 0.51,
+    "avg_cycle_days": 45,
+    "meddpicc": {
+      "metrics_pct": 76.0,
+      "econ_buyer_pct": 91.0,
+      "decision_criteria_pct": 74.0,
+      "decision_process_pct": 61.0,
+      "paper_process_pct": 64.0,
+      "identify_pain_pct": 66.0,
+      "champion_pct": 93.0,
+      "competition_pct": 63.0
+    },
+    "value_co": {
+      "business_case_rate": 0.35,
+      "quantified_impact_rate": 0.46,
+      "exec_meetings_90d": 1,
+      "mutual_success_plan_rate": 0.58
+    },
+    "hygiene": {
+      "next_step_filled_pct": 77.0,
+      "next_meeting_set_pct": 76.0,
+      "stage_date_present_pct": 81.0,
+      "forecast_cat_set_pct": 67.0,
+      "close_date_valid_pct": 95.0
+    }
+  },
+  {
+    "person_id": "P038",
+    "pipeline_coverage": 2.59,
+    "stalled_ratio": 0.2,
+    "new_opps_last_30": 6,
+    "win_rate": 0.52,
+    "avg_cycle_days": 34,
+    "meddpicc": {
+      "metrics_pct": 72.0,
+      "econ_buyer_pct": 78.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 93.0,
+      "paper_process_pct": 64.0,
+      "identify_pain_pct": 65.0,
+      "champion_pct": 62.0,
+      "competition_pct": 77.0
+    },
+    "value_co": {
+      "business_case_rate": 0.45,
+      "quantified_impact_rate": 0.44,
+      "exec_meetings_90d": 9,
+      "mutual_success_plan_rate": 0.26
+    },
+    "hygiene": {
+      "next_step_filled_pct": 70.0,
+      "next_meeting_set_pct": 69.0,
+      "stage_date_present_pct": 96.0,
+      "forecast_cat_set_pct": 70.0,
+      "close_date_valid_pct": 84.0
+    }
+  },
+  {
+    "person_id": "P039",
+    "pipeline_coverage": 4.24,
+    "stalled_ratio": 0.34,
+    "new_opps_last_30": 2,
+    "win_rate": 0.44,
+    "avg_cycle_days": 32,
+    "meddpicc": {
+      "metrics_pct": 68.0,
+      "econ_buyer_pct": 59.0,
+      "decision_criteria_pct": 80.0,
+      "decision_process_pct": 89.0,
+      "paper_process_pct": 78.0,
+      "identify_pain_pct": 57.0,
+      "champion_pct": 94.0,
+      "competition_pct": 70.0
+    },
+    "value_co": {
+      "business_case_rate": 0.68,
+      "quantified_impact_rate": 0.68,
+      "exec_meetings_90d": 4,
+      "mutual_success_plan_rate": 0.26
+    },
+    "hygiene": {
+      "next_step_filled_pct": 93.0,
+      "next_meeting_set_pct": 90.0,
+      "stage_date_present_pct": 79.0,
+      "forecast_cat_set_pct": 71.0,
+      "close_date_valid_pct": 73.0
+    }
+  },
+  {
+    "person_id": "P040",
+    "pipeline_coverage": 5.5,
+    "stalled_ratio": 0.17,
+    "new_opps_last_30": 2,
+    "win_rate": 0.29,
+    "avg_cycle_days": 36,
+    "meddpicc": {
+      "metrics_pct": 57.0,
+      "econ_buyer_pct": 59.0,
+      "decision_criteria_pct": 84.0,
+      "decision_process_pct": 93.0,
+      "paper_process_pct": 71.0,
+      "identify_pain_pct": 73.0,
+      "champion_pct": 58.0,
+      "competition_pct": 72.0
+    },
+    "value_co": {
+      "business_case_rate": 0.86,
+      "quantified_impact_rate": 0.57,
+      "exec_meetings_90d": 10,
+      "mutual_success_plan_rate": 0.26
+    },
+    "hygiene": {
+      "next_step_filled_pct": 79.0,
+      "next_meeting_set_pct": 92.0,
+      "stage_date_present_pct": 97.0,
+      "forecast_cat_set_pct": 78.0,
+      "close_date_valid_pct": 64.0
+    }
+  },
+  {
+    "person_id": "P041",
+    "pipeline_coverage": 4.69,
+    "stalled_ratio": 0.08,
+    "new_opps_last_30": 9,
+    "win_rate": 0.22,
+    "avg_cycle_days": 66,
+    "meddpicc": {
+      "metrics_pct": 94.0,
+      "econ_buyer_pct": 77.0,
+      "decision_criteria_pct": 72.0,
+      "decision_process_pct": 66.0,
+      "paper_process_pct": 77.0,
+      "identify_pain_pct": 94.0,
+      "champion_pct": 72.0,
+      "competition_pct": 63.0
+    },
+    "value_co": {
+      "business_case_rate": 0.61,
+      "quantified_impact_rate": 0.8,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.59
+    },
+    "hygiene": {
+      "next_step_filled_pct": 67.0,
+      "next_meeting_set_pct": 63.0,
+      "stage_date_present_pct": 96.0,
+      "forecast_cat_set_pct": 87.0,
+      "close_date_valid_pct": 63.0
+    }
+  },
+  {
+    "person_id": "P042",
+    "pipeline_coverage": 3.07,
+    "stalled_ratio": 0.31,
+    "new_opps_last_30": 8,
+    "win_rate": 0.29,
+    "avg_cycle_days": 60,
+    "meddpicc": {
+      "metrics_pct": 92.0,
+      "econ_buyer_pct": 78.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 66.0,
+      "paper_process_pct": 85.0,
+      "identify_pain_pct": 65.0,
+      "champion_pct": 74.0,
+      "competition_pct": 85.0
+    },
+    "value_co": {
+      "business_case_rate": 0.66,
+      "quantified_impact_rate": 0.33,
+      "exec_meetings_90d": 3,
+      "mutual_success_plan_rate": 0.47
+    },
+    "hygiene": {
+      "next_step_filled_pct": 96.0,
+      "next_meeting_set_pct": 86.0,
+      "stage_date_present_pct": 83.0,
+      "forecast_cat_set_pct": 69.0,
+      "close_date_valid_pct": 69.0
+    }
+  },
+  {
+    "person_id": "P043",
+    "pipeline_coverage": 4.25,
+    "stalled_ratio": 0.27,
+    "new_opps_last_30": 5,
+    "win_rate": 0.41,
+    "avg_cycle_days": 79,
+    "meddpicc": {
+      "metrics_pct": 82.0,
+      "econ_buyer_pct": 87.0,
+      "decision_criteria_pct": 74.0,
+      "decision_process_pct": 67.0,
+      "paper_process_pct": 90.0,
+      "identify_pain_pct": 80.0,
+      "champion_pct": 83.0,
+      "competition_pct": 77.0
+    },
+    "value_co": {
+      "business_case_rate": 0.63,
+      "quantified_impact_rate": 0.37,
+      "exec_meetings_90d": 0,
+      "mutual_success_plan_rate": 0.4
+    },
+    "hygiene": {
+      "next_step_filled_pct": 82.0,
+      "next_meeting_set_pct": 81.0,
+      "stage_date_present_pct": 84.0,
+      "forecast_cat_set_pct": 93.0,
+      "close_date_valid_pct": 95.0
+    }
+  },
+  {
+    "person_id": "P044",
+    "pipeline_coverage": 2.99,
+    "stalled_ratio": 0.15,
+    "new_opps_last_30": 5,
+    "win_rate": 0.23,
+    "avg_cycle_days": 51,
+    "meddpicc": {
+      "metrics_pct": 67.0,
+      "econ_buyer_pct": 70.0,
+      "decision_criteria_pct": 86.0,
+      "decision_process_pct": 67.0,
+      "paper_process_pct": 63.0,
+      "identify_pain_pct": 93.0,
+      "champion_pct": 56.0,
+      "competition_pct": 74.0
+    },
+    "value_co": {
+      "business_case_rate": 0.4,
+      "quantified_impact_rate": 0.83,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.6
+    },
+    "hygiene": {
+      "next_step_filled_pct": 76.0,
+      "next_meeting_set_pct": 89.0,
+      "stage_date_present_pct": 90.0,
+      "forecast_cat_set_pct": 73.0,
+      "close_date_valid_pct": 88.0
+    }
+  },
+  {
+    "person_id": "P045",
+    "pipeline_coverage": 3.77,
+    "stalled_ratio": 0.26,
+    "new_opps_last_30": 1,
+    "win_rate": 0.24,
+    "avg_cycle_days": 56,
+    "meddpicc": {
+      "metrics_pct": 81.0,
+      "econ_buyer_pct": 77.0,
+      "decision_criteria_pct": 74.0,
+      "decision_process_pct": 74.0,
+      "paper_process_pct": 70.0,
+      "identify_pain_pct": 64.0,
+      "champion_pct": 55.0,
+      "competition_pct": 94.0
+    },
+    "value_co": {
+      "business_case_rate": 0.74,
+      "quantified_impact_rate": 0.35,
+      "exec_meetings_90d": 2,
+      "mutual_success_plan_rate": 0.71
+    },
+    "hygiene": {
+      "next_step_filled_pct": 69.0,
+      "next_meeting_set_pct": 88.0,
+      "stage_date_present_pct": 89.0,
+      "forecast_cat_set_pct": 75.0,
+      "close_date_valid_pct": 84.0
+    }
+  },
+  {
+    "person_id": "P046",
+    "pipeline_coverage": 2.8,
+    "stalled_ratio": 0.13,
+    "new_opps_last_30": 1,
+    "win_rate": 0.26,
+    "avg_cycle_days": 40,
+    "meddpicc": {
+      "metrics_pct": 78.0,
+      "econ_buyer_pct": 85.0,
+      "decision_criteria_pct": 75.0,
+      "decision_process_pct": 72.0,
+      "paper_process_pct": 67.0,
+      "identify_pain_pct": 84.0,
+      "champion_pct": 70.0,
+      "competition_pct": 79.0
+    },
+    "value_co": {
+      "business_case_rate": 0.75,
+      "quantified_impact_rate": 0.52,
+      "exec_meetings_90d": 10,
+      "mutual_success_plan_rate": 0.64
+    },
+    "hygiene": {
+      "next_step_filled_pct": 94.0,
+      "next_meeting_set_pct": 76.0,
+      "stage_date_present_pct": 70.0,
+      "forecast_cat_set_pct": 76.0,
+      "close_date_valid_pct": 78.0
+    }
+  },
+  {
+    "person_id": "P047",
+    "pipeline_coverage": 2.66,
+    "stalled_ratio": 0.11,
+    "new_opps_last_30": 3,
+    "win_rate": 0.35,
+    "avg_cycle_days": 53,
+    "meddpicc": {
+      "metrics_pct": 91.0,
+      "econ_buyer_pct": 74.0,
+      "decision_criteria_pct": 67.0,
+      "decision_process_pct": 58.0,
+      "paper_process_pct": 86.0,
+      "identify_pain_pct": 83.0,
+      "champion_pct": 80.0,
+      "competition_pct": 74.0
+    },
+    "value_co": {
+      "business_case_rate": 0.67,
+      "quantified_impact_rate": 0.61,
+      "exec_meetings_90d": 9,
+      "mutual_success_plan_rate": 0.32
+    },
+    "hygiene": {
+      "next_step_filled_pct": 85.0,
+      "next_meeting_set_pct": 73.0,
+      "stage_date_present_pct": 85.0,
+      "forecast_cat_set_pct": 97.0,
+      "close_date_valid_pct": 86.0
+    }
+  },
+  {
+    "person_id": "P048",
+    "pipeline_coverage": 2.7,
+    "stalled_ratio": 0.21,
+    "new_opps_last_30": 2,
+    "win_rate": 0.24,
+    "avg_cycle_days": 50,
+    "meddpicc": {
+      "metrics_pct": 55.0,
+      "econ_buyer_pct": 72.0,
+      "decision_criteria_pct": 67.0,
+      "decision_process_pct": 84.0,
+      "paper_process_pct": 71.0,
+      "identify_pain_pct": 62.0,
+      "champion_pct": 93.0,
+      "competition_pct": 91.0
+    },
+    "value_co": {
+      "business_case_rate": 0.71,
+      "quantified_impact_rate": 0.38,
+      "exec_meetings_90d": 6,
+      "mutual_success_plan_rate": 0.74
+    },
+    "hygiene": {
+      "next_step_filled_pct": 66.0,
+      "next_meeting_set_pct": 93.0,
+      "stage_date_present_pct": 78.0,
+      "forecast_cat_set_pct": 80.0,
+      "close_date_valid_pct": 68.0
+    }
+  },
+  {
+    "person_id": "P049",
+    "pipeline_coverage": 4.41,
+    "stalled_ratio": 0.3,
+    "new_opps_last_30": 5,
+    "win_rate": 0.46,
+    "avg_cycle_days": 80,
+    "meddpicc": {
+      "metrics_pct": 64.0,
+      "econ_buyer_pct": 72.0,
+      "decision_criteria_pct": 88.0,
+      "decision_process_pct": 88.0,
+      "paper_process_pct": 91.0,
+      "identify_pain_pct": 77.0,
+      "champion_pct": 88.0,
+      "competition_pct": 84.0
+    },
+    "value_co": {
+      "business_case_rate": 0.74,
+      "quantified_impact_rate": 0.37,
+      "exec_meetings_90d": 9,
+      "mutual_success_plan_rate": 0.35
+    },
+    "hygiene": {
+      "next_step_filled_pct": 86.0,
+      "next_meeting_set_pct": 86.0,
+      "stage_date_present_pct": 76.0,
+      "forecast_cat_set_pct": 80.0,
+      "close_date_valid_pct": 92.0
+    }
+  },
+  {
+    "person_id": "P050",
+    "pipeline_coverage": 3.28,
+    "stalled_ratio": 0.08,
+    "new_opps_last_30": 7,
+    "win_rate": 0.31,
+    "avg_cycle_days": 34,
+    "meddpicc": {
+      "metrics_pct": 80.0,
+      "econ_buyer_pct": 62.0,
+      "decision_criteria_pct": 77.0,
+      "decision_process_pct": 83.0,
+      "paper_process_pct": 93.0,
+      "identify_pain_pct": 85.0,
+      "champion_pct": 83.0,
+      "competition_pct": 74.0
+    },
+    "value_co": {
+      "business_case_rate": 0.8,
+      "quantified_impact_rate": 0.79,
+      "exec_meetings_90d": 1,
+      "mutual_success_plan_rate": 0.49
+    },
+    "hygiene": {
+      "next_step_filled_pct": 74.0,
+      "next_meeting_set_pct": 95.0,
+      "stage_date_present_pct": 91.0,
+      "forecast_cat_set_pct": 74.0,
+      "close_date_valid_pct": 94.0
+    }
+  }
+]

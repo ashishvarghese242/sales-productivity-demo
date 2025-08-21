@@ -1,0 +1,540 @@
+{
+  "catalog": [
+    {
+      "asset_id": "A001",
+      "title": "Negotiation #1",
+      "type": "video",
+      "topic": "Security",
+      "role_target": "CSM"
+    },
+    {
+      "asset_id": "A002",
+      "title": "ROI #2",
+      "type": "playbook",
+      "topic": "ROI",
+      "role_target": "SE"
+    },
+    {
+      "asset_id": "A003",
+      "title": "Industry #3",
+      "type": "course",
+      "topic": "Proposal",
+      "role_target": "SE"
+    },
+    {
+      "asset_id": "A004",
+      "title": "Negotiation #4",
+      "type": "course",
+      "topic": "Demo",
+      "role_target": "CSM"
+    },
+    {
+      "asset_id": "A005",
+      "title": "Industry #5",
+      "type": "playbook",
+      "topic": "Demo",
+      "role_target": "CSM"
+    },
+    {
+      "asset_id": "A006",
+      "title": "Security #6",
+      "type": "course",
+      "topic": "Demo",
+      "role_target": "CSM"
+    },
+    {
+      "asset_id": "A007",
+      "title": "Security #7",
+      "type": "video",
+      "topic": "Objection Handling",
+      "role_target": "SE"
+    },
+    {
+      "asset_id": "A008",
+      "title": "Security #8",
+      "type": "course",
+      "topic": "Negotiation",
+      "role_target": "CSM"
+    },
+    {
+      "asset_id": "A009",
+      "title": "Demo #9",
+      "type": "course",
+      "topic": "Demo",
+      "role_target": "AE"
+    },
+    {
+      "asset_id": "A010",
+      "title": "Industry #10",
+      "type": "video",
+      "topic": "Proposal",
+      "role_target": "SE"
+    },
+    {
+      "asset_id": "A011",
+      "title": "Negotiation #11",
+      "type": "playbook",
+      "topic": "ROI",
+      "role_target": "SE"
+    },
+    {
+      "asset_id": "A012",
+      "title": "Industry #12",
+      "type": "course",
+      "topic": "Proposal",
+      "role_target": "SE"
+    }
+  ],
+  "consumption": [
+    {
+      "person_id": "P001",
+      "views": 7,
+      "completions": 1,
+      "minutes": 649,
+      "recency_days": 4,
+      "assessment_score_avg": 92.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P002",
+      "views": 2,
+      "completions": 1,
+      "minutes": 357,
+      "recency_days": 22,
+      "assessment_score_avg": 80.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P003",
+      "views": 10,
+      "completions": 5,
+      "minutes": 458,
+      "recency_days": 22,
+      "assessment_score_avg": 82.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P004",
+      "views": 1,
+      "completions": 1,
+      "minutes": 1046,
+      "recency_days": 20,
+      "assessment_score_avg": 56.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P005",
+      "views": 16,
+      "completions": 9,
+      "minutes": 497,
+      "recency_days": 56,
+      "assessment_score_avg": 66.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P006",
+      "views": 16,
+      "completions": 8,
+      "minutes": 1107,
+      "recency_days": 22,
+      "assessment_score_avg": 76.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P007",
+      "views": 15,
+      "completions": 9,
+      "minutes": 954,
+      "recency_days": 26,
+      "assessment_score_avg": 81.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P008",
+      "views": 5,
+      "completions": 1,
+      "minutes": 299,
+      "recency_days": 4,
+      "assessment_score_avg": 73.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P009",
+      "views": 14,
+      "completions": 12,
+      "minutes": 777,
+      "recency_days": 26,
+      "assessment_score_avg": 79.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P010",
+      "views": 9,
+      "completions": 0,
+      "minutes": 943,
+      "recency_days": 9,
+      "assessment_score_avg": 84.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P011",
+      "views": 11,
+      "completions": 1,
+      "minutes": 127,
+      "recency_days": 4,
+      "assessment_score_avg": 92.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P012",
+      "views": 10,
+      "completions": 4,
+      "minutes": 612,
+      "recency_days": 27,
+      "assessment_score_avg": 81.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P013",
+      "views": 14,
+      "completions": 7,
+      "minutes": 637,
+      "recency_days": 10,
+      "assessment_score_avg": 83.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P014",
+      "views": 16,
+      "completions": 9,
+      "minutes": 977,
+      "recency_days": 54,
+      "assessment_score_avg": 57.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P015",
+      "views": 10,
+      "completions": 5,
+      "minutes": 211,
+      "recency_days": 7,
+      "assessment_score_avg": 73.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P016",
+      "views": 18,
+      "completions": 12,
+      "minutes": 726,
+      "recency_days": 60,
+      "assessment_score_avg": 80.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P017",
+      "views": 11,
+      "completions": 6,
+      "minutes": 950,
+      "recency_days": 16,
+      "assessment_score_avg": 60.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P018",
+      "views": 14,
+      "completions": 4,
+      "minutes": 400,
+      "recency_days": 11,
+      "assessment_score_avg": 94.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P019",
+      "views": 12,
+      "completions": 6,
+      "minutes": 676,
+      "recency_days": 16,
+      "assessment_score_avg": 63.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P020",
+      "views": 9,
+      "completions": 9,
+      "minutes": 1086,
+      "recency_days": 29,
+      "assessment_score_avg": 60.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P021",
+      "views": 12,
+      "completions": 3,
+      "minutes": 426,
+      "recency_days": 42,
+      "assessment_score_avg": 71.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P022",
+      "views": 11,
+      "completions": 10,
+      "minutes": 1061,
+      "recency_days": 1,
+      "assessment_score_avg": 91.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P023",
+      "views": 5,
+      "completions": 5,
+      "minutes": 719,
+      "recency_days": 39,
+      "assessment_score_avg": 69.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P024",
+      "views": 3,
+      "completions": 3,
+      "minutes": 1053,
+      "recency_days": 2,
+      "assessment_score_avg": 66.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P025",
+      "views": 10,
+      "completions": 3,
+      "minutes": 706,
+      "recency_days": 50,
+      "assessment_score_avg": 68.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P026",
+      "views": 1,
+      "completions": 0,
+      "minutes": 96,
+      "recency_days": 44,
+      "assessment_score_avg": 60.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P027",
+      "views": 21,
+      "completions": 11,
+      "minutes": 668,
+      "recency_days": 7,
+      "assessment_score_avg": 65.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P028",
+      "views": 3,
+      "completions": 1,
+      "minutes": 748,
+      "recency_days": 50,
+      "assessment_score_avg": 68.0,
+      "certifications": 3
+    },
+    {
+      "person_id": "P029",
+      "views": 15,
+      "completions": 12,
+      "minutes": 582,
+      "recency_days": 19,
+      "assessment_score_avg": 58.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P030",
+      "views": 18,
+      "completions": 11,
+      "minutes": 1035,
+      "recency_days": 53,
+      "assessment_score_avg": 55.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P031",
+      "views": 9,
+      "completions": 3,
+      "minutes": 143,
+      "recency_days": 46,
+      "assessment_score_avg": 85.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P032",
+      "views": 10,
+      "completions": 10,
+      "minutes": 228,
+      "recency_days": 18,
+      "assessment_score_avg": 74.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P033",
+      "views": 12,
+      "completions": 7,
+      "minutes": 331,
+      "recency_days": 7,
+      "assessment_score_avg": 85.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P034",
+      "views": 14,
+      "completions": 5,
+      "minutes": 523,
+      "recency_days": 39,
+      "assessment_score_avg": 74.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P035",
+      "views": 15,
+      "completions": 5,
+      "minutes": 1098,
+      "recency_days": 25,
+      "assessment_score_avg": 69.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P036",
+      "views": 12,
+      "completions": 3,
+      "minutes": 634,
+      "recency_days": 28,
+      "assessment_score_avg": 61.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P037",
+      "views": 10,
+      "completions": 9,
+      "minutes": 436,
+      "recency_days": 14,
+      "assessment_score_avg": 91.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P038",
+      "views": 7,
+      "completions": 3,
+      "minutes": 515,
+      "recency_days": 13,
+      "assessment_score_avg": 70.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P039",
+      "views": 12,
+      "completions": 11,
+      "minutes": 313,
+      "recency_days": 13,
+      "assessment_score_avg": 85.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P040",
+      "views": 13,
+      "completions": 9,
+      "minutes": 1027,
+      "recency_days": 14,
+      "assessment_score_avg": 90.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P041",
+      "views": 11,
+      "completions": 1,
+      "minutes": 412,
+      "recency_days": 37,
+      "assessment_score_avg": 74.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P042",
+      "views": 15,
+      "completions": 11,
+      "minutes": 739,
+      "recency_days": 36,
+      "assessment_score_avg": 74.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P043",
+      "views": 6,
+      "completions": 0,
+      "minutes": 1176,
+      "recency_days": 10,
+      "assessment_score_avg": 79.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P044",
+      "views": 6,
+      "completions": 4,
+      "minutes": 993,
+      "recency_days": 54,
+      "assessment_score_avg": 79.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P045",
+      "views": 4,
+      "completions": 3,
+      "minutes": 943,
+      "recency_days": 35,
+      "assessment_score_avg": 77.0,
+      "certifications": 1
+    },
+    {
+      "person_id": "P046",
+      "views": 17,
+      "completions": 9,
+      "minutes": 72,
+      "recency_days": 58,
+      "assessment_score_avg": 75.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P047",
+      "views": 6,
+      "completions": 0,
+      "minutes": 436,
+      "recency_days": 17,
+      "assessment_score_avg": 84.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P048",
+      "views": 13,
+      "completions": 4,
+      "minutes": 192,
+      "recency_days": 40,
+      "assessment_score_avg": 69.0,
+      "certifications": 0
+    },
+    {
+      "person_id": "P049",
+      "views": 9,
+      "completions": 3,
+      "minutes": 72,
+      "recency_days": 38,
+      "assessment_score_avg": 64.0,
+      "certifications": 2
+    },
+    {
+      "person_id": "P050",
+      "views": 9,
+      "completions": 7,
+      "minutes": 557,
+      "recency_days": 4,
+      "assessment_score_avg": 74.0,
+      "certifications": 3
+    }
+  ]
+}

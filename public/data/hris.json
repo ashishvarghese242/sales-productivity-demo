@@ -1,0 +1,502 @@
+[
+  {
+    "person_id": "P001",
+    "name": "Alex Walker",
+    "title": "Sales Engineer",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "EMEA",
+    "role_type": "CSM",
+    "start_date": "2021-04-17"
+  },
+  {
+    "person_id": "P002",
+    "name": "Jordan Brown",
+    "title": "Sales Engineer",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "EMEA",
+    "role_type": "SE",
+    "start_date": "2024-01-19"
+  },
+  {
+    "person_id": "P003",
+    "name": "Cameron Kim",
+    "title": "Account Executive",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "EMEA",
+    "role_type": "SE",
+    "start_date": "2022-07-27"
+  },
+  {
+    "person_id": "P004",
+    "name": "Rowan Walker",
+    "title": "Sales Engineer",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2021-10-12"
+  },
+  {
+    "person_id": "P005",
+    "name": "Cameron Miller",
+    "title": "Account Executive",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2021-01-11"
+  },
+  {
+    "person_id": "P006",
+    "name": "Parker Kim",
+    "title": "Account Executive",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "EMEA",
+    "role_type": "SE",
+    "start_date": "2022-10-05"
+  },
+  {
+    "person_id": "P007",
+    "name": "Morgan Hall",
+    "title": "Customer Success Manager",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2022-02-08"
+  },
+  {
+    "person_id": "P008",
+    "name": "Riley Lee",
+    "title": "Sales Engineer",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2021-10-26"
+  },
+  {
+    "person_id": "P009",
+    "name": "Jordan Brown",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "NA",
+    "role_type": "CSM",
+    "start_date": "2022-11-24"
+  },
+  {
+    "person_id": "P010",
+    "name": "Riley Brown",
+    "title": "Sales Engineer",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "LATAM",
+    "role_type": "CSM",
+    "start_date": "2022-10-09"
+  },
+  {
+    "person_id": "P011",
+    "name": "Jamie Miller",
+    "title": "Customer Success Manager",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2022-06-09"
+  },
+  {
+    "person_id": "P012",
+    "name": "Reese Brown",
+    "title": "Sales Engineer",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "NA",
+    "role_type": "CSM",
+    "start_date": "2023-05-08"
+  },
+  {
+    "person_id": "P013",
+    "name": "Avery Clark",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2022-01-06"
+  },
+  {
+    "person_id": "P014",
+    "name": "Casey Patel",
+    "title": "Account Executive",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "LATAM",
+    "role_type": "SE",
+    "start_date": "2023-11-16"
+  },
+  {
+    "person_id": "P015",
+    "name": "Rowan Wilson",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2023-01-23"
+  },
+  {
+    "person_id": "P016",
+    "name": "Alex Davis",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "EMEA",
+    "role_type": "SE",
+    "start_date": "2023-11-17"
+  },
+  {
+    "person_id": "P017",
+    "name": "Quinn Hall",
+    "title": "Account Executive",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "APAC",
+    "role_type": "SE",
+    "start_date": "2024-01-22"
+  },
+  {
+    "person_id": "P018",
+    "name": "Riley Lopez",
+    "title": "Sales Engineer",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "APAC",
+    "role_type": "AE",
+    "start_date": "2021-06-10"
+  },
+  {
+    "person_id": "P019",
+    "name": "Reese Martinez",
+    "title": "Sales Engineer",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2021-04-10"
+  },
+  {
+    "person_id": "P020",
+    "name": "Cameron Wilson",
+    "title": "Sales Engineer",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "NA",
+    "role_type": "AE",
+    "start_date": "2022-12-06"
+  },
+  {
+    "person_id": "P021",
+    "name": "Jamie Lopez",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2021-03-09"
+  },
+  {
+    "person_id": "P022",
+    "name": "Quinn Walker",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "EMEA",
+    "role_type": "CSM",
+    "start_date": "2024-03-01"
+  },
+  {
+    "person_id": "P023",
+    "name": "Drew Hall",
+    "title": "Sales Engineer",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "NA",
+    "role_type": "AE",
+    "start_date": "2023-06-09"
+  },
+  {
+    "person_id": "P024",
+    "name": "Taylor Lee",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "APAC",
+    "role_type": "AE",
+    "start_date": "2023-07-18"
+  },
+  {
+    "person_id": "P025",
+    "name": "Harper Garcia",
+    "title": "Customer Success Manager",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "LATAM",
+    "role_type": "SE",
+    "start_date": "2022-10-13"
+  },
+  {
+    "person_id": "P026",
+    "name": "Riley Nguyen",
+    "title": "Sales Engineer",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2021-08-19"
+  },
+  {
+    "person_id": "P027",
+    "name": "Harper Wilson",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "LATAM",
+    "role_type": "SE",
+    "start_date": "2022-01-04"
+  },
+  {
+    "person_id": "P028",
+    "name": "Jamie Nguyen",
+    "title": "Customer Success Manager",
+    "manager_id": "M1",
+    "manager_name": "Cameron Nguyen",
+    "geo": "APAC",
+    "role_type": "AE",
+    "start_date": "2022-12-30"
+  },
+  {
+    "person_id": "P029",
+    "name": "Drew Lee",
+    "title": "Sales Engineer",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "APAC",
+    "role_type": "CSM",
+    "start_date": "2022-07-30"
+  },
+  {
+    "person_id": "P030",
+    "name": "Riley Young",
+    "title": "Customer Success Manager",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "APAC",
+    "role_type": "SE",
+    "start_date": "2022-01-01"
+  },
+  {
+    "person_id": "P031",
+    "name": "Harper Lee",
+    "title": "Sales Engineer",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "APAC",
+    "role_type": "SE",
+    "start_date": "2022-07-15"
+  },
+  {
+    "person_id": "P032",
+    "name": "Riley Walker",
+    "title": "Customer Success Manager",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "APAC",
+    "role_type": "SE",
+    "start_date": "2022-07-15"
+  },
+  {
+    "person_id": "P033",
+    "name": "Reese Walker",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "APAC",
+    "role_type": "AE",
+    "start_date": "2023-07-11"
+  },
+  {
+    "person_id": "P034",
+    "name": "Quinn Wilson",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2023-01-12"
+  },
+  {
+    "person_id": "P035",
+    "name": "Riley Martinez",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "LATAM",
+    "role_type": "AE",
+    "start_date": "2024-04-04"
+  },
+  {
+    "person_id": "P036",
+    "name": "Drew Hall",
+    "title": "Sales Engineer",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "APAC",
+    "role_type": "CSM",
+    "start_date": "2024-02-07"
+  },
+  {
+    "person_id": "P037",
+    "name": "Reese Lee",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "EMEA",
+    "role_type": "CSM",
+    "start_date": "2023-06-23"
+  },
+  {
+    "person_id": "P038",
+    "name": "Drew Garcia",
+    "title": "Account Executive",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "EMEA",
+    "role_type": "CSM",
+    "start_date": "2021-03-27"
+  },
+  {
+    "person_id": "P039",
+    "name": "Casey Garcia",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "EMEA",
+    "role_type": "AE",
+    "start_date": "2022-10-12"
+  },
+  {
+    "person_id": "P040",
+    "name": "Jamie Kim",
+    "title": "Customer Success Manager",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "NA",
+    "role_type": "SE",
+    "start_date": "2023-08-11"
+  },
+  {
+    "person_id": "P041",
+    "name": "Avery Lopez",
+    "title": "Customer Success Manager",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "NA",
+    "role_type": "CSM",
+    "start_date": "2022-02-23"
+  },
+  {
+    "person_id": "P042",
+    "name": "Reese Hall",
+    "title": "Sales Engineer",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "NA",
+    "role_type": "SE",
+    "start_date": "2023-04-11"
+  },
+  {
+    "person_id": "P043",
+    "name": "Harper Davis",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "APAC",
+    "role_type": "AE",
+    "start_date": "2024-02-01"
+  },
+  {
+    "person_id": "P044",
+    "name": "Riley Patel",
+    "title": "Sales Engineer",
+    "manager_id": "M5",
+    "manager_name": "Drew Hall",
+    "geo": "APAC",
+    "role_type": "CSM",
+    "start_date": "2022-08-24"
+  },
+  {
+    "person_id": "P045",
+    "name": "Harper Garcia",
+    "title": "Sales Engineer",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "LATAM",
+    "role_type": "CSM",
+    "start_date": "2024-01-08"
+  },
+  {
+    "person_id": "P046",
+    "name": "Jamie Garcia",
+    "title": "Account Executive",
+    "manager_id": "M3",
+    "manager_name": "Parker Martinez",
+    "geo": "LATAM",
+    "role_type": "CSM",
+    "start_date": "2023-09-04"
+  },
+  {
+    "person_id": "P047",
+    "name": "Taylor Clark",
+    "title": "Account Executive",
+    "manager_id": "M2",
+    "manager_name": "Reese Brown",
+    "geo": "APAC",
+    "role_type": "CSM",
+    "start_date": "2021-01-02"
+  },
+  {
+    "person_id": "P048",
+    "name": "Jordan Brown",
+    "title": "Customer Success Manager",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "EMEA",
+    "role_type": "SE",
+    "start_date": "2024-03-01"
+  },
+  {
+    "person_id": "P049",
+    "name": "Avery Davis",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "LATAM",
+    "role_type": "SE",
+    "start_date": "2023-09-10"
+  },
+  {
+    "person_id": "P050",
+    "name": "Avery Walker",
+    "title": "Account Executive",
+    "manager_id": "M4",
+    "manager_name": "Harper Martinez",
+    "geo": "APAC",
+    "role_type": "CSM",
+    "start_date": "2022-09-09"
+  }
+]
