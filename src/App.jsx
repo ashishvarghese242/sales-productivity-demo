@@ -172,4 +172,310 @@ function lrsCoverageScores(personIds, lrsEvents, catalog) {
 
   const scores = {}
   LEVERS.forEach(lever => {
-    const topics = LEVER_TOPIC_MAP
+    const topics = LEVER_TOPIC_MAP[lever] || []
+    // gather available assets for those topics
+    const available = new Set()
+    topics.forEach(t => {
+      if (t === 'ALL') {
+        // Use every asset in catalog
+        ;(catalog || []).forEach(a => available.add(a.asset_id))
+      } else if (byTopicAssets[t]) {
+        byTopicAssets[t].forEach(id => available.add(id))
+      }
+    })
+    const availableCount = available.size
+    let consumedCount = 0
+    if (availableCount > 0) {
+      available.forEach(aid => {
+        // Consider consumed if ANY of the mapped topics recorded the asset
+        const tGuess = (catalog || []).find(c => c.asset_id === aid)?.topic
+        if (tGuess && consumedByTopic[tGuess] && consumedByTopic[tGuess].has(aid)) {
+          consumedCount += 1
+        }
+      })
+    }
+    const pct = availableCount ? Math.round((consumedCount / availableCount) * 100) : 0
+    scores[lever] = pct
+  })
+  return scores
+}
+
+// ------------------------------ App ------------------------------
+export default function App() {
+  const { hris, crm, lrs, lrsEvents } = useData()
+
+  const [geo, setGeo] = useState('All')
+  const [manager, setManager] = useState('All')
+  const [personId, setPersonId] = useState('All') // default All
+
+  const [showTop, setShowTop] = useState(false)
+  const [showBottom, setShowBottom] = useState(false)
+  const [showLRS, setShowLRS] = useState(false) // NEW: LRS overlay toggle
+
+  const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
+  const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
+
+  const crmById = useMemo(() => indexById(crm), [crm])
+  const lrsById = useMemo(() => indexById(lrs.consumption || []), [lrs])
+
+  // Apply base filters (Geo/Manager)
+  const filteredPeople = useMemo(() => {
+    return hris
+      .filter((h) => (geo === 'All' || h.geo === geo))
+      .filter((h) => (manager === 'All' || h.manager_name === manager))
+  }, [hris, geo, manager])
+
+  // Validate selection on filter change
+  useEffect(() => {
+    if (personId === 'All') return
+    const stillVisible = filteredPeople.find((p) => p.person_id === personId)
+    if (!stillVisible) setPersonId('All')
+  }, [filteredPeople, personId])
+
+  const selected = useMemo(
+    () => (personId === 'All' ? null : hris.find((h) => h.person_id === personId)),
+    [hris, personId]
+  )
+  const crmRow = useMemo(
+    () => (personId === 'All' ? null : crm.find((c) => c.person_id === personId)),
+    [crm, personId]
+  )
+  const lrsRow = useMemo(
+    () => (personId === 'All' ? null : lrs.consumption.find((c) => c.person_id === personId)),
+    [lrs, personId]
+  )
+
+  const selectedScores = useMemo(() => {
+    if (personId === 'All') {
+      return averageScoresForPeople(filteredPeople, crmById, lrsById)
+    }
+    return computeScores(personId, crmRow, lrsRow)
+  }, [personId, filteredPeople, crmById, lrsById, crmRow, lrsRow])
+
+  // Top/bottom 20% groups WITHIN current filters
+  const { topAvgScores, bottomAvgScores, topIds, bottomIds, topCut, bottomCut } = useMemo(() => {
+    if (!filteredPeople.length) {
+      return { topAvgScores: null, bottomAvgScores: null, topIds: [], bottomIds: [], topCut: 0, bottomCut: 0 }
+    }
+    const scored = filteredPeople.map((p) => ({
+      person: p,
+      comp: compositeOf(p, crmById, lrsById),
+    }))
+    scored.sort((a, b) => a.comp - b.comp)
+
+    const n = scored.length
+    const groupSize = Math.max(1, Math.floor(n * 0.2)) // 20%
+    const bottomGroup = scored.slice(0, groupSize)
+    const topGroup = scored.slice(-groupSize)
+
+    const topPeople = topGroup.map(x => x.person)
+    const bottomPeople = bottomGroup.map(x => x.person)
+
+    const topAvg = averageScoresForPeople(topPeople, crmById, lrsById)
+    const bottomAvg = averageScoresForPeople(bottomPeople, crmById, lrsById)
+
+    return {
+      topAvgScores: topAvg,
+      bottomAvgScores: bottomAvg,
+      topIds: topPeople.map(p => p.person_id),
+      bottomIds: bottomPeople.map(p => p.person_id),
+      topCut: Math.round(scored[n - groupSize]?.comp || 0),
+      bottomCut: Math.round(scored[groupSize - 1]?.comp || 0),
+    }
+  }, [filteredPeople, crmById, lrsById])
+
+  // --- NEW: LRS overlay values per lever for the selected entity (All or one person)
+  const lrsOverlay = useMemo(() => {
+    if (!lrsEvents?.length || !lrs?.catalog) return null
+    // Build person set for selection
+    const personIds =
+      personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
+    // Compute % coverage per lever (0–100)
+    return lrsCoverageScores(personIds, lrsEvents, lrs.catalog)
+  }, [personId, filteredPeople, lrsEvents, lrs.catalog])
+
+  const radarData = useMemo(() => {
+    return LEVERS.map((l) => ({
+      lever: l,
+      selectedScore: selectedScores[l] || 0,
+      topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+      bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+      lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+    }))
+  }, [selectedScores, showTop, showBottom, showLRS, topAvgScores, bottomAvgScores, lrsOverlay])
+
+  const selectedComposite = useMemo(() => {
+    const s = selectedScores
+    const comp =
+      (s['Pipeline Discipline'] +
+        s['Deal Execution'] +
+        s['Value Co-Creation'] +
+        s['Capability Uptake'] +
+        s['Data Hygiene']) /
+      5
+    return Math.round(comp || 0)
+  }, [selectedScores])
+
+  return (
+    <div className="min-h-screen p-6 bg-white text-slate-900">
+      <header className="mb-6">
+        <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
+        <p className="text-sm text-slate-600">
+          Pentagon radar with fake HRIS / CRM / LRS data (Last 90 Days)
+        </p>
+      </header>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* LEFT: Filters + Entity card */}
+        <div className="lg:col-span-1 space-y-4">
+          <div className="p-4 rounded-2xl border">
+            <h2 className="font-semibold mb-3">Filters</h2>
+            <div className="space-y-3">
+              <label className="block text-sm">
+                Geo
+                <select
+                  className="w-full border rounded-lg px-2 py-1 mt-1"
+                  value={geo}
+                  onChange={(e) => setGeo(e.target.value)}
+                >
+                  <option>All</option>
+                  {geos.map((g) => (
+                    <option key={g}>{g}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block text-sm">
+                Manager
+                <select
+                  className="w-full border rounded-lg px-2 py-1 mt-1"
+                  value={manager}
+                  onChange={(e) => setManager(e.target.value)}
+                >
+                  <option>All</option>
+                  {managers.map((m) => (
+                    <option key={m}>{m}</option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="block text-sm">
+                Person
+                <select
+                  className="w-full border rounded-lg px-2 py-1 mt-1"
+                  value={personId || 'All'}
+                  onChange={(e) => setPersonId(e.target.value)}
+                >
+                  <option value="All">All</option>
+                  {filteredPeople.map((p) => (
+                    <option key={p.person_id} value={p.person_id}>
+                      {p.name} ({p.role_type})
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              {/* Toggles */}
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-green-600"
+                    checked={showTop}
+                    onChange={(e) => setShowTop(e.target.checked)}
+                  />
+                  <span>Top Performers</span>
+                </label>
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-red-600"
+                    checked={showBottom}
+                    onChange={(e) => setShowBottom(e.target.checked)}
+                  />
+                  <span>Bottom Performers</span>
+                </label>
+                <label className="flex items-center gap-2 text-sm col-span-2">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-purple-600"
+                    checked={showLRS}
+                    onChange={(e) => setShowLRS(e.target.checked)}
+                  />
+                  <span>LRS Overlay (Enablement Consumption)</span>
+                </label>
+              </div>
+
+              <div className="text-xs text-slate-500 mt-1">
+                Top ≥ {topCut}/100 &nbsp;|&nbsp; Bottom ≤ {bottomCut}/100 (within current filters)
+              </div>
+            </div>
+          </div>
+
+          {/* Entity card */}
+          <div className="p-4 rounded-2xl border">
+            <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
+            <div className="text-sm space-y-1">
+              {personId === 'All' ? (
+                <>
+                  <div>People in view: <strong>{filteredPeople.length}</strong></div>
+                  <div>Geo filter: {geo}</div>
+                  <div>Manager filter: {manager}</div>
+                  <div className="pt-2">
+                    Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100
+                  </div>
+                </>
+              ) : (
+                <>
+                  {(() => {
+                    const s = selected
+                    if (!s) return null
+                    return (
+                      <>
+                        <div><strong>{s.name}</strong> — {s.title}</div>
+                        <div>Manager: {s.manager_name}</div>
+                        <div>Geo: {s.geo}</div>
+                        <div>Role: {s.role_type}</div>
+                        <div className="pt-2">
+                          Composite: <span className="font-semibold">{selectedComposite}</span>/100
+                        </div>
+                      </>
+                    )
+                  })()}
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT: Radar */}
+        <div className="lg:col-span-2 p-4 rounded-2xl border">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-semibold">Sales Productivity Pentagon</h2>
+            <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
+          </div>
+
+          <RadarPentagon
+            data={radarData}
+            showTop={showTop}
+            showBottom={showBottom}
+            showLRS={showLRS}
+          />
+
+          {/* Score stripes */}
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-2 text-sm">
+            {LEVERS.map((l) => (
+              <div key={l} className="rounded-lg border p-2">
+                <div className="text-slate-500">{l}</div>
+                <div className="text-lg font-semibold">
+                  {Math.round(selectedScores[l] || 0)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+}
