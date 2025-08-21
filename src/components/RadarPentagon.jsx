@@ -12,11 +12,12 @@ import {
 
 /**
  * Props:
- *  - data: [{ lever, selectedScore, topAvg?, bottomAvg? }]
+ *  - data: [{ lever, selectedScore, topAvg?, bottomAvg?, lrsOverlay? }]
  *  - showTop: boolean
  *  - showBottom: boolean
+ *  - showLRS: boolean
  */
-export default function RadarPentagon({ data, showTop, showBottom }) {
+export default function RadarPentagon({ data, showTop, showBottom, showLRS }) {
   return (
     <div className="w-full h-[520px]">
       <ResponsiveContainer>
@@ -33,7 +34,7 @@ export default function RadarPentagon({ data, showTop, showBottom }) {
             labelFormatter={(label) => `${label}`}
           />
 
-          {/* Selected person (primary) */}
+          {/* Selected entity (All or Person) */}
           <Radar
             name="Selected"
             dataKey="selectedScore"
@@ -61,6 +62,17 @@ export default function RadarPentagon({ data, showTop, showBottom }) {
               dataKey="bottomAvg"
               stroke="#dc2626"    // red-600
               fill="#dc2626"
+              fillOpacity={0.2}
+              strokeWidth={2}
+            />
+          )}
+
+          {showLRS && (
+            <Radar
+              name="LRS Consumption Coverage"
+              dataKey="lrsOverlay"
+              stroke="#7c3aed"    // purple-600
+              fill="#7c3aed"
               fillOpacity={0.2}
               strokeWidth={2}
             />
