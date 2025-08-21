@@ -9,7 +9,7 @@ const LEVERS = [
   'Data Hygiene',
 ]
 
-// Tune this to make the purple overlay more/less prominent
+// Keep as-is (you can tune later if you want the purple to pop more/less)
 const LRS_OVERLAY_MULTIPLIER = 1.8
 
 // ------------------------------ Data hooks ------------------------------
@@ -40,13 +40,13 @@ function computeScores(personId, crmRow, lrsRow) {
   if (crmRow) {
     // PIPELINE DISCIPLINE
     const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100) // 3.5x target
-    const stalledScore = (1 - crmRow.stalled_ratio) * 100 // lower stalled is better
-    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100) // 6/mo is strong
+    const stalledScore = (1 - crmRow.stalled_ratio) * 100
+    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100)
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore)
 
     // DEAL EXECUTION
     const winScore = crmRow.win_rate * 100
-    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2) // 30 days ideal
+    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2)
     const meddpiccScore =
       (crmRow.meddpicc.metrics_pct +
         crmRow.meddpicc.econ_buyer_pct +
@@ -74,10 +74,10 @@ function computeScores(personId, crmRow, lrsRow) {
     dh = clamp((ns + nm + sd + fc + cd) / 5)
   }
 
-  // CAPABILITY UPTAKE (from legacy LRS aggregates)
+  // CAPABILITY UPTAKE (legacy LRS aggregates)
   if (lrsRow) {
     const comp = Math.min(100, (lrsRow.completions / 8) * 100)
-    const minutes = Math.min(100, (lrsRow.minutes / 600) * 100) // 10h cap
+    const minutes = Math.min(100, (lrsRow.minutes / 600) * 100)
     const recency = Math.max(0, 100 - lrsRow.recency_days * 2)
     const assess = lrsRow.assessment_score_avg
     const certs = Math.min(100, lrsRow.certifications * 25)
@@ -117,25 +117,18 @@ function compositeOf(person, crmById, lrsById) {
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
-// ------------------------------ NEW: Impact-weighted Enablement overlay per lever ------------------------------
-/**
- * coverage_person_lever =
- *   ( SUM impact_score of COMPLETED, NON-FLUFF assets for lever × LRS_OVERLAY_MULTIPLIER )
- * / ( SUM impact_score of ALL NON-FLUFF assets for that lever )
- * -> clamp 0..100
- *
- * Group view (“All”) = average of people’s coverage.
- */
+// ------------------------------ Enablement overlay (coverage) ------------------------------
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
+  const LEVERS_LOCAL = LEVERS
   if (!personIds?.length || !lrsCatalog?.length) {
-    return Object.fromEntries(LEVERS.map(l => [l, 0]))
+    return Object.fromEntries(LEVERS_LOCAL.map(l => [l, 0]))
   }
 
   const leverAssets = {}
   const leverDenom = {}
-  LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
+  LEVERS_LOCAL.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
   lrsCatalog.forEach(a => {
-    if (!LEVERS.includes(a.lever)) return
+    if (!LEVERS_LOCAL.includes(a.lever)) return
     if (a.is_fluff) return
     leverAssets[a.lever].push(a)
     leverDenom[a.lever] += (a.impact_score || 0)
@@ -148,9 +141,9 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
     if (e.completed) completedByPerson[e.person_id].add(e.asset_id)
   })
 
-  const perLeverSums = Object.fromEntries(LEVERS.map(l => [l, 0]))
+  const perLeverSums = Object.fromEntries(LEVERS_LOCAL.map(l => [l, 0]))
   personIds.forEach(pid => {
-    LEVERS.forEach(lever => {
+    LEVERS_LOCAL.forEach(lever => {
       const denom = leverDenom[lever] || 0
       if (denom === 0) return
       let num = 0
@@ -164,7 +157,7 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   })
 
   const avgCoverage = {}
-  LEVERS.forEach(lever => {
+  LEVERS_LOCAL.forEach(lever => {
     avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length)
   })
   return avgCoverage
@@ -377,17 +370,7 @@ export default function App() {
             showBottom={showBottom}
             showLRS={showLRS}
           />
-
-          {/* Quick score stripes */}
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-5 gap-2 text-sm">
-            {LEVERS.map((l) => (
-              <div key={l} className="rounded-lg border p-2">
-                <div className="text-slate-500">{l}</div>
-                <div className="text-lg font-semibold">{Math.round(selectedScores[l] || 0)}</div>
-              </div>
-            ))}
-          </div>
-
+          {/* ⬆️ Removed the quick score boxes so chart height matches filter panel */}
         </div>
       </div>
     </div>
