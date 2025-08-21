@@ -21,14 +21,13 @@ export default function RadarPentagon({ data, showTop, showBottom, showLRS }) {
   return (
     <div className="w-full h-[520px]">
       <ResponsiveContainer>
-        {/* startAngle/endAngle chosen so the pentagon base is horizontal at the bottom */}
+        {/* Base is flat/horizontal with polygon grid (no circular rings) */}
         <RadarChart data={data} startAngle={-126} endAngle={234}>
-          {/* Polygon grid, straight edges, no circular rings */}
           <PolarGrid gridType="polygon" radialLines={true} />
           <PolarAngleAxis dataKey="lever" />
-          {/* Hide numeric radius ticks; just use the polygon levels visually */}
           <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} />
 
+          {/* Show both performance & LRS values clearly in the tooltip */}
           <Tooltip
             formatter={(val, name) => [`${Math.round(val ?? 0)}`, name]}
             labelFormatter={(label) => `${label}`}
@@ -36,7 +35,7 @@ export default function RadarPentagon({ data, showTop, showBottom, showLRS }) {
 
           {/* Selected entity (All or Person) */}
           <Radar
-            name="Selected"
+            name="Performance (Selected)"
             dataKey="selectedScore"
             stroke="#2563EB"     // blue-600
             fill="#2563EB"
@@ -69,11 +68,11 @@ export default function RadarPentagon({ data, showTop, showBottom, showLRS }) {
 
           {showLRS && (
             <Radar
-              name="LRS Consumption Coverage"
+              name="LRS Consumption (0–100)"
               dataKey="lrsOverlay"
               stroke="#7c3aed"    // purple-600
               fill="#7c3aed"
-              fillOpacity={0.2}
+              fillOpacity={0.35}
               strokeWidth={2}
             />
           )}
