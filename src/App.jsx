@@ -147,9 +147,11 @@ export default function App() {
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState(null)
 
-  // NEW: independent toggles
+  // DEFAULT: "All" (aggregate) is selected
+  const [personId, setPersonId] = useState('All')
+
+  // Independent toggles
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
 
@@ -166,31 +168,36 @@ export default function App() {
       .filter((h) => (manager === 'All' || h.manager_name === manager))
   }, [hris, geo, manager])
 
-  // Ensure a selected person exists within filtered population
+  // Keep selection valid when filters change:
+  // If a specific person falls out of the filtered list, switch to "All".
   useEffect(() => {
-    if (!personId && filteredPeople.length > 0) {
-      setPersonId(filteredPeople[0].person_id)
-    } else if (personId && filteredPeople.length > 0) {
-      const stillVisible = filteredPeople.find((p) => p.person_id === personId)
-      if (!stillVisible) setPersonId(filteredPeople[0].person_id)
-    }
+    if (personId === 'All') return
+    const stillVisible = filteredPeople.find((p) => p.person_id === personId)
+    if (!stillVisible) setPersonId('All')
   }, [filteredPeople, personId])
 
   const selected = useMemo(
-    () => hris.find((h) => h.person_id === personId),
+    () => (personId === 'All' ? null : hris.find((h) => h.person_id === personId)),
     [hris, personId]
   )
-  const crmRow = useMemo(() => crm.find((c) => c.person_id === personId), [crm, personId])
+  const crmRow = useMemo(
+    () => (personId === 'All' ? null : crm.find((c) => c.person_id === personId)),
+    [crm, personId]
+  )
   const lrsRow = useMemo(
-    () => lrs.consumption.find((c) => c.person_id === personId),
+    () => (personId === 'All' ? null : lrs.consumption.find((c) => c.person_id === personId)),
     [lrs, personId]
   )
 
-  // Selected person's scores
-  const selectedScores = useMemo(
-    () => computeScores(personId, crmRow, lrsRow),
-    [personId, crmRow, lrsRow]
-  )
+  // Selected scores:
+  // - If "All": average across the filteredPeople
+  // - Else: compute for the specific person
+  const selectedScores = useMemo(() => {
+    if (personId === 'All') {
+      return averageScoresForPeople(filteredPeople, crmById, lrsById)
+    }
+    return computeScores(personId, crmRow, lrsRow)
+  }, [personId, filteredPeople, crmById, lrsById, crmRow, lrsRow])
 
   // Determine top/bottom groups (20% each) WITHIN the filtered population
   const { topAvgScores, bottomAvgScores, topCut, bottomCut } = useMemo(() => {
@@ -232,7 +239,6 @@ export default function App() {
 
   // Composite for display
   const selectedComposite = useMemo(() => {
-    if (!selected) return 0
     const s = selectedScores
     const comp =
       (s['Pipeline Discipline'] +
@@ -241,8 +247,8 @@ export default function App() {
         s['Capability Uptake'] +
         s['Data Hygiene']) /
       5
-    return Math.round(comp)
-  }, [selected, selectedScores])
+    return Math.round(comp || 0)
+  }, [selectedScores])
 
   return (
     <div className="min-h-screen p-6 bg-white text-slate-900">
@@ -292,9 +298,11 @@ export default function App() {
                 Person
                 <select
                   className="w-full border rounded-lg px-2 py-1 mt-1"
-                  value={personId || ''}
+                  value={personId || 'All'}
                   onChange={(e) => setPersonId(e.target.value)}
                 >
+                  {/* Permanent "All" option at the top */}
+                  <option value="All">All</option>
                   {filteredPeople.map((p) => (
                     <option key={p.person_id} value={p.person_id}>
                       {p.name} ({p.role_type})
@@ -321,7 +329,7 @@ export default function App() {
                     checked={showBottom}
                     onChange={(e) => setShowBottom(e.target.checked)}
                   />
-                    <span>Bottom Performers</span>
+                  <span>Bottom Performers</span>
                 </label>
               </div>
 
@@ -331,36 +339,54 @@ export default function App() {
             </div>
           </div>
 
-          {/* Person card */}
-          {selected && (
-            <div className="p-4 rounded-2xl border">
-              <h3 className="font-semibold mb-2">Person</h3>
-              <div className="text-sm space-y-1">
-                <div>
-                  <strong>{selected.name}</strong> — {selected.title}
-                </div>
-                <div>Manager: {selected.manager_name}</div>
-                <div>Geo: {selected.geo}</div>
-                <div>Role: {selected.role_type}</div>
-                <div className="pt-2">
-                  Composite: <span className="font-semibold">{selectedComposite}</span>/100
-                </div>
-              </div>
+          {/* Person/aggregate card */}
+          <div className="p-4 rounded-2xl border">
+            <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
+            <div className="text-sm space-y-1">
+              {personId === 'All' ? (
+                <>
+                  <div>People in view: <strong>{filteredPeople.length}</strong></div>
+                  <div>Geo filter: {geo}</div>
+                  <div>Manager filter: {manager}</div>
+                  <div className="pt-2">
+                    Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100
+                  </div>
+                </>
+              ) : (
+                <>
+                  {selected && (
+                    <>
+                      <div>
+                        <strong>{selected.name}</strong> — {selected.title}
+                      </div>
+                      <div>Manager: {selected.manager_name}</div>
+                      <div>Geo: {selected.geo}</div>
+                      <div>Role: {selected.role_type}</div>
+                      <div className="pt-2">
+                        Composite: <span className="font-semibold">{selectedComposite}</span>/100
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
             </div>
-          )}
+          </div>
         </div>
 
         {/* RIGHT: Radar */}
         <div className="lg:col-span-2 p-4 rounded-2xl border">
           <div className="flex items-center justify-between mb-3">
             <h2 className="font-semibold">Sales Productivity Pentagon</h2>
-            <div className="text-xs text-slate-500">
-              PD / DE / VC / CU / DH
-            </div>
+            <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
           </div>
 
           <RadarPentagon
-            data={radarData}
+            data={LEVERS.map((l) => ({
+              lever: l,
+              selectedScore: selectedScores[l] || 0,
+              topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+              bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+            }))}
             showTop={showTop}
             showBottom={showBottom}
           />
