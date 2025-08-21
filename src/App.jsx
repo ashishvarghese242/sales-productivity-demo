@@ -365,6 +365,10 @@ export default function App() {
             <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
           </div>
 
-          <RadarPentagon
-            data={LE
+<RadarPentagon
+  data={radarData}
+  showTop={showTop}
+  showBottom={showBottom}
+  showLRS={showLRS}
+/>
  ​:contentReference[oaicite:0]{index=0}​
