@@ -180,7 +180,7 @@ export default function App() {
 
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
-  const [showLRS, setShowLRS] = useState(true)
+  const [showLRS, setShowLRS] = useState(false)
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -319,7 +319,7 @@ export default function App() {
                 </label>
                 <label className="flex items-center gap-2 text-sm col-span-2">
                   <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>LRS Overlay (Impact-weighted)</span>
+                  <span>Enablement</span>
                 </label>
               </div>
 
