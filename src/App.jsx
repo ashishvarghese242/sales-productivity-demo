@@ -421,8 +421,11 @@ export default function App() {
               showTop={showTop}
               showBottom={showBottom}
               showLRS={showLRS}
-            />
+  />
+          </div>
 
+          <VpEnablement geo={geo} manager={manager} personId={personId} />
+        </div>
       </div>
     </div>
   )
