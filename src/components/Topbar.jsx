@@ -23,7 +23,7 @@ export default function Topbar({ activeMenu = "Sales" }) {
             src={logo}
             alt="Chief Productivity Officer"
             style={{
-              height: 56,
+              height: 70,
               width: "auto",
               marginRight: 20,
               display: "block",
