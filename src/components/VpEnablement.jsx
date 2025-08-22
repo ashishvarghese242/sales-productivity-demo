@@ -41,39 +41,40 @@ const VpEnablement = ({ geo, manager, personId }) => {
     }
   }
 
-  return (
-    <div className="card">
-      <div className="flex items-center justify-between mb-2">
-        <h2 className="font-semibold">VP Enablement</h2>
-        <div className="text-xs text-slate-500">Boardroom Q&amp;A (uses your filters above)</div>
-      </div>
+return (
+  <div className="card">
+    <div className="gpt-head">
+      <h2 className="gpt-title">VP Enablement</h2>
+      <div className="gpt-badge">Boardroom Q&amp;A (uses your filters above)</div>
+    </div>
 
+    <div className="gpt-body">
       <textarea
-        className="w-full border rounded-lg px-3 py-2 text-sm min-h-[96px]"
+        className="gpt-input"
         placeholder="Ask anything about enablement, productivity, performance…"
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
       />
 
-      <div className="mt-2 flex items-center gap-3">
+      <div className="gpt-row">
         <button
           onClick={onAsk}
           disabled={loading}
-          className="px-4 py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60"
+          className="gpt-btn"
         >
           {loading ? 'Thinking…' : 'Ask'}
         </button>
-        {error && <span className="text-sm text-red-600">{error}</span>}
+        {error && <span className="gpt-badge" style={{color:'#dc2626'}}>{error}</span>}
       </div>
 
       {answer && (
-        <div className="mt-4 p-4 rounded-xl bg-slate-50 border text-sm whitespace-pre-wrap">
+        <div className="gpt-out">
           {answer}
         </div>
       )}
     </div>
-  )
-}
+  </div>
+)
 
 export default VpEnablement
 
