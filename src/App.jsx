@@ -405,7 +405,7 @@ export default function App() {
         <div className="lg:col-span-2 space-y-4">
           <div className="p-4 rounded-2xl border">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="font-semibold">Sales Productivity Pentagon</h2>
+              <h2 className="font-semibold">Sales Productivity</h2>
               <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
             </div>
 
