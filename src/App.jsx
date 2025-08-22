@@ -11,7 +11,7 @@ const LEVERS = [
 ]
 
 // Visual tuning for enablement overlay
-const LRS_OVERLAY_MULTIPLIER = 1.8
+const LRS_OVERLAY_MULTIPLIER = 2.6
 
 // ------------------------------ Data hooks ------------------------------
 function useData() {
@@ -117,45 +117,85 @@ function compositeOf(person, crmById, lrsById) {
 }
 
 // Enablement overlay (impact-weighted coverage per lever)
+// Enablement overlay (impact-weighted coverage per lever)
+// - Averages over the selected cohort/person
+// - Uses recent window (EVENT_WINDOW_DAYS)
+// - Applies a small visibility floor when there is *some* recent completion
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
+  const EVENT_WINDOW_DAYS = 120; // keep demos healthy; adjust to 90 if you want stricter
   if (!personIds?.length || !lrsCatalog?.length) {
-    return Object.fromEntries(LEVERS.map(l => [l, 0]))
+    return Object.fromEntries(LEVERS.map(l => [l, 0]));
   }
-  const leverAssets = {}
-  const leverDenom = {}
-  LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
+
+  // Build catalog index per lever, excluding fluff, and compute denominators
+  const leverAssets = {};
+  const leverDenom = {};
+  LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0; });
   lrsCatalog.forEach(a => {
-    if (!LEVERS.includes(a.lever)) return
-    if (a.is_fluff) return
-    leverAssets[a.lever].push(a)
-    leverDenom[a.lever] += (a.impact_score || 0)
-  })
-  const completedByPerson = {}
-  personIds.forEach(pid => completedByPerson[pid] = new Set())
+    if (!LEVERS.includes(a.lever)) return;
+    if (a.is_fluff) return;
+    const impact = Number(a.impact_score || 0);
+    leverAssets[a.lever].push({ asset_id: a.asset_id, impact });
+    leverDenom[a.lever] += impact;
+  });
+
+  // Recent events by selected people
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - EVENT_WINDOW_DAYS);
+
+  // Map: person_id -> Set of completed asset_ids (recent)
+  const completedByPerson = {};
+  personIds.forEach(pid => completedByPerson[pid] = new Set());
+
   lrsEvents.forEach(e => {
-    if (!completedByPerson.hasOwnProperty(e.person_id)) return
-    if (e.completed) completedByPerson[e.person_id].add(e.asset_id)
-  })
-  const perLeverSums = Object.fromEntries(LEVERS.map(l => [l, 0]))
+    if (!completedByPerson.hasOwnProperty(e.person_id)) return;
+    // treat 1/true as completion
+    if (!e.completed) return;
+    // recent window
+    if (e.date) {
+      const d = new Date(e.date);
+      if (isNaN(d.getTime())) return;
+      if (d < cutoff) return;
+    }
+    completedByPerson[e.person_id].add(e.asset_id);
+  });
+
+  // Aggregate per person -> average
+  const sums = Object.fromEntries(LEVERS.map(l => [l, 0]));
   personIds.forEach(pid => {
     LEVERS.forEach(lever => {
-      const denom = leverDenom[lever] || 0
-      if (denom === 0) return
-      let num = 0
+      const denom = leverDenom[lever] || 0;
+      if (denom === 0) return;
+
+      let num = 0;
+      let hasAny = false;
       leverAssets[lever].forEach(a => {
-        if (completedByPerson[pid].has(a.asset_id)) num += (a.impact_score || 0)
-      })
-      const boosted = num * LRS_OVERLAY_MULTIPLIER
-      const pct = Math.max(0, Math.min(100, Math.round((boosted / denom) * 100)))
-      perLeverSums[lever] += pct
-    })
-  })
-  const avgCoverage = {}
+        if (completedByPerson[pid].has(a.asset_id)) {
+          num += a.impact;
+          hasAny = true;
+        }
+      });
+
+      // Impact-weighted % with tuning
+      const boosted = num * LRS_OVERLAY_MULTIPLIER;
+      let pct = Math.round((boosted / denom) * 100);
+
+      // Visibility floor so the polygon doesn't collapse when there *is* recent activity
+      if (hasAny && pct > 0 && pct < 12) pct = 12;
+
+      // Clamp
+      pct = Math.max(0, Math.min(100, pct));
+      sums[lever] += pct;
+    });
+  });
+
+  const avg = {};
   LEVERS.forEach(lever => {
-    avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length)
-  })
-  return avgCoverage
+    avg[lever] = Math.round((sums[lever] || 0) / personIds.length);
+  });
+  return avg;
 }
+
 
 // ------------------------------ App ------------------------------
 export default function App() {
