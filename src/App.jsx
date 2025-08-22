@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useEffect, useMemo, useState } from 'react'
 import RadarPentagon from './components/RadarPentagon.jsx'
 
@@ -35,7 +34,6 @@ function useData() {
 // ------------------------------ Scoring logic (performance) ------------------------------
 function computeScores(personId, crmRow, lrsRow) {
   const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)))
-
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0
 
   if (crmRow) {
@@ -103,7 +101,6 @@ function computeScores(personId, crmRow, lrsRow) {
 function indexById(arr, key = 'person_id') {
   return Object.fromEntries(arr.map((r) => [r[key], r]))
 }
-
 function averageScoresForPeople(people, crmById, lrsById) {
   if (!people.length) return Object.fromEntries(LEVERS.map(l => [l, 0]))
   const sums = Object.fromEntries(LEVERS.map(l => [l, 0]))
@@ -115,26 +112,16 @@ function averageScoresForPeople(people, crmById, lrsById) {
   LEVERS.forEach((l) => (avg[l] = Math.round(sums[l] / people.length)))
   return avg
 }
-
 function compositeOf(person, crmById, lrsById) {
   const s = computeScores(person.person_id, crmById[person.person_id], lrsById[person.person_id])
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
-// ------------------------------ NEW: Impact-weighted LRS overlay per lever ------------------------------
-/**
- * coverage_person_lever =
- *   ( SUM impact_score of COMPLETED, NON-FLUFF assets for lever × LRS_OVERLAY_MULTIPLIER )
- * / ( SUM impact_score of ALL NON-FLUFF assets for that lever )
- * -> clamp 0..100
- *
- * Group view (“All”) = average of people’s coverage.
- */
+// ------------------------------ Impact-weighted Enablement overlay ------------------------------
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]))
   }
-
   const leverAssets = {}
   const leverDenom = {}
   LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
@@ -144,14 +131,12 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
     leverAssets[a.lever].push(a)
     leverDenom[a.lever] += (a.impact_score || 0)
   })
-
   const completedByPerson = {}
   personIds.forEach(pid => completedByPerson[pid] = new Set())
   lrsEvents.forEach(e => {
     if (!completedByPerson.hasOwnProperty(e.person_id)) return
     if (e.completed) completedByPerson[e.person_id].add(e.asset_id)
   })
-
   const perLeverSums = Object.fromEntries(LEVERS.map(l => [l, 0]))
   personIds.forEach(pid => {
     LEVERS.forEach(lever => {
@@ -166,7 +151,6 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
       perLeverSums[lever] += pct
     })
   })
-
   const avgCoverage = {}
   LEVERS.forEach(lever => {
     avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length)
