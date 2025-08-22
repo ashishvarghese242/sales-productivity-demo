@@ -5,7 +5,7 @@ export default function Topbar({ activeMenu = "Sales" }) {
     { name: "Home", key: "Home" },
     { name: "Sales", key: "Sales" },
     { name: "Customer Success", key: "Customer Success" },
-    { name: "Production / Engineering", key: "Production / Engineering" },
+    { name: "Production", key: "Production / Engineering" },
   ];
 
   return (
