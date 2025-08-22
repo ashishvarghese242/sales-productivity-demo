@@ -117,7 +117,6 @@ function compositeOf(person, crmById, lrsById) {
 }
 
 // Enablement overlay (impact-weighted coverage per lever)
-// Enablement overlay (impact-weighted coverage per lever)
 // - Averages over the selected cohort/person
 // - Uses recent window (EVENT_WINDOW_DAYS)
 // - Applies a small visibility floor when there is *some* recent completion
@@ -401,7 +400,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* RIGHT: Radar + VP Panel */}
+        {/* RIGHT: Radar */}
         <div className="lg:col-span-2 space-y-4">
           <div className="p-4 rounded-2xl border">
             <div className="flex items-center justify-between mb-3">
@@ -421,11 +420,14 @@ export default function App() {
               showTop={showTop}
               showBottom={showBottom}
               showLRS={showLRS}
-  />
+            />
           </div>
-
-          <VpEnablement geo={geo} manager={manager} personId={personId} />
         </div>
+      </div>
+
+      {/* --- FULL WIDTH VP ENABLEMENT PANEL --- */}
+      <div className="mt-6">
+        <VpEnablement geo={geo} manager={manager} personId={personId} />
       </div>
     </div>
   )
