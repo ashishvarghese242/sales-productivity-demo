@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import Topbar from './components/Topbar.jsx'
 import RadarPentagon from './components/RadarPentagon.jsx'
 import VpEnablement from './components/VpEnablement.jsx'
 
@@ -117,16 +118,12 @@ function compositeOf(person, crmById, lrsById) {
 }
 
 // Enablement overlay (impact-weighted coverage per lever)
-// - Averages over the selected cohort/person
-// - Uses recent window (EVENT_WINDOW_DAYS)
-// - Applies a small visibility floor when there is *some* recent completion
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
-  const EVENT_WINDOW_DAYS = 120; // keep demos healthy; adjust to 90 if you want stricter
+  const EVENT_WINDOW_DAYS = 120
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]));
   }
 
-  // Build catalog index per lever, excluding fluff, and compute denominators
   const leverAssets = {};
   const leverDenom = {};
   LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0; });
@@ -138,19 +135,15 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
     leverDenom[a.lever] += impact;
   });
 
-  // Recent events by selected people
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - EVENT_WINDOW_DAYS);
 
-  // Map: person_id -> Set of completed asset_ids (recent)
   const completedByPerson = {};
   personIds.forEach(pid => completedByPerson[pid] = new Set());
 
   lrsEvents.forEach(e => {
     if (!completedByPerson.hasOwnProperty(e.person_id)) return;
-    // treat 1/true as completion
     if (!e.completed) return;
-    // recent window
     if (e.date) {
       const d = new Date(e.date);
       if (isNaN(d.getTime())) return;
@@ -159,7 +152,6 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
     completedByPerson[e.person_id].add(e.asset_id);
   });
 
-  // Aggregate per person -> average
   const sums = Object.fromEntries(LEVERS.map(l => [l, 0]));
   personIds.forEach(pid => {
     LEVERS.forEach(lever => {
@@ -175,14 +167,11 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
         }
       });
 
-      // Impact-weighted % with tuning
       const boosted = num * LRS_OVERLAY_MULTIPLIER;
       let pct = Math.round((boosted / denom) * 100);
 
-      // Visibility floor so the polygon doesn't collapse when there *is* recent activity
       if (hasAny && pct > 0 && pct < 12) pct = 12;
 
-      // Clamp
       pct = Math.max(0, Math.min(100, pct));
       sums[lever] += pct;
     });
@@ -195,17 +184,15 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   return avg;
 }
 
-
 // ------------------------------ App ------------------------------
 export default function App() {
   const { hris, crm, lrs, lrsCatalog, lrsEvents } = useData()
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState('All') // default aggregate
+  const [personId, setPersonId] = useState('All')
 
-  // Toggles
-  const [showPerformance, setShowPerformance] = useState(false) // new, default OFF
+  const [showPerformance, setShowPerformance] = useState(false)
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
@@ -222,7 +209,6 @@ export default function App() {
       .filter((h) => (manager === 'All' || h.manager_name === manager))
   }, [hris, geo, manager])
 
-  // Reset person if filters hide them
   useEffect(() => {
     if (personId === 'All') return
     const stillVisible = filteredPeople.find((p) => p.person_id === personId)
@@ -271,21 +257,10 @@ export default function App() {
     }
   }, [filteredPeople, crmById, lrsById])
 
-  // Enablement overlay follows current cohort/person selection (independent of toggles)
   const lrsOverlay = useMemo(() => {
     const personIds = personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
     return lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents)
   }, [personId, filteredPeople, lrsCatalog, lrsEvents])
-
-  const radarData = useMemo(() => {
-    return LEVERS.map((l) => ({
-      lever: l,
-      selectedScore: selectedScores[l] || 0,
-      topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
-      bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
-      lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
-    }))
-  }, [selectedScores, showTop, showBottom, showLRS, topAvgScores, bottomAvgScores, lrsOverlay])
 
   const selectedComposite = useMemo(() => {
     const s = selectedScores
@@ -295,140 +270,145 @@ export default function App() {
   }, [selectedScores])
 
   return (
-    <div className="min-h-screen p-6 bg-white text-slate-900">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
-        <p className="text-sm text-slate-600">
-          Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
-        </p>
-      </header>
+    <>
+      {/* Top bar at the very top */}
+      <Topbar activeMenu="Sales" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* LEFT: Filters + Card */}
-        <div className="lg:col-span-1 space-y-4">
-          <div className="p-4 rounded-2xl border">
-            <h2 className="font-semibold mb-3">Filters</h2>
-            <div className="space-y-3">
-              <label className="block text-sm">
-                Geo
-                <select className="w-full border rounded-lg px-2 py-1 mt-1" value={geo} onChange={(e) => setGeo(e.target.value)}>
-                  <option>All</option>
-                  {geos.map((g) => (<option key={g}>{g}</option>))}
-                </select>
-              </label>
+      {/* Main content */}
+      <div className="min-h-screen p-6 bg-white text-slate-900">
+        <header className="mb-6">
+          <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
+          <p className="text-sm text-slate-600">
+            Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
+          </p>
+        </header>
 
-              <label className="block text-sm">
-                Manager
-                <select className="w-full border rounded-lg px-2 py-1 mt-1" value={manager} onChange={(e) => setManager(e.target.value)}>
-                  <option>All</option>
-                  {managers.map((m) => (<option key={m}>{m}</option>))}
-                </select>
-              </label>
-
-              <label className="block text-sm">
-                Person
-                <select className="w-full border rounded-lg px-2 py-1 mt-1" value={personId || 'All'} onChange={(e) => setPersonId(e.target.value)}>
-                  <option value="All">All</option>
-                  {filteredPeople.map((p) => (
-                    <option key={p.person_id} value={p.person_id}>
-                      {p.name} ({p.role_type})
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              {/* Toggles */}
-              <div className="mt-2 grid grid-cols-2 gap-3">
-                <label className="flex items-center gap-2 text-sm col-span-2">
-                  <input
-                    type="checkbox"
-                    className="h-4 w-4 accent-blue-600"
-                    checked={showPerformance}
-                    onChange={(e) => setShowPerformance(e.target.checked)}
-                  />
-                  <span>Performance</span>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* LEFT: Filters + Card */}
+          <div className="lg:col-span-1 space-y-4">
+            <div className="card">
+              <h2 className="font-semibold mb-3">Filters</h2>
+              <div className="space-y-3">
+                <label className="block text-sm">
+                  Geo
+                  <select className="w-full border rounded-lg px-2 py-1 mt-1" value={geo} onChange={(e) => setGeo(e.target.value)}>
+                    <option>All</option>
+                    {geos.map((g) => (<option key={g}>{g}</option>))}
+                  </select>
                 </label>
 
-                <label className="flex items-center gap-2 text-sm">
-                  <input type="checkbox" className="h-4 w-4 accent-green-600" checked={showTop} onChange={(e) => setShowTop(e.target.checked)} />
-                  <span>Top</span>
+                <label className="block text-sm">
+                  Manager
+                  <select className="w-full border rounded-lg px-2 py-1 mt-1" value={manager} onChange={(e) => setManager(e.target.value)}>
+                    <option>All</option>
+                    {managers.map((m) => (<option key={m}>{m}</option>))}
+                  </select>
                 </label>
 
-                <label className="flex items-center gap-2 text-sm">
-                  <input type="checkbox" className="h-4 w-4 accent-red-600" checked={showBottom} onChange={(e) => setShowBottom(e.target.checked)} />
-                  <span>Bottom</span>
+                <label className="block text-sm">
+                  Person
+                  <select className="w-full border rounded-lg px-2 py-1 mt-1" value={personId || 'All'} onChange={(e) => setPersonId(e.target.value)}>
+                    <option value="All">All</option>
+                    {filteredPeople.map((p) => (
+                      <option key={p.person_id} value={p.person_id}>
+                        {p.name} ({p.role_type})
+                      </option>
+                    ))}
+                  </select>
                 </label>
 
-                <label className="flex items-center gap-2 text-sm col-span-2">
-                  <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>Enablement (Impact-weighted)</span>
-                </label>
+                {/* Toggles */}
+                <div className="mt-2 grid grid-cols-2 gap-3">
+                  <label className="flex items-center gap-2 text-sm col-span-2">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 accent-blue-600"
+                      checked={showPerformance}
+                      onChange={(e) => setShowPerformance(e.target.checked)}
+                    />
+                    <span>Performance</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 text-sm">
+                    <input type="checkbox" className="h-4 w-4 accent-green-600" checked={showTop} onChange={(e) => setShowTop(e.target.checked)} />
+                    <span>Top</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 text-sm">
+                    <input type="checkbox" className="h-4 w-4 accent-red-600" checked={showBottom} onChange={(e) => setShowBottom(e.target.checked)} />
+                    <span>Bottom</span>
+                  </label>
+
+                  <label className="flex items-center gap-2 text-sm col-span-2">
+                    <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
+                    <span>Enablement (Impact-weighted)</span>
+                  </label>
+                </div>
+
+                <div className="text-xs text-slate-500 mt-1">
+                  Top ≥ {Math.round(topCut)}/100 &nbsp;|&nbsp; Bottom ≤ {Math.round(bottomCut)}/100 (within current filters)
+                </div>
               </div>
+            </div>
 
-              <div className="text-xs text-slate-500 mt-1">
-                Top ≥ {Math.round(topCut)}/100 &nbsp;|&nbsp; Bottom ≤ {Math.round(bottomCut)}/100 (within current filters)
+            <div className="card">
+              <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
+              <div className="text-sm space-y-1">
+                {personId === 'All' ? (
+                  <>
+                    <div>People in view: <strong>{filteredPeople.length}</strong></div>
+                    <div>Geo filter: {geo}</div>
+                    <div>Manager filter: {manager}</div>
+                    <div className="pt-2">Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
+                  </>
+                ) : (
+                  (() => {
+                    const s = selected
+                    if (!s) return null
+                    return (
+                      <>
+                        <div><strong>{s.name}</strong> — {s.title}</div>
+                        <div>Manager: {s.manager_name}</div>
+                        <div>Geo: {s.geo}</div>
+                        <div>Role: {s.role_type}</div>
+                        <div className="pt-2">Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
+                      </>
+                    )
+                  })()
+                )}
               </div>
             </div>
           </div>
 
-          <div className="p-4 rounded-2xl border">
-            <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
-            <div className="text-sm space-y-1">
-              {personId === 'All' ? (
-                <>
-                  <div>People in view: <strong>{filteredPeople.length}</strong></div>
-                  <div>Geo filter: {geo}</div>
-                  <div>Manager filter: {manager}</div>
-                  <div className="pt-2">Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
-                </>
-              ) : (
-                (() => {
-                  const s = selected
-                  if (!s) return null
-                  return (
-                    <>
-                      <div><strong>{s.name}</strong> — {s.title}</div>
-                      <div>Manager: {s.manager_name}</div>
-                      <div>Geo: {s.geo}</div>
-                      <div>Role: {s.role_type}</div>
-                      <div className="pt-2">Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
-                    </>
-                  )
-                })()
-              )}
+          {/* RIGHT: Radar */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="card">
+              <div className="flex items-center justify-between mb-3">
+                <h2 className="font-semibold">Sales Productivity</h2>
+                <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
+              </div>
+              <RadarPentagon
+                data={LEVERS.map((l) => ({
+                  lever: l,
+                  selectedScore: selectedScores[l] || 0,
+                  topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+                  bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+                  lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+                }))}
+                showPerformance={showPerformance}
+                showTop={showTop}
+                showBottom={showBottom}
+                showLRS={showLRS}
+              />
             </div>
           </div>
         </div>
 
-        {/* RIGHT: Radar */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="p-4 rounded-2xl border">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-semibold">Sales Productivity</h2>
-              <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
-            </div>
-
-            <RadarPentagon
-              data={LEVERS.map((l) => ({
-                lever: l,
-                selectedScore: selectedScores[l] || 0,
-                topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
-                bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
-                lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
-              }))}
-              showPerformance={showPerformance}
-              showTop={showTop}
-              showBottom={showBottom}
-              showLRS={showLRS}
-            />
-          </div>
+        {/* --- FULL WIDTH VP ENABLEMENT PANEL --- */}
+        <div className="mt-6 card">
+          <VpEnablement geo={geo} manager={manager} personId={personId} />
         </div>
       </div>
-
-      {/* --- FULL WIDTH VP ENABLEMENT PANEL --- */}
-      <div className="mt-6">
-        <VpEnablement geo={geo} manager={manager} personId={personId} />
-      </div>
-    </div>
+    </>
   )
 }
