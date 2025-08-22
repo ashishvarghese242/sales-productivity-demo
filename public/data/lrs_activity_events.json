@@ -10,7 +10,7 @@
     "views": 2,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-23"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P001",
@@ -23,7 +23,7 @@
     "views": 3,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P001",
@@ -33,10 +33,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
+    "views": 4,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-08-06"
   },
   {
     "person_id": "P001",
@@ -49,7 +49,7 @@
     "views": 2,
     "minutes": 35,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-08-14"
   },
   {
     "person_id": "P001",
@@ -59,10 +59,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 80,
-    "views": 1,
-    "minutes": 21,
-    "completed": 0,
-    "date": "2025-07-02"
+    "views": 2,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-06-14"
   },
   {
     "person_id": "P001",
@@ -72,10 +72,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
+    "views": 4,
     "minutes": 62,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-06-25"
   },
   {
     "person_id": "P001",
@@ -85,10 +85,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-17"
   },
   {
     "person_id": "P001",
@@ -98,10 +98,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 2,
+    "views": 3,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-05-31"
+    "date": "2025-06-24"
   },
   {
     "person_id": "P001",
@@ -111,10 +111,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-20"
+    "views": 3,
+    "minutes": 36,
+    "completed": 1,
+    "date": "2025-07-05"
   },
   {
     "person_id": "P001",
@@ -124,10 +124,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 1,
-    "minutes": 13,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 3,
+    "minutes": 33,
+    "completed": 1,
+    "date": "2025-07-03"
   },
   {
     "person_id": "P001",
@@ -137,10 +137,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 3,
     "minutes": 65,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-07-15"
   },
   {
     "person_id": "P001",
@@ -150,10 +150,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
+    "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-15"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P001",
@@ -166,7 +166,7 @@
     "views": 3,
     "minutes": 67,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-07-11"
   },
   {
     "person_id": "P001",
@@ -179,7 +179,7 @@
     "views": 3,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-06-19"
+    "date": "2025-07-02"
   },
   {
     "person_id": "P001",
@@ -189,10 +189,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-20"
+    "views": 4,
+    "minutes": 32,
+    "completed": 1,
+    "date": "2025-08-12"
   },
   {
     "person_id": "P001",
@@ -202,10 +202,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
+    "views": 3,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-08-07"
   },
   {
     "person_id": "P001",
@@ -218,7 +218,7 @@
     "views": 2,
     "minutes": 39,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-08-05"
   },
   {
     "person_id": "P001",
@@ -231,7 +231,7 @@
     "views": 3,
     "minutes": 48,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-07-02"
   },
   {
     "person_id": "P001",
@@ -244,7 +244,7 @@
     "views": 3,
     "minutes": 29,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-07-22"
   },
   {
     "person_id": "P001",
@@ -254,10 +254,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 1,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-24"
+    "views": 4,
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-08-08"
   },
   {
     "person_id": "P001",
@@ -270,7 +270,7 @@
     "views": 2,
     "minutes": 36,
     "completed": 1,
-    "date": "2025-06-24"
+    "date": "2025-07-17"
   },
   {
     "person_id": "P001",
@@ -283,7 +283,7 @@
     "views": 3,
     "minutes": 48,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-07-14"
   },
   {
     "person_id": "P001",
@@ -296,7 +296,7 @@
     "views": 2,
     "minutes": 68,
     "completed": 1,
-    "date": "2025-06-18"
+    "date": "2025-07-20"
   },
   {
     "person_id": "P001",
@@ -309,7 +309,7 @@
     "views": 3,
     "minutes": 47,
     "completed": 1,
-    "date": "2025-06-20"
+    "date": "2025-07-19"
   },
   {
     "person_id": "P001",
@@ -322,7 +322,7 @@
     "views": 2,
     "minutes": 16,
     "completed": 0,
-    "date": "2025-06-18"
+    "date": "2025-07-08"
   },
   {
     "person_id": "P002",
@@ -738,7 +738,7 @@
     "views": 3,
     "minutes": 40,
     "completed": 1,
-    "date": "2025-06-17"
+    "date": "2025-07-21"
   },
   {
     "person_id": "P004",
@@ -751,7 +751,7 @@
     "views": 2,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-25"
+    "date": "2025-07-08"
   },
   {
     "person_id": "P004",
@@ -764,7 +764,7 @@
     "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-06-17"
+    "date": "2025-06-28"
   },
   {
     "person_id": "P004",
@@ -777,7 +777,7 @@
     "views": 2,
     "minutes": 15,
     "completed": 0,
-    "date": "2025-06-07"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P004",
@@ -787,10 +787,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 1,
-    "minutes": 12,
-    "completed": 0,
-    "date": "2025-06-25"
+    "views": 2,
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-07-17"
   },
   {
     "person_id": "P004",
@@ -800,10 +800,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 3,
+    "views": 4,
     "minutes": 56,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-06-24"
   },
   {
     "person_id": "P004",
@@ -816,7 +816,7 @@
     "views": 3,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-19"
+    "date": "2025-07-02"
   },
   {
     "person_id": "P004",
@@ -826,10 +826,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-06-15"
   },
   {
     "person_id": "P004",
@@ -839,10 +839,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 2,
-    "minutes": 52,
+    "views": 3,
+    "minutes": 57,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-08-03"
   },
   {
     "person_id": "P004",
@@ -852,10 +852,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 1,
-    "minutes": 21,
-    "completed": 0,
-    "date": "2025-07-04"
+    "views": 3,
+    "minutes": 55,
+    "completed": 1,
+    "date": "2025-06-24"
   },
   {
     "person_id": "P004",
@@ -868,7 +868,7 @@
     "views": 3,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-06-19"
   },
   {
     "person_id": "P004",
@@ -878,10 +878,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 48,
+    "views": 4,
+    "minutes": 57,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-08-16"
   },
   {
     "person_id": "P004",
@@ -891,10 +891,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 40,
+    "views": 3,
+    "minutes": 51,
     "completed": 1,
-    "date": "2025-06-17"
+    "date": "2025-07-14"
   },
   {
     "person_id": "P004",
@@ -904,10 +904,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 3,
     "minutes": 49,
     "completed": 1,
-    "date": "2025-06-24"
+    "date": "2025-08-03"
   },
   {
     "person_id": "P004",
@@ -917,10 +917,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-18"
+    "views": 3,
+    "minutes": 44,
+    "completed": 1,
+    "date": "2025-08-17"
   },
   {
     "person_id": "P004",
@@ -933,7 +933,7 @@
     "views": 3,
     "minutes": 45,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-07-15"
   },
   {
     "person_id": "P004",
@@ -946,7 +946,7 @@
     "views": 2,
     "minutes": 39,
     "completed": 1,
-    "date": "2025-06-19"
+    "date": "2025-07-26"
   },
   {
     "person_id": "P004",
@@ -959,7 +959,7 @@
     "views": 3,
     "minutes": 49,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P004",
@@ -972,7 +972,7 @@
     "views": 1,
     "minutes": 10,
     "completed": 0,
-    "date": "2025-06-17"
+    "date": "2025-06-14"
   },
   {
     "person_id": "P004",
@@ -983,9 +983,9 @@
     "is_fluff": false,
     "impact_score": 82,
     "views": 2,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-16"
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-01"
   },
   {
     "person_id": "P004",
@@ -998,7 +998,7 @@
     "views": 3,
     "minutes": 69,
     "completed": 1,
-    "date": "2025-06-15"
+    "date": "2025-08-17"
   },
   {
     "person_id": "P004",
@@ -1008,10 +1008,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 3,
     "minutes": 51,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-08-15"
   },
   {
     "person_id": "P004",
@@ -1024,7 +1024,7 @@
     "views": 3,
     "minutes": 61,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-09"
   },
   {
     "person_id": "P004",
@@ -1037,7 +1037,7 @@
     "views": 2,
     "minutes": 61,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-08-07"
   },
   {
     "person_id": "P004",
@@ -1047,10 +1047,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 1,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-02"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-08-09"
   },
   {
     "person_id": "P005",
@@ -1063,7 +1063,7 @@
     "views": 1,
     "minutes": 11,
     "completed": 0,
-    "date": "2025-08-13"
+    "date": "2025-07-27"
   },
   {
     "person_id": "P005",
@@ -1073,10 +1073,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 2,
+    "minutes": 7,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-03"
   },
   {
     "person_id": "P005",
@@ -1086,10 +1086,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 2,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-07-26"
+    "date": "2025-06-06"
   },
   {
     "person_id": "P005",
@@ -1099,10 +1099,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 4,
+    "minutes": 7,
     "completed": 0,
-    "date": "2025-08-16"
+    "date": "2025-07-16"
   },
   {
     "person_id": "P005",
@@ -1114,8 +1114,8 @@
     "impact_score": 66,
     "views": 2,
     "minutes": 25,
-    "completed": 1,
-    "date": "2025-07-26"
+    "completed": 0,
+    "date": "2025-07-18"
   },
   {
     "person_id": "P005",
@@ -1126,9 +1126,9 @@
     "is_fluff": false,
     "impact_score": 82,
     "views": 1,
-    "minutes": 9,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-19"
+    "date": "2025-06-26"
   },
   {
     "person_id": "P005",
@@ -1138,10 +1138,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
-    "minutes": 4,
-    "completed": 1,
-    "date": "2025-08-11"
+    "views": 3,
+    "minutes": 8,
+    "completed": 0,
+    "date": "2025-06-16"
   },
   {
     "person_id": "P005",
@@ -1152,9 +1152,9 @@
     "is_fluff": false,
     "impact_score": 78,
     "views": 1,
-    "minutes": 6,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-07-26"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P005",
@@ -1164,10 +1164,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 3,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-05-29"
   },
   {
     "person_id": "P006",
@@ -1411,10 +1411,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
+    "views": 4,
     "minutes": 70,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-07-20"
   },
   {
     "person_id": "P007",
@@ -1424,10 +1424,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 2,
+    "views": 4,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-05-25"
+    "date": "2025-08-10"
   },
   {
     "person_id": "P007",
@@ -1440,7 +1440,7 @@
     "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-18"
+    "date": "2025-07-06"
   },
   {
     "person_id": "P007",
@@ -1451,9 +1451,9 @@
     "is_fluff": false,
     "impact_score": 80,
     "views": 2,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-15"
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-13"
   },
   {
     "person_id": "P007",
@@ -1463,10 +1463,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 1,
-    "minutes": 11,
-    "completed": 0,
-    "date": "2025-06-05"
+    "views": 2,
+    "minutes": 28,
+    "completed": 1,
+    "date": "2025-08-01"
   },
   {
     "person_id": "P007",
@@ -1476,10 +1476,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P007",
@@ -1490,9 +1490,9 @@
     "is_fluff": false,
     "impact_score": 82,
     "views": 3,
-    "minutes": 45,
+    "minutes": 55,
     "completed": 1,
-    "date": "2025-06-01"
+    "date": "2025-06-26"
   },
   {
     "person_id": "P007",
@@ -1505,7 +1505,7 @@
     "views": 3,
     "minutes": 51,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-06-23"
   },
   {
     "person_id": "P007",
@@ -1515,10 +1515,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 2,
+    "views": 3,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-21"
+    "date": "2025-08-11"
   },
   {
     "person_id": "P007",
@@ -1528,10 +1528,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 22,
-    "completed": 0,
-    "date": "2025-06-20"
+    "views": 4,
+    "minutes": 36,
+    "completed": 1,
+    "date": "2025-08-10"
   },
   {
     "person_id": "P007",
@@ -1541,10 +1541,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 2,
-    "minutes": 48,
+    "views": 3,
+    "minutes": 55,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P007",
@@ -1557,7 +1557,7 @@
     "views": 3,
     "minutes": 60,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-06-21"
   },
   {
     "person_id": "P007",
@@ -1570,7 +1570,7 @@
     "views": 3,
     "minutes": 58,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-06-19"
   },
   {
     "person_id": "P007",
@@ -1580,10 +1580,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 1,
-    "minutes": 25,
-    "completed": 0,
-    "date": "2025-06-13"
+    "views": 3,
+    "minutes": 44,
+    "completed": 1,
+    "date": "2025-08-05"
   },
   {
     "person_id": "P007",
@@ -1593,10 +1593,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-04"
+    "views": 4,
+    "minutes": 56,
+    "completed": 1,
+    "date": "2025-08-16"
   },
   {
     "person_id": "P007",
@@ -1609,7 +1609,7 @@
     "views": 2,
     "minutes": 41,
     "completed": 1,
-    "date": "2025-06-07"
+    "date": "2025-07-18"
   },
   {
     "person_id": "P007",
@@ -1619,10 +1619,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 70,
-    "views": 2,
+    "views": 3,
     "minutes": 37,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-06-17"
   },
   {
     "person_id": "P007",
@@ -1635,7 +1635,7 @@
     "views": 3,
     "minutes": 31,
     "completed": 1,
-    "date": "2025-06-21"
+    "date": "2025-08-10"
   },
   {
     "person_id": "P007",
@@ -1648,7 +1648,7 @@
     "views": 2,
     "minutes": 49,
     "completed": 1,
-    "date": "2025-05-24"
+    "date": "2025-06-29"
   },
   {
     "person_id": "P007",
@@ -1658,10 +1658,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 1,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-17"
+    "views": 3,
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-07-12"
   },
   {
     "person_id": "P007",
@@ -1671,10 +1671,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 3,
+    "views": 4,
     "minutes": 41,
     "completed": 1,
-    "date": "2025-06-19"
+    "date": "2025-06-16"
   },
   {
     "person_id": "P007",
@@ -1684,10 +1684,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 2,
+    "views": 3,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-07-21"
   },
   {
     "person_id": "P007",
@@ -1700,7 +1700,7 @@
     "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-18"
+    "date": "2025-08-10"
   },
   {
     "person_id": "P007",
@@ -1713,7 +1713,7 @@
     "views": 2,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-08-11"
   },
   {
     "person_id": "P007",
@@ -1723,10 +1723,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 1,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-17"
+    "views": 4,
+    "minutes": 32,
+    "completed": 1,
+    "date": "2025-07-28"
   },
   {
     "person_id": "P008",
@@ -1736,10 +1736,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 2,
+    "views": 4,
     "minutes": 37,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-08-07"
   },
   {
     "person_id": "P008",
@@ -1752,7 +1752,7 @@
     "views": 2,
     "minutes": 37,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-08-09"
   },
   {
     "person_id": "P008",
@@ -1762,10 +1762,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 3,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-18"
   },
   {
     "person_id": "P008",
@@ -1775,10 +1775,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-02"
+    "views": 4,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-17"
   },
   {
     "person_id": "P008",
@@ -1789,9 +1789,9 @@
     "is_fluff": false,
     "impact_score": 70,
     "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-28"
+    "minutes": 31,
+    "completed": 1,
+    "date": "2025-08-07"
   },
   {
     "person_id": "P008",
@@ -1801,10 +1801,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-07-10"
+    "date": "2025-07-08"
   },
   {
     "person_id": "P008",
@@ -1814,10 +1814,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 2,
+    "views": 3,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-07-08"
   },
   {
     "person_id": "P008",
@@ -1830,7 +1830,7 @@
     "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-05-31"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P008",
@@ -1840,10 +1840,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P008",
@@ -1853,10 +1853,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 1,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-07-03"
+    "views": 4,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-08-08"
   },
   {
     "person_id": "P008",
@@ -1866,10 +1866,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
+    "views": 4,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-06-21"
+    "date": "2025-08-01"
   },
   {
     "person_id": "P008",
@@ -1880,9 +1880,9 @@
     "is_fluff": false,
     "impact_score": 76,
     "views": 3,
-    "minutes": 49,
+    "minutes": 58,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-08-09"
   },
   {
     "person_id": "P008",
@@ -1895,7 +1895,7 @@
     "views": 3,
     "minutes": 59,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P008",
@@ -1905,10 +1905,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 3,
-    "minutes": 49,
+    "views": 4,
+    "minutes": 52,
     "completed": 1,
-    "date": "2025-05-28"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P008",
@@ -1918,10 +1918,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 2,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-27"
+    "views": 4,
+    "minutes": 46,
+    "completed": 1,
+    "date": "2025-08-16"
   },
   {
     "person_id": "P008",
@@ -1931,10 +1931,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 2,
+    "views": 4,
     "minutes": 33,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P008",
@@ -1947,7 +1947,7 @@
     "views": 3,
     "minutes": 61,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P008",
@@ -1960,7 +1960,7 @@
     "views": 2,
     "minutes": 47,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-07-31"
   },
   {
     "person_id": "P008",
@@ -1973,7 +1973,7 @@
     "views": 2,
     "minutes": 31,
     "completed": 1,
-    "date": "2025-06-07"
+    "date": "2025-07-29"
   },
   {
     "person_id": "P008",
@@ -1983,10 +1983,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-29"
+    "views": 4,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-22"
   },
   {
     "person_id": "P008",
@@ -1999,7 +1999,7 @@
     "views": 3,
     "minutes": 46,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-07-15"
   },
   {
     "person_id": "P008",
@@ -2009,10 +2009,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 2,
+    "views": 3,
     "minutes": 69,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-08-11"
   },
   {
     "person_id": "P008",
@@ -2025,7 +2025,7 @@
     "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-04"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P008",
@@ -2035,10 +2035,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-01"
   },
   {
     "person_id": "P008",
@@ -2048,10 +2048,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 1,
-    "minutes": 21,
-    "completed": 0,
-    "date": "2025-06-10"
+    "views": 3,
+    "minutes": 32,
+    "completed": 1,
+    "date": "2025-07-28"
   },
   {
     "person_id": "P009",
@@ -2543,9 +2543,9 @@
     "is_fluff": false,
     "impact_score": 60,
     "views": 1,
-    "minutes": 9,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-02"
+    "date": "2025-06-02"
   },
   {
     "person_id": "P011",
@@ -2555,10 +2555,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 2,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-08-03"
   },
   {
     "person_id": "P011",
@@ -2568,10 +2568,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 4,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-04"
   },
   {
     "person_id": "P011",
@@ -2581,10 +2581,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 32,
-    "completed": 1,
-    "date": "2025-07-30"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-05-30"
   },
   {
     "person_id": "P011",
@@ -2595,9 +2595,9 @@
     "is_fluff": false,
     "impact_score": 94,
     "views": 1,
-    "minutes": 12,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-06"
+    "date": "2025-07-27"
   },
   {
     "person_id": "P011",
@@ -2608,9 +2608,9 @@
     "is_fluff": true,
     "impact_score": 0,
     "views": 2,
-    "minutes": 5,
-    "completed": 1,
-    "date": "2025-08-20"
+    "minutes": 6,
+    "completed": 0,
+    "date": "2025-06-27"
   },
   {
     "person_id": "P011",
@@ -2622,8 +2622,8 @@
     "impact_score": 58,
     "views": 2,
     "minutes": 21,
-    "completed": 1,
-    "date": "2025-06-28"
+    "completed": 0,
+    "date": "2025-08-07"
   },
   {
     "person_id": "P011",
@@ -2633,10 +2633,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 1,
-    "minutes": 8,
-    "completed": 0,
-    "date": "2025-07-29"
+    "views": 2,
+    "minutes": 22,
+    "completed": 1,
+    "date": "2025-07-30"
   },
   {
     "person_id": "P011",
@@ -2646,10 +2646,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 8,
     "completed": 0,
-    "date": "2025-08-14"
+    "date": "2025-06-21"
   },
   {
     "person_id": "P011",
@@ -2662,7 +2662,7 @@
     "views": 1,
     "minutes": 9,
     "completed": 0,
-    "date": "2025-07-26"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P011",
@@ -2674,8 +2674,8 @@
     "impact_score": 0,
     "views": 2,
     "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-19"
+    "completed": 0,
+    "date": "2025-06-21"
   },
   {
     "person_id": "P012",
@@ -2686,9 +2686,9 @@
     "is_fluff": false,
     "impact_score": 85,
     "views": 1,
-    "minutes": 11,
+    "minutes": 3,
     "completed": 0,
-    "date": "2025-07-24"
+    "date": "2025-06-21"
   },
   {
     "person_id": "P012",
@@ -2698,10 +2698,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
-    "minutes": 4,
-    "completed": 1,
-    "date": "2025-08-11"
+    "views": 4,
+    "minutes": 5,
+    "completed": 0,
+    "date": "2025-07-09"
   },
   {
     "person_id": "P012",
@@ -2713,8 +2713,8 @@
     "impact_score": 0,
     "views": 2,
     "minutes": 6,
-    "completed": 1,
-    "date": "2025-07-28"
+    "completed": 0,
+    "date": "2025-06-25"
   },
   {
     "person_id": "P012",
@@ -2725,9 +2725,9 @@
     "is_fluff": false,
     "impact_score": 68,
     "views": 1,
-    "minutes": 10,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-07-29"
+    "date": "2025-07-15"
   },
   {
     "person_id": "P012",
@@ -2739,8 +2739,8 @@
     "impact_score": 0,
     "views": 2,
     "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-20"
+    "completed": 0,
+    "date": "2025-06-29"
   },
   {
     "person_id": "P012",
@@ -2750,10 +2750,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
-    "minutes": 34,
-    "completed": 1,
-    "date": "2025-07-12"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-07-15"
   },
   {
     "person_id": "P012",
@@ -2764,9 +2764,9 @@
     "is_fluff": false,
     "impact_score": 70,
     "views": 1,
-    "minutes": 7,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-01"
+    "date": "2025-06-22"
   },
   {
     "person_id": "P012",
@@ -2776,10 +2776,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P012",
@@ -2789,10 +2789,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 1,
-    "minutes": 11,
-    "completed": 0,
-    "date": "2025-08-18"
+    "views": 2,
+    "minutes": 27,
+    "completed": 1,
+    "date": "2025-06-05"
   },
   {
     "person_id": "P012",
@@ -2802,10 +2802,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-07-29"
   },
   {
     "person_id": "P013",
@@ -2815,10 +2815,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 1,
-    "minutes": 8,
-    "completed": 0,
-    "date": "2025-07-26"
+    "views": 2,
+    "minutes": 23,
+    "completed": 1,
+    "date": "2025-08-08"
   },
   {
     "person_id": "P013",
@@ -2829,9 +2829,9 @@
     "is_fluff": true,
     "impact_score": 0,
     "views": 2,
-    "minutes": 4,
-    "completed": 1,
-    "date": "2025-08-01"
+    "minutes": 8,
+    "completed": 0,
+    "date": "2025-06-18"
   },
   {
     "person_id": "P013",
@@ -2841,10 +2841,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 3,
     "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-04"
+    "completed": 0,
+    "date": "2025-06-18"
   },
   {
     "person_id": "P013",
@@ -2854,10 +2854,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 23,
-    "completed": 1,
-    "date": "2025-08-02"
+    "views": 1,
+    "minutes": 1,
+    "completed": 0,
+    "date": "2025-06-24"
   },
   {
     "person_id": "P013",
@@ -2868,9 +2868,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 1,
-    "minutes": 8,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P013",
@@ -2881,9 +2881,9 @@
     "is_fluff": true,
     "impact_score": 0,
     "views": 2,
-    "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-20"
+    "minutes": 8,
+    "completed": 0,
+    "date": "2025-06-05"
   },
   {
     "person_id": "P013",
@@ -2894,9 +2894,9 @@
     "is_fluff": false,
     "impact_score": 70,
     "views": 1,
-    "minutes": 9,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-13"
+    "date": "2025-06-27"
   },
   {
     "person_id": "P013",
@@ -2906,10 +2906,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-07-01"
   },
   {
     "person_id": "P013",
@@ -2920,9 +2920,9 @@
     "is_fluff": false,
     "impact_score": 84,
     "views": 1,
-    "minutes": 8,
+    "minutes": 1,
     "completed": 0,
-    "date": "2025-08-09"
+    "date": "2025-07-05"
   },
   {
     "person_id": "P013",
@@ -2932,10 +2932,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 4,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-12"
+    "date": "2025-06-21"
   },
   {
     "person_id": "P014",
@@ -2946,9 +2946,9 @@
     "is_fluff": false,
     "impact_score": 60,
     "views": 1,
-    "minutes": 6,
+    "minutes": 3,
     "completed": 0,
-    "date": "2025-08-12"
+    "date": "2025-06-03"
   },
   {
     "person_id": "P014",
@@ -2958,10 +2958,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 2,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-07-26"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P014",
@@ -2971,10 +2971,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 4,
+    "minutes": 7,
     "completed": 0,
-    "date": "2025-08-14"
+    "date": "2025-07-21"
   },
   {
     "person_id": "P014",
@@ -2984,10 +2984,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
-    "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-12"
+    "views": 4,
+    "minutes": 8,
+    "completed": 0,
+    "date": "2025-07-05"
   },
   {
     "person_id": "P014",
@@ -2997,10 +2997,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 2,
-    "minutes": 29,
-    "completed": 1,
-    "date": "2025-07-16"
+    "views": 1,
+    "minutes": 1,
+    "completed": 0,
+    "date": "2025-07-05"
   },
   {
     "person_id": "P014",
@@ -3011,9 +3011,9 @@
     "is_fluff": false,
     "impact_score": 70,
     "views": 1,
-    "minutes": 7,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-13"
+    "date": "2025-05-30"
   },
   {
     "person_id": "P014",
@@ -3023,10 +3023,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 4,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-10"
+    "date": "2025-06-14"
   },
   {
     "person_id": "P014",
@@ -3037,9 +3037,9 @@
     "is_fluff": false,
     "impact_score": 78,
     "views": 1,
-    "minutes": 8,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-07-31"
+    "date": "2025-06-08"
   },
   {
     "person_id": "P014",
@@ -3049,10 +3049,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-08-02"
   },
   {
     "person_id": "P015",
@@ -4232,10 +4232,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 3,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-06-11"
+    "date": "2025-07-06"
   },
   {
     "person_id": "P020",
@@ -4245,10 +4245,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 2,
-    "minutes": 38,
+    "views": 3,
+    "minutes": 51,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-07-09"
   },
   {
     "person_id": "P020",
@@ -4258,10 +4258,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
+    "views": 3,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-14"
   },
   {
     "person_id": "P020",
@@ -4271,10 +4271,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 80,
-    "views": 2,
-    "minutes": 13,
-    "completed": 0,
-    "date": "2025-06-19"
+    "views": 3,
+    "minutes": 49,
+    "completed": 1,
+    "date": "2025-08-08"
   },
   {
     "person_id": "P020",
@@ -4284,10 +4284,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 70,
-    "views": 1,
-    "minutes": 21,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 4,
+    "minutes": 48,
+    "completed": 1,
+    "date": "2025-07-24"
   },
   {
     "person_id": "P020",
@@ -4298,9 +4298,9 @@
     "is_fluff": false,
     "impact_score": 72,
     "views": 3,
-    "minutes": 37,
+    "minutes": 45,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-06-27"
   },
   {
     "person_id": "P020",
@@ -4310,10 +4310,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
+    "views": 4,
     "minutes": 64,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-08-17"
   },
   {
     "person_id": "P020",
@@ -4324,9 +4324,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 3,
-    "minutes": 53,
+    "minutes": 57,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P020",
@@ -4336,10 +4336,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 2,
+    "views": 3,
     "minutes": 51,
     "completed": 1,
-    "date": "2025-06-13"
+    "date": "2025-07-26"
   },
   {
     "person_id": "P020",
@@ -4349,10 +4349,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 2,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 3,
+    "minutes": 52,
+    "completed": 1,
+    "date": "2025-06-19"
   },
   {
     "person_id": "P020",
@@ -4365,7 +4365,7 @@
     "views": 2,
     "minutes": 36,
     "completed": 1,
-    "date": "2025-06-18"
+    "date": "2025-08-02"
   },
   {
     "person_id": "P020",
@@ -4375,10 +4375,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 2,
+    "views": 3,
     "minutes": 47,
     "completed": 1,
-    "date": "2025-05-31"
+    "date": "2025-07-08"
   },
   {
     "person_id": "P020",
@@ -4391,7 +4391,7 @@
     "views": 3,
     "minutes": 65,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-06-22"
   },
   {
     "person_id": "P020",
@@ -4401,10 +4401,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 3,
+    "views": 4,
     "minutes": 56,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-06-14"
   },
   {
     "person_id": "P020",
@@ -4414,10 +4414,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 20,
-    "completed": 0,
-    "date": "2025-06-14"
+    "views": 4,
+    "minutes": 32,
+    "completed": 1,
+    "date": "2025-06-21"
   },
   {
     "person_id": "P020",
@@ -4430,7 +4430,7 @@
     "views": 2,
     "minutes": 35,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P020",
@@ -4443,7 +4443,7 @@
     "views": 2,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-01"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P020",
@@ -4456,7 +4456,7 @@
     "views": 2,
     "minutes": 48,
     "completed": 1,
-    "date": "2025-06-11"
+    "date": "2025-06-16"
   },
   {
     "person_id": "P020",
@@ -4469,7 +4469,7 @@
     "views": 3,
     "minutes": 49,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-06-22"
   },
   {
     "person_id": "P020",
@@ -4479,10 +4479,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 1,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-14"
+    "views": 3,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-18"
   },
   {
     "person_id": "P020",
@@ -4492,10 +4492,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-15"
+    "date": "2025-08-07"
   },
   {
     "person_id": "P020",
@@ -4508,7 +4508,7 @@
     "views": 2,
     "minutes": 48,
     "completed": 1,
-    "date": "2025-06-07"
+    "date": "2025-06-29"
   },
   {
     "person_id": "P020",
@@ -4518,10 +4518,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 48,
     "completed": 1,
-    "date": "2025-07-02"
+    "date": "2025-07-21"
   },
   {
     "person_id": "P020",
@@ -4531,10 +4531,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 2,
-    "minutes": 20,
-    "completed": 0,
-    "date": "2025-07-07"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-06"
   },
   {
     "person_id": "P020",
@@ -4544,10 +4544,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 2,
-    "minutes": 23,
-    "completed": 0,
-    "date": "2025-06-22"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-08-10"
   },
   {
     "person_id": "P021",
@@ -5496,7 +5496,7 @@
     "views": 3,
     "minutes": 36,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-06-29"
   },
   {
     "person_id": "P025",
@@ -5509,7 +5509,7 @@
     "views": 3,
     "minutes": 40,
     "completed": 1,
-    "date": "2025-05-28"
+    "date": "2025-08-15"
   },
   {
     "person_id": "P025",
@@ -5522,7 +5522,7 @@
     "views": 3,
     "minutes": 42,
     "completed": 1,
-    "date": "2025-06-09"
+    "date": "2025-06-30"
   },
   {
     "person_id": "P025",
@@ -5532,10 +5532,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 2,
+    "views": 3,
     "minutes": 31,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P025",
@@ -5548,7 +5548,7 @@
     "views": 1,
     "minutes": 18,
     "completed": 0,
-    "date": "2025-06-21"
+    "date": "2025-06-25"
   },
   {
     "person_id": "P025",
@@ -5558,10 +5558,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 2,
+    "views": 4,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-06-13"
+    "date": "2025-07-20"
   },
   {
     "person_id": "P025",
@@ -5574,7 +5574,7 @@
     "views": 3,
     "minutes": 51,
     "completed": 1,
-    "date": "2025-06-13"
+    "date": "2025-06-16"
   },
   {
     "person_id": "P025",
@@ -5584,10 +5584,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-06-27"
   },
   {
     "person_id": "P025",
@@ -5597,10 +5597,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 1,
-    "minutes": 25,
-    "completed": 0,
-    "date": "2025-06-18"
+    "views": 3,
+    "minutes": 59,
+    "completed": 1,
+    "date": "2025-08-01"
   },
   {
     "person_id": "P025",
@@ -5610,10 +5610,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 1,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-30"
+    "views": 3,
+    "minutes": 47,
+    "completed": 1,
+    "date": "2025-08-14"
   },
   {
     "person_id": "P025",
@@ -5626,7 +5626,7 @@
     "views": 2,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-01"
+    "date": "2025-08-14"
   },
   {
     "person_id": "P025",
@@ -5639,7 +5639,7 @@
     "views": 3,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-07-31"
   },
   {
     "person_id": "P025",
@@ -5652,7 +5652,7 @@
     "views": 3,
     "minutes": 58,
     "completed": 1,
-    "date": "2025-06-01"
+    "date": "2025-07-25"
   },
   {
     "person_id": "P025",
@@ -5662,10 +5662,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 2,
-    "minutes": 20,
-    "completed": 0,
-    "date": "2025-07-03"
+    "views": 3,
+    "minutes": 38,
+    "completed": 1,
+    "date": "2025-07-07"
   },
   {
     "person_id": "P025",
@@ -5675,10 +5675,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 2,
-    "minutes": 16,
-    "completed": 0,
-    "date": "2025-06-14"
+    "views": 3,
+    "minutes": 30,
+    "completed": 1,
+    "date": "2025-07-05"
   },
   {
     "person_id": "P025",
@@ -5691,7 +5691,7 @@
     "views": 2,
     "minutes": 33,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-06-30"
   },
   {
     "person_id": "P025",
@@ -5704,7 +5704,7 @@
     "views": 3,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-16"
+    "date": "2025-07-16"
   },
   {
     "person_id": "P025",
@@ -5717,7 +5717,7 @@
     "views": 2,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P025",
@@ -5727,10 +5727,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 58,
-    "views": 1,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-02"
+    "views": 4,
+    "minutes": 27,
+    "completed": 1,
+    "date": "2025-08-11"
   },
   {
     "person_id": "P025",
@@ -5743,7 +5743,7 @@
     "views": 2,
     "minutes": 23,
     "completed": 0,
-    "date": "2025-05-23"
+    "date": "2025-07-04"
   },
   {
     "person_id": "P025",
@@ -5756,7 +5756,7 @@
     "views": 3,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-06-07"
+    "date": "2025-08-12"
   },
   {
     "person_id": "P025",
@@ -5767,9 +5767,9 @@
     "is_fluff": false,
     "impact_score": 76,
     "views": 3,
-    "minutes": 49,
+    "minutes": 60,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-07-17"
   },
   {
     "person_id": "P025",
@@ -5779,10 +5779,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
-    "minutes": 44,
+    "views": 3,
+    "minutes": 49,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-07-29"
   },
   {
     "person_id": "P025",
@@ -5792,10 +5792,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 1,
-    "minutes": 25,
-    "completed": 0,
-    "date": "2025-06-22"
+    "views": 3,
+    "minutes": 51,
+    "completed": 1,
+    "date": "2025-08-03"
   },
   {
     "person_id": "P025",
@@ -5805,10 +5805,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 2,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-17"
+    "views": 3,
+    "minutes": 44,
+    "completed": 1,
+    "date": "2025-07-16"
   },
   {
     "person_id": "P026",
@@ -6523,7 +6523,7 @@
     "views": 3,
     "minutes": 42,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-27"
   },
   {
     "person_id": "P029",
@@ -6533,10 +6533,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 3,
+    "views": 4,
     "minutes": 32,
     "completed": 1,
-    "date": "2025-06-16"
+    "date": "2025-08-03"
   },
   {
     "person_id": "P029",
@@ -6549,7 +6549,7 @@
     "views": 3,
     "minutes": 66,
     "completed": 1,
-    "date": "2025-06-23"
+    "date": "2025-07-28"
   },
   {
     "person_id": "P029",
@@ -6562,7 +6562,7 @@
     "views": 1,
     "minutes": 16,
     "completed": 0,
-    "date": "2025-07-04"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P029",
@@ -6572,10 +6572,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 80,
-    "views": 2,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-04"
+    "views": 3,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-06-30"
   },
   {
     "person_id": "P029",
@@ -6585,10 +6585,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
+    "views": 4,
     "minutes": 70,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-08"
   },
   {
     "person_id": "P029",
@@ -6598,10 +6598,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 59,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P029",
@@ -6614,7 +6614,7 @@
     "views": 3,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-08-02"
   },
   {
     "person_id": "P029",
@@ -6624,10 +6624,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 1,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-17"
+    "views": 3,
+    "minutes": 48,
+    "completed": 1,
+    "date": "2025-08-12"
   },
   {
     "person_id": "P029",
@@ -6637,10 +6637,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 1,
-    "minutes": 21,
-    "completed": 0,
-    "date": "2025-06-23"
+    "views": 3,
+    "minutes": 51,
+    "completed": 1,
+    "date": "2025-07-01"
   },
   {
     "person_id": "P029",
@@ -6650,10 +6650,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 2,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-05-26"
+    "date": "2025-08-16"
   },
   {
     "person_id": "P029",
@@ -6664,9 +6664,9 @@
     "is_fluff": false,
     "impact_score": 68,
     "views": 3,
-    "minutes": 42,
+    "minutes": 56,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-06-16"
   },
   {
     "person_id": "P029",
@@ -6677,9 +6677,9 @@
     "is_fluff": false,
     "impact_score": 74,
     "views": 3,
-    "minutes": 45,
+    "minutes": 50,
     "completed": 1,
-    "date": "2025-06-11"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P029",
@@ -6689,10 +6689,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-16"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-14"
   },
   {
     "person_id": "P029",
@@ -6702,10 +6702,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 16,
-    "completed": 0,
-    "date": "2025-07-04"
+    "views": 4,
+    "minutes": 54,
+    "completed": 1,
+    "date": "2025-06-17"
   },
   {
     "person_id": "P029",
@@ -6715,10 +6715,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 58,
-    "views": 3,
+    "views": 4,
     "minutes": 40,
     "completed": 1,
-    "date": "2025-06-21"
+    "date": "2025-07-14"
   },
   {
     "person_id": "P029",
@@ -6731,7 +6731,7 @@
     "views": 3,
     "minutes": 44,
     "completed": 1,
-    "date": "2025-06-17"
+    "date": "2025-08-06"
   },
   {
     "person_id": "P029",
@@ -6744,7 +6744,7 @@
     "views": 3,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-17"
   },
   {
     "person_id": "P029",
@@ -6757,7 +6757,7 @@
     "views": 2,
     "minutes": 19,
     "completed": 0,
-    "date": "2025-06-24"
+    "date": "2025-06-30"
   },
   {
     "person_id": "P029",
@@ -6767,10 +6767,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 62,
-    "views": 2,
-    "minutes": 11,
-    "completed": 0,
-    "date": "2025-05-24"
+    "views": 3,
+    "minutes": 28,
+    "completed": 1,
+    "date": "2025-07-07"
   },
   {
     "person_id": "P029",
@@ -6783,7 +6783,7 @@
     "views": 3,
     "minutes": 54,
     "completed": 1,
-    "date": "2025-06-21"
+    "date": "2025-07-03"
   },
   {
     "person_id": "P029",
@@ -6796,7 +6796,7 @@
     "views": 3,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-07-05"
   },
   {
     "person_id": "P029",
@@ -6806,10 +6806,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 3,
+    "views": 4,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-04"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P029",
@@ -6819,10 +6819,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 2,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 4,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-24"
   },
   {
     "person_id": "P029",
@@ -6832,10 +6832,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-05"
+    "views": 4,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-06-26"
   },
   {
     "person_id": "P030",
@@ -7537,7 +7537,7 @@
     "views": 2,
     "minutes": 67,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P033",
@@ -7550,7 +7550,7 @@
     "views": 3,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-05-28"
+    "date": "2025-06-21"
   },
   {
     "person_id": "P033",
@@ -7563,7 +7563,7 @@
     "views": 2,
     "minutes": 58,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-08-06"
   },
   {
     "person_id": "P033",
@@ -7573,10 +7573,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 2,
-    "minutes": 16,
-    "completed": 0,
-    "date": "2025-06-24"
+    "views": 3,
+    "minutes": 28,
+    "completed": 1,
+    "date": "2025-07-17"
   },
   {
     "person_id": "P033",
@@ -7586,10 +7586,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 1,
-    "minutes": 13,
-    "completed": 0,
-    "date": "2025-06-18"
+    "views": 4,
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-07-01"
   },
   {
     "person_id": "P033",
@@ -7599,10 +7599,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 3,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-06-13"
+    "date": "2025-06-24"
   },
   {
     "person_id": "P033",
@@ -7615,7 +7615,7 @@
     "views": 3,
     "minutes": 61,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-07-06"
   },
   {
     "person_id": "P033",
@@ -7625,10 +7625,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 92,
-    "views": 2,
+    "views": 3,
     "minutes": 62,
     "completed": 1,
-    "date": "2025-06-05"
+    "date": "2025-07-09"
   },
   {
     "person_id": "P033",
@@ -7638,10 +7638,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
+    "views": 3,
     "minutes": 69,
     "completed": 1,
-    "date": "2025-05-31"
+    "date": "2025-07-24"
   },
   {
     "person_id": "P033",
@@ -7651,10 +7651,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-22"
+    "views": 4,
+    "minutes": 47,
+    "completed": 1,
+    "date": "2025-07-25"
   },
   {
     "person_id": "P033",
@@ -7664,10 +7664,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 3,
+    "views": 4,
     "minutes": 76,
     "completed": 1,
-    "date": "2025-05-28"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P033",
@@ -7677,10 +7677,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P033",
@@ -7690,10 +7690,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
+    "views": 3,
     "minutes": 60,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-07-24"
   },
   {
     "person_id": "P033",
@@ -7703,10 +7703,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 1,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-06-24"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-10"
   },
   {
     "person_id": "P033",
@@ -7716,10 +7716,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 2,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-15"
+    "views": 4,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-13"
   },
   {
     "person_id": "P033",
@@ -7732,7 +7732,7 @@
     "views": 2,
     "minutes": 33,
     "completed": 1,
-    "date": "2025-06-01"
+    "date": "2025-07-11"
   },
   {
     "person_id": "P033",
@@ -7745,7 +7745,7 @@
     "views": 3,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-06-16"
   },
   {
     "person_id": "P033",
@@ -7758,7 +7758,7 @@
     "views": 2,
     "minutes": 41,
     "completed": 1,
-    "date": "2025-06-18"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P033",
@@ -7768,10 +7768,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 1,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 3,
+    "minutes": 34,
+    "completed": 1,
+    "date": "2025-07-05"
   },
   {
     "person_id": "P033",
@@ -7782,9 +7782,9 @@
     "is_fluff": false,
     "impact_score": 66,
     "views": 2,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-15"
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-07-16"
   },
   {
     "person_id": "P033",
@@ -7797,7 +7797,7 @@
     "views": 3,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-06"
+    "date": "2025-06-17"
   },
   {
     "person_id": "P033",
@@ -7810,7 +7810,7 @@
     "views": 2,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-06-27"
   },
   {
     "person_id": "P033",
@@ -7820,10 +7820,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 2,
+    "views": 4,
     "minutes": 45,
     "completed": 1,
-    "date": "2025-06-02"
+    "date": "2025-08-11"
   },
   {
     "person_id": "P033",
@@ -7833,10 +7833,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 3,
+    "views": 4,
     "minutes": 52,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P033",
@@ -7846,10 +7846,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 1,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-05"
+    "views": 2,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-08-02"
   },
   {
     "person_id": "P034",
@@ -8106,10 +8106,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
-    "minutes": 25,
-    "completed": 1,
-    "date": "2025-07-24"
+    "views": 1,
+    "minutes": 4,
+    "completed": 0,
+    "date": "2025-07-15"
   },
   {
     "person_id": "P035",
@@ -8122,7 +8122,7 @@
     "views": 1,
     "minutes": 6,
     "completed": 0,
-    "date": "2025-07-27"
+    "date": "2025-06-17"
   },
   {
     "person_id": "P035",
@@ -8132,10 +8132,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 3,
+    "minutes": 8,
     "completed": 0,
-    "date": "2025-08-01"
+    "date": "2025-06-19"
   },
   {
     "person_id": "P035",
@@ -8145,10 +8145,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 8,
     "completed": 0,
-    "date": "2025-08-03"
+    "date": "2025-08-05"
   },
   {
     "person_id": "P035",
@@ -8158,10 +8158,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 4,
     "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-04"
+    "completed": 0,
+    "date": "2025-07-17"
   },
   {
     "person_id": "P035",
@@ -8172,9 +8172,9 @@
     "is_fluff": false,
     "impact_score": 66,
     "views": 1,
-    "minutes": 6,
+    "minutes": 3,
     "completed": 0,
-    "date": "2025-08-06"
+    "date": "2025-08-02"
   },
   {
     "person_id": "P035",
@@ -8184,10 +8184,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 2,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-07-21"
   },
   {
     "person_id": "P035",
@@ -8197,10 +8197,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
-    "minutes": 21,
-    "completed": 1,
-    "date": "2025-08-10"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-08-12"
   },
   {
     "person_id": "P035",
@@ -8211,9 +8211,9 @@
     "is_fluff": false,
     "impact_score": 76,
     "views": 1,
-    "minutes": 9,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-10"
+    "date": "2025-07-06"
   },
   {
     "person_id": "P035",
@@ -8223,10 +8223,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 2,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-18"
+    "date": "2025-07-07"
   },
   {
     "person_id": "P036",
@@ -8236,10 +8236,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 65,
-    "views": 2,
+    "views": 4,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P036",
@@ -8252,7 +8252,7 @@
     "views": 2,
     "minutes": 62,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-15"
   },
   {
     "person_id": "P036",
@@ -8265,7 +8265,7 @@
     "views": 3,
     "minutes": 46,
     "completed": 1,
-    "date": "2025-05-27"
+    "date": "2025-07-23"
   },
   {
     "person_id": "P036",
@@ -8275,10 +8275,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 1,
-    "minutes": 16,
-    "completed": 0,
-    "date": "2025-06-16"
+    "views": 4,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-20"
   },
   {
     "person_id": "P036",
@@ -8288,10 +8288,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 2,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-16"
+    "views": 3,
+    "minutes": 28,
+    "completed": 1,
+    "date": "2025-07-30"
   },
   {
     "person_id": "P036",
@@ -8301,10 +8301,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 60,
     "completed": 1,
-    "date": "2025-05-28"
+    "date": "2025-07-09"
   },
   {
     "person_id": "P036",
@@ -8314,10 +8314,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 82,
-    "views": 3,
+    "views": 4,
     "minutes": 60,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P036",
@@ -8328,9 +8328,9 @@
     "is_fluff": false,
     "impact_score": 92,
     "views": 3,
-    "minutes": 50,
+    "minutes": 52,
     "completed": 1,
-    "date": "2025-05-31"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P036",
@@ -8340,10 +8340,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-02"
+    "views": 3,
+    "minutes": 46,
+    "completed": 1,
+    "date": "2025-06-15"
   },
   {
     "person_id": "P036",
@@ -8353,10 +8353,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 1,
-    "minutes": 17,
-    "completed": 0,
-    "date": "2025-05-31"
+    "views": 4,
+    "minutes": 33,
+    "completed": 1,
+    "date": "2025-06-23"
   },
   {
     "person_id": "P036",
@@ -8366,10 +8366,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 2,
+    "views": 4,
     "minutes": 75,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-08-14"
   },
   {
     "person_id": "P036",
@@ -8379,10 +8379,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 3,
+    "views": 4,
     "minutes": 66,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-15"
   },
   {
     "person_id": "P036",
@@ -8393,9 +8393,9 @@
     "is_fluff": false,
     "impact_score": 68,
     "views": 3,
-    "minutes": 48,
+    "minutes": 51,
     "completed": 1,
-    "date": "2025-06-13"
+    "date": "2025-07-14"
   },
   {
     "person_id": "P036",
@@ -8405,10 +8405,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 74,
-    "views": 1,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-08"
+    "views": 3,
+    "minutes": 45,
+    "completed": 1,
+    "date": "2025-06-22"
   },
   {
     "person_id": "P036",
@@ -8418,9 +8418,9 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
     "date": "2025-06-23"
   },
   {
@@ -8434,7 +8434,7 @@
     "views": 3,
     "minutes": 69,
     "completed": 1,
-    "date": "2025-06-04"
+    "date": "2025-08-06"
   },
   {
     "person_id": "P036",
@@ -8447,7 +8447,7 @@
     "views": 3,
     "minutes": 42,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-07-06"
   },
   {
     "person_id": "P036",
@@ -8460,7 +8460,7 @@
     "views": 2,
     "minutes": 59,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-07-28"
   },
   {
     "person_id": "P036",
@@ -8470,10 +8470,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 58,
-    "views": 1,
-    "minutes": 11,
-    "completed": 0,
-    "date": "2025-06-07"
+    "views": 4,
+    "minutes": 27,
+    "completed": 1,
+    "date": "2025-06-15"
   },
   {
     "person_id": "P036",
@@ -8483,10 +8483,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 66,
-    "views": 2,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-07-02"
+    "views": 3,
+    "minutes": 29,
+    "completed": 1,
+    "date": "2025-08-13"
   },
   {
     "person_id": "P036",
@@ -8499,7 +8499,7 @@
     "views": 3,
     "minutes": 45,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-07-16"
   },
   {
     "person_id": "P036",
@@ -8509,10 +8509,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 2,
+    "views": 3,
     "minutes": 46,
     "completed": 1,
-    "date": "2025-07-02"
+    "date": "2025-06-13"
   },
   {
     "person_id": "P036",
@@ -8525,7 +8525,7 @@
     "views": 3,
     "minutes": 40,
     "completed": 1,
-    "date": "2025-05-29"
+    "date": "2025-08-17"
   },
   {
     "person_id": "P036",
@@ -8535,10 +8535,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 86,
-    "views": 3,
+    "views": 4,
     "minutes": 69,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-06-19"
   },
   {
     "person_id": "P036",
@@ -8549,9 +8549,9 @@
     "is_fluff": false,
     "impact_score": 84,
     "views": 2,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-25"
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-02"
   },
   {
     "person_id": "P037",
@@ -8562,9 +8562,9 @@
     "is_fluff": false,
     "impact_score": 60,
     "views": 1,
-    "minutes": 9,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-04"
+    "date": "2025-06-17"
   },
   {
     "person_id": "P037",
@@ -8574,10 +8574,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 2,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-12"
+    "date": "2025-07-09"
   },
   {
     "person_id": "P037",
@@ -8587,10 +8587,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 2,
-    "minutes": 27,
-    "completed": 1,
-    "date": "2025-08-08"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-06-17"
   },
   {
     "person_id": "P037",
@@ -8601,9 +8601,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 1,
-    "minutes": 10,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-11"
+    "date": "2025-08-09"
   },
   {
     "person_id": "P037",
@@ -8613,10 +8613,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 4,
+    "minutes": 8,
     "completed": 0,
-    "date": "2025-08-13"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P037",
@@ -8626,10 +8626,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 4,
     "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-02"
+    "completed": 0,
+    "date": "2025-07-04"
   },
   {
     "person_id": "P037",
@@ -8640,9 +8640,9 @@
     "is_fluff": false,
     "impact_score": 62,
     "views": 1,
-    "minutes": 5,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-07-10"
+    "date": "2025-08-01"
   },
   {
     "person_id": "P037",
@@ -8652,10 +8652,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 2,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-14"
+    "date": "2025-06-14"
   },
   {
     "person_id": "P037",
@@ -8667,8 +8667,8 @@
     "impact_score": 86,
     "views": 2,
     "minutes": 22,
-    "completed": 1,
-    "date": "2025-07-25"
+    "completed": 0,
+    "date": "2025-07-24"
   },
   {
     "person_id": "P037",
@@ -8679,9 +8679,9 @@
     "is_fluff": false,
     "impact_score": 78,
     "views": 1,
-    "minutes": 8,
+    "minutes": 3,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-08"
   },
   {
     "person_id": "P037",
@@ -8691,10 +8691,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 4,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-20"
   },
   {
     "person_id": "P038",
@@ -9812,7 +9812,7 @@
     "views": 1,
     "minutes": 10,
     "completed": 0,
-    "date": "2025-07-25"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P043",
@@ -9822,10 +9822,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
-    "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-18"
+    "views": 3,
+    "minutes": 8,
+    "completed": 0,
+    "date": "2025-07-25"
   },
   {
     "person_id": "P043",
@@ -9835,10 +9835,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 3,
     "minutes": 7,
-    "completed": 1,
-    "date": "2025-08-20"
+    "completed": 0,
+    "date": "2025-06-08"
   },
   {
     "person_id": "P043",
@@ -9848,10 +9848,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 4,
+    "minutes": 5,
     "completed": 0,
-    "date": "2025-08-01"
+    "date": "2025-08-04"
   },
   {
     "person_id": "P043",
@@ -9861,10 +9861,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 62,
-    "views": 2,
-    "minutes": 19,
-    "completed": 1,
-    "date": "2025-08-05"
+    "views": 1,
+    "minutes": 4,
+    "completed": 0,
+    "date": "2025-06-30"
   },
   {
     "person_id": "P043",
@@ -9877,7 +9877,7 @@
     "views": 1,
     "minutes": 5,
     "completed": 0,
-    "date": "2025-08-13"
+    "date": "2025-08-12"
   },
   {
     "person_id": "P043",
@@ -9887,10 +9887,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 3,
     "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-16"
+    "completed": 0,
+    "date": "2025-05-29"
   },
   {
     "person_id": "P043",
@@ -9901,9 +9901,9 @@
     "is_fluff": false,
     "impact_score": 78,
     "views": 1,
-    "minutes": 11,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-07-27"
+    "date": "2025-07-24"
   },
   {
     "person_id": "P043",
@@ -9913,10 +9913,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 3,
+    "minutes": 8,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-06-12"
   },
   {
     "person_id": "P044",
@@ -10160,10 +10160,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
-    "minutes": 19,
-    "completed": 1,
-    "date": "2025-07-22"
+    "views": 1,
+    "minutes": 4,
+    "completed": 0,
+    "date": "2025-06-15"
   },
   {
     "person_id": "P045",
@@ -10176,7 +10176,7 @@
     "views": 1,
     "minutes": 5,
     "completed": 0,
-    "date": "2025-08-12"
+    "date": "2025-07-13"
   },
   {
     "person_id": "P045",
@@ -10186,10 +10186,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
-    "minutes": 5,
-    "completed": 1,
-    "date": "2025-08-15"
+    "views": 4,
+    "minutes": 7,
+    "completed": 0,
+    "date": "2025-07-14"
   },
   {
     "person_id": "P045",
@@ -10199,10 +10199,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-17"
+    "date": "2025-07-03"
   },
   {
     "person_id": "P045",
@@ -10213,9 +10213,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 1,
-    "minutes": 11,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-10"
+    "date": "2025-06-24"
   },
   {
     "person_id": "P045",
@@ -10225,10 +10225,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 4,
     "minutes": 5,
-    "completed": 1,
-    "date": "2025-08-20"
+    "completed": 0,
+    "date": "2025-06-10"
   },
   {
     "person_id": "P045",
@@ -10239,9 +10239,9 @@
     "is_fluff": false,
     "impact_score": 58,
     "views": 2,
-    "minutes": 22,
+    "minutes": 25,
     "completed": 1,
-    "date": "2025-07-16"
+    "date": "2025-07-31"
   },
   {
     "person_id": "P045",
@@ -10254,7 +10254,7 @@
     "views": 1,
     "minutes": 5,
     "completed": 0,
-    "date": "2025-08-07"
+    "date": "2025-06-06"
   },
   {
     "person_id": "P045",
@@ -10264,10 +10264,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 4,
     "completed": 0,
-    "date": "2025-08-20"
+    "date": "2025-07-25"
   },
   {
     "person_id": "P045",
@@ -10278,9 +10278,9 @@
     "is_fluff": false,
     "impact_score": 76,
     "views": 1,
-    "minutes": 10,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-07-30"
+    "date": "2025-08-03"
   },
   {
     "person_id": "P045",
@@ -10290,10 +10290,10 @@
     "type": "guide",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 2,
+    "views": 3,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-16"
+    "date": "2025-06-30"
   },
   {
     "person_id": "P046",
@@ -10771,10 +10771,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
-    "minutes": 19,
-    "completed": 1,
-    "date": "2025-07-22"
+    "views": 1,
+    "minutes": 4,
+    "completed": 0,
+    "date": "2025-08-02"
   },
   {
     "person_id": "P048",
@@ -10787,7 +10787,7 @@
     "views": 1,
     "minutes": 6,
     "completed": 0,
-    "date": "2025-07-19"
+    "date": "2025-06-05"
   },
   {
     "person_id": "P048",
@@ -10797,10 +10797,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 3,
     "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-20"
+    "completed": 0,
+    "date": "2025-06-11"
   },
   {
     "person_id": "P048",
@@ -10810,10 +10810,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
-    "minutes": 25,
-    "completed": 1,
-    "date": "2025-08-02"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-07-13"
   },
   {
     "person_id": "P048",
@@ -10824,9 +10824,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 1,
-    "minutes": 9,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-04"
+    "date": "2025-07-14"
   },
   {
     "person_id": "P048",
@@ -10836,10 +10836,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 2,
+    "views": 4,
     "minutes": 4,
-    "completed": 1,
-    "date": "2025-08-20"
+    "completed": 0,
+    "date": "2025-06-18"
   },
   {
     "person_id": "P048",
@@ -10849,10 +10849,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 2,
-    "minutes": 23,
-    "completed": 1,
-    "date": "2025-07-14"
+    "views": 1,
+    "minutes": 2,
+    "completed": 0,
+    "date": "2025-07-31"
   },
   {
     "person_id": "P048",
@@ -10863,9 +10863,9 @@
     "is_fluff": false,
     "impact_score": 88,
     "views": 1,
-    "minutes": 11,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-08-07"
+    "date": "2025-08-09"
   },
   {
     "person_id": "P048",
@@ -10875,10 +10875,10 @@
     "type": "course",
     "is_fluff": true,
     "impact_score": 0,
-    "views": 1,
-    "minutes": 1,
+    "views": 2,
+    "minutes": 6,
     "completed": 0,
-    "date": "2025-08-07"
+    "date": "2025-08-05"
   },
   {
     "person_id": "P048",
@@ -10889,9 +10889,9 @@
     "is_fluff": false,
     "impact_score": 82,
     "views": 1,
-    "minutes": 8,
+    "minutes": 3,
     "completed": 0,
-    "date": "2025-08-16"
+    "date": "2025-06-18"
   },
   {
     "person_id": "P048",
@@ -10903,8 +10903,8 @@
     "impact_score": 0,
     "views": 2,
     "minutes": 6,
-    "completed": 1,
-    "date": "2025-08-03"
+    "completed": 0,
+    "date": "2025-06-06"
   },
   {
     "person_id": "P048",
@@ -10915,9 +10915,9 @@
     "is_fluff": false,
     "impact_score": 78,
     "views": 1,
-    "minutes": 6,
+    "minutes": 2,
     "completed": 0,
-    "date": "2025-07-30"
+    "date": "2025-07-22"
   },
   {
     "person_id": "P048",
@@ -10929,8 +10929,8 @@
     "impact_score": 0,
     "views": 2,
     "minutes": 5,
-    "completed": 1,
-    "date": "2025-08-17"
+    "completed": 0,
+    "date": "2025-06-25"
   },
   {
     "person_id": "P049",
@@ -11164,7 +11164,7 @@
     "views": 2,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-06-10"
+    "date": "2025-06-15"
   },
   {
     "person_id": "P050",
@@ -11177,7 +11177,7 @@
     "views": 2,
     "minutes": 55,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-07-30"
   },
   {
     "person_id": "P050",
@@ -11187,10 +11187,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 85,
-    "views": 2,
+    "views": 4,
     "minutes": 58,
     "completed": 1,
-    "date": "2025-06-11"
+    "date": "2025-07-16"
   },
   {
     "person_id": "P050",
@@ -11200,10 +11200,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 60,
-    "views": 3,
+    "views": 4,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-16"
   },
   {
     "person_id": "P050",
@@ -11216,7 +11216,7 @@
     "views": 2,
     "minutes": 16,
     "completed": 0,
-    "date": "2025-06-22"
+    "date": "2025-06-19"
   },
   {
     "person_id": "P050",
@@ -11229,7 +11229,7 @@
     "views": 3,
     "minutes": 53,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-07-28"
   },
   {
     "person_id": "P050",
@@ -11239,10 +11239,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 2,
+    "views": 3,
     "minutes": 62,
     "completed": 1,
-    "date": "2025-06-27"
+    "date": "2025-07-10"
   },
   {
     "person_id": "P050",
@@ -11252,10 +11252,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 88,
-    "views": 2,
-    "minutes": 49,
+    "views": 3,
+    "minutes": 52,
     "completed": 1,
-    "date": "2025-06-17"
+    "date": "2025-07-16"
   },
   {
     "person_id": "P050",
@@ -11268,7 +11268,7 @@
     "views": 3,
     "minutes": 38,
     "completed": 1,
-    "date": "2025-06-16"
+    "date": "2025-06-29"
   },
   {
     "person_id": "P050",
@@ -11278,10 +11278,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 1,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-21"
+    "views": 3,
+    "minutes": 33,
+    "completed": 1,
+    "date": "2025-07-18"
   },
   {
     "person_id": "P050",
@@ -11292,9 +11292,9 @@
     "is_fluff": false,
     "impact_score": 74,
     "views": 3,
-    "minutes": 45,
+    "minutes": 48,
     "completed": 1,
-    "date": "2025-06-26"
+    "date": "2025-07-11"
   },
   {
     "person_id": "P050",
@@ -11307,7 +11307,7 @@
     "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-05-30"
+    "date": "2025-08-15"
   },
   {
     "person_id": "P050",
@@ -11320,7 +11320,7 @@
     "views": 3,
     "minutes": 73,
     "completed": 1,
-    "date": "2025-06-03"
+    "date": "2025-06-28"
   },
   {
     "person_id": "P050",
@@ -11330,10 +11330,10 @@
     "type": "workshop",
     "is_fluff": false,
     "impact_score": 94,
-    "views": 3,
-    "minutes": 47,
+    "views": 4,
+    "minutes": 57,
     "completed": 1,
-    "date": "2025-06-14"
+    "date": "2025-08-11"
   },
   {
     "person_id": "P050",
@@ -11343,10 +11343,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 68,
-    "views": 1,
-    "minutes": 19,
-    "completed": 0,
-    "date": "2025-06-16"
+    "views": 3,
+    "minutes": 53,
+    "completed": 1,
+    "date": "2025-06-15"
   },
   {
     "person_id": "P050",
@@ -11359,7 +11359,7 @@
     "views": 2,
     "minutes": 59,
     "completed": 1,
-    "date": "2025-06-04"
+    "date": "2025-07-12"
   },
   {
     "person_id": "P050",
@@ -11372,7 +11372,7 @@
     "views": 3,
     "minutes": 45,
     "completed": 1,
-    "date": "2025-06-12"
+    "date": "2025-07-19"
   },
   {
     "person_id": "P050",
@@ -11385,7 +11385,7 @@
     "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-06-15"
+    "date": "2025-07-20"
   },
   {
     "person_id": "P050",
@@ -11395,10 +11395,10 @@
     "type": "course",
     "is_fluff": false,
     "impact_score": 62,
-    "views": 1,
-    "minutes": 12,
-    "completed": 0,
-    "date": "2025-06-27"
+    "views": 4,
+    "minutes": 28,
+    "completed": 1,
+    "date": "2025-07-16"
   },
   {
     "person_id": "P050",
@@ -11408,10 +11408,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 58,
-    "views": 2,
-    "minutes": 18,
-    "completed": 0,
-    "date": "2025-06-22"
+    "views": 4,
+    "minutes": 27,
+    "completed": 1,
+    "date": "2025-07-31"
   },
   {
     "person_id": "P050",
@@ -11421,10 +11421,10 @@
     "type": "playbook",
     "is_fluff": false,
     "impact_score": 76,
-    "views": 3,
+    "views": 4,
     "minutes": 63,
     "completed": 1,
-    "date": "2025-06-04"
+    "date": "2025-08-12"
   },
   {
     "person_id": "P050",
@@ -11437,7 +11437,7 @@
     "views": 3,
     "minutes": 50,
     "completed": 1,
-    "date": "2025-05-23"
+    "date": "2025-08-13"
   },
   {
     "person_id": "P050",
@@ -11447,10 +11447,10 @@
     "type": "microlearning",
     "is_fluff": false,
     "impact_score": 72,
-    "views": 3,
+    "views": 4,
     "minutes": 57,
     "completed": 1,
-    "date": "2025-06-08"
+    "date": "2025-08-01"
   },
   {
     "person_id": "P050",
@@ -11460,10 +11460,10 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 84,
-    "views": 2,
-    "minutes": 14,
-    "completed": 0,
-    "date": "2025-06-07"
+    "views": 3,
+    "minutes": 35,
+    "completed": 1,
+    "date": "2025-07-07"
   },
   {
     "person_id": "P050",
@@ -11473,9 +11473,9 @@
     "type": "guide",
     "is_fluff": false,
     "impact_score": 78,
-    "views": 1,
-    "minutes": 15,
-    "completed": 0,
-    "date": "2025-06-26"
+    "views": 2,
+    "minutes": 33,
+    "completed": 1,
+    "date": "2025-07-23"
   }
 ]
