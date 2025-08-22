@@ -306,6 +306,3 @@ ${JSON.stringify(brief, null, 2)}
 }
 
 // Vercel default export compatibility
-export const config = {
-  runtime: "nodejs18.x",
-};
