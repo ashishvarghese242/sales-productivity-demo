@@ -422,10 +422,7 @@ export default function App() {
               showBottom={showBottom}
               showLRS={showLRS}
             />
-          </div>
-<div className="col-span-full p-4 rounded-2xl border">
-          <VpEnablement geo={geo} manager={manager} personId={personId} />
-        </div>
+
       </div>
     </div>
   )
