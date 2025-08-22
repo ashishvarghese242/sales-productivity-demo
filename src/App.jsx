@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import RadarPentagon from './components/RadarPentagon.jsx'
+import VpEnablement from './components/VpEnablement.jsx'
 
 const LEVERS = [
   'Pipeline Discipline',
@@ -9,16 +10,14 @@ const LEVERS = [
   'Data Hygiene',
 ]
 
-// Tune this to make the purple overlay more/less prominent
 const LRS_OVERLAY_MULTIPLIER = 1.8
 
-// ------------------------------ Data hooks ------------------------------
 function useData() {
   const [hris, setHris] = useState([])
   const [crm, setCrm] = useState([])
-  const [lrs, setLrs] = useState({ catalog: [], consumption: [] }) // legacy aggregate (for Capability Uptake)
-  const [lrsCatalog, setLrsCatalog] = useState([])                 // activities catalog (lever + impact + fluff)
-  const [lrsEvents, setLrsEvents] = useState([])                   // per-person activity events
+  const [lrs, setLrs] = useState({ catalog: [], consumption: [] })
+  const [lrsCatalog, setLrsCatalog] = useState([])
+  const [lrsEvents, setLrsEvents] = useState([])
 
   useEffect(() => {
     fetch('/data/hris.json').then(r => r.json()).then(setHris)
@@ -31,21 +30,18 @@ function useData() {
   return { hris, crm, lrs, lrsCatalog, lrsEvents }
 }
 
-// ------------------------------ Scoring logic (performance) ------------------------------
 function computeScores(personId, crmRow, lrsRow) {
   const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)))
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0
 
   if (crmRow) {
-    // PIPELINE DISCIPLINE
-    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100) // 3.5x target
-    const stalledScore = (1 - crmRow.stalled_ratio) * 100 // lower stalled is better
-    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100) // 6/mo is strong
+    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100)
+    const stalledScore = (1 - crmRow.stalled_ratio) * 100
+    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100)
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore)
 
-    // DEAL EXECUTION
     const winScore = (crmRow.win_rate || 0) * 100
-    const cycleScore = Math.max(0, 100 - ((crmRow.avg_cycle_days || 30) - 30) * 2) // 30 days ideal
+    const cycleScore = Math.max(0, 100 - ((crmRow.avg_cycle_days || 30) - 30) * 2)
     const m = crmRow.meddpicc || {}
     const meddpiccScore =
       ((m.metrics_pct || 0) +
@@ -58,7 +54,6 @@ function computeScores(personId, crmRow, lrsRow) {
         (m.competition_pct || 0)) / 8
     de = clamp(0.4 * winScore + 0.3 * cycleScore + 0.3 * meddpiccScore)
 
-    // VALUE CO-CREATION
     const v = crmRow.value_co || {}
     const bc = (v.business_case_rate || 0) * 100
     const qi = (v.quantified_impact_rate || 0) * 100
@@ -66,7 +61,6 @@ function computeScores(personId, crmRow, lrsRow) {
     const msp = (v.mutual_success_plan_rate || 0) * 100
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp)
 
-    // DATA HYGIENE
     const h = crmRow.hygiene || {}
     const ns = h.next_step_filled_pct || 0
     const nm = h.next_meeting_set_pct || 0
@@ -76,10 +70,9 @@ function computeScores(personId, crmRow, lrsRow) {
     dh = clamp((ns + nm + sd + fc + cd) / 5)
   }
 
-  // CAPABILITY UPTAKE (from legacy LRS aggregates)
   if (lrsRow) {
     const comp = Math.min(100, ((lrsRow.completions || 0) / 8) * 100)
-    const minutes = Math.min(100, ((lrsRow.minutes || 0) / 600) * 100) // 10h cap
+    const minutes = Math.min(100, ((lrsRow.minutes || 0) / 600) * 100)
     const recency = Math.max(0, 100 - (lrsRow.recency_days || 0) * 2)
     const assess = lrsRow.assessment_score_avg || 0
     const certs = Math.min(100, (lrsRow.certifications || 0) * 25)
@@ -97,7 +90,6 @@ function computeScores(personId, crmRow, lrsRow) {
   }
 }
 
-// ------------------------------ Helpers ------------------------------
 function indexById(arr, key = 'person_id') {
   return Object.fromEntries(arr.map((r) => [r[key], r]))
 }
@@ -117,7 +109,6 @@ function compositeOf(person, crmById, lrsById) {
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
-// ------------------------------ Impact-weighted Enablement overlay ------------------------------
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]))
@@ -158,23 +149,16 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   return avgCoverage
 }
 
-// ------------------------------ App ------------------------------
 export default function App() {
   const { hris, crm, lrs, lrsCatalog, lrsEvents } = useData()
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState('All') // default: aggregate
+  const [personId, setPersonId] = useState('All')
 
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
-  const [showLRS, setShowLRS] = useState(false) // “Enablement” overlay toggle
-
-  // VP Enablement (boardroom) states
-  const [vpQuestion, setVpQuestion] = useState('')
-  const [vpAnswer, setVpAnswer] = useState('')
-  const [vpLoading, setVpLoading] = useState(false)
-  const [vpError, setVpError] = useState('')
+  const [showLRS, setShowLRS] = useState(false)
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -241,54 +225,12 @@ export default function App() {
     return lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents)
   }, [personId, filteredPeople, lrsCatalog, lrsEvents])
 
-  const radarData = useMemo(() => {
-    return LEVERS.map((l) => ({
-      lever: l,
-      selectedScore: selectedScores[l] || 0,
-      topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
-      bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
-      lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
-    }))
-  }, [selectedScores, showTop, showBottom, showLRS, topAvgScores, bottomAvgScores, lrsOverlay])
-
   const selectedComposite = useMemo(() => {
     const s = selectedScores
     const comp =
       (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
     return Math.round(comp || 0)
   }, [selectedScores])
-
-  // ------------------------------ VP Enablement: call /api/ask-vp ------------------------------
-  async function askVp() {
-    setVpError('')
-    setVpAnswer('')
-    if (!vpQuestion.trim()) {
-      setVpError('Please enter a question.')
-      return
-    }
-    setVpLoading(true)
-    try {
-      const res = await fetch('/api/ask-vp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          question: vpQuestion,
-          geo,
-          manager,
-          personId,
-        }),
-      })
-      const data = await res.json()
-      if (!res.ok || data?.ok === false) {
-        throw new Error(data?.error || 'Request failed')
-      }
-      setVpAnswer(data.answer || 'No answer returned.')
-    } catch (e) {
-      setVpError(String(e.message || e))
-    } finally {
-      setVpLoading(false)
-    }
-  }
 
   return (
     <div className="min-h-screen p-6 bg-white text-slate-900">
@@ -405,35 +347,9 @@ export default function App() {
           />
         </div>
 
-        {/* VP Enablement Panel (full-width below) */}
-        <div className="lg:col-span-3 p-4 rounded-2xl border">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-semibold">VP Enablement</h2>
-            <div className="text-xs text-slate-500">Boardroom Q&A (uses your filters above)</div>
-          </div>
-
-          <textarea
-            className="w-full border rounded-lg px-3 py-2 text-sm min-h-[96px]"
-            placeholder="Ask anything about enablement, productivity, performance… e.g., Where is enablement moving the needle vs wasted effort?"
-            value={vpQuestion}
-            onChange={(e) => setVpQuestion(e.target.value)}
-          />
-          <div className="mt-2 flex items-center gap-3">
-            <button
-              onClick={askVp}
-              disabled={vpLoading}
-              className="px-4 py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60"
-            >
-              {vpLoading ? 'Thinking…' : 'Ask'}
-            </button>
-            {vpError && <span className="text-sm text-red-600">{vpError}</span>}
-          </div>
-
-          {vpAnswer && (
-            <div className="mt-4 p-4 rounded-xl bg-slate-50 border text-sm whitespace-pre-wrap">
-              {vpAnswer}
-            </div>
-          )}
+        {/* VP Enablement panel as a reusable component */}
+        <div className="lg:col-span-3">
+          <VpEnablement geo={geo} manager={manager} personId={personId} />
         </div>
       </div>
     </div>
