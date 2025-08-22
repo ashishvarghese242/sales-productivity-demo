@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../assets/img/cpo-logo.png'; // <-- Import the image
 
 export default function Topbar({ activeMenu = "Sales" }) {
   const menus = [
@@ -13,7 +14,7 @@ export default function Topbar({ activeMenu = "Sales" }) {
       <div className="topbar-inner" style={{ display: "flex", alignItems: "center", minHeight: 96 }}>
         <div className="brand" style={{ display: "flex", alignItems: "center", minWidth: 0 }}>
           <img
-            src="/assets/img/cpo-logo.png"
+            src={logo} {/* <-- Use the imported logo here */}
             alt="Chief Productivity Officer"
             style={{
               height: 56,
