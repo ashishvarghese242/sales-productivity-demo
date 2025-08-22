@@ -1,0 +1,162 @@
+/* assets/theme.css — CPO site-inspired theme */
+:root{
+  /* Base */
+  --bg: #e9f0f7;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+
+  /* Brand accents */
+  --accent: #6a00ff;      /* electric purple */
+  --accent-2: #00d1ff;    /* cyan */
+  --accent-warm: #ffd166; /* warm highlight */
+
+  /* Chart colors */
+  --chart-actual-fill: rgba(15, 23, 42, 0.45);
+  --chart-actual-line: rgba(15, 23, 42, 1);
+  --chart-target-fill: rgba(106, 0, 255, 0.18);
+  --chart-target-line: rgba(106, 0, 255, 1);
+  --chart-influence-fill: rgba(0, 209, 255, 0.20);
+  --chart-influence-line: rgba(0, 209, 255, 1);
+
+  /* UI */
+  --radius: 16px;
+  --shadow: 0 10px 24px rgba(16, 24, 40, 0.08);
+}
+
+*{ box-sizing: border-box; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.wrap{ max-width: 1220px; margin: 10px auto; padding: 0 8px; }
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px;
+  box-shadow: var(--shadow);
+}
+
+table th, table td { padding: 8px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+table th { font-weight: 600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+
+/* ========================================================= */
+/* ===================== Global Top Bar ==================== */
+/* ========================================================= */
+
+.topbar{
+  width:100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* keeps it above other content */
+  background: linear-gradient(135deg, #1d2b64 0%, #8f6ed5 50%, #00d1ff 100%);
+  color:#fff;
+  box-shadow: var(--shadow);
+  /* no rounded corners by design */
+}
+.topbar-inner{
+  max-width:1220px;
+  margin:0 auto;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.topbar .brand{
+  display:flex; align-items:center; gap:12px; min-width:0;
+}
+.topbar .brand img{
+  height:70px; width:auto; display:block;
+}
+.topbar .brand-title{
+  font-weight:800; font-size:20px; letter-spacing:.2px; margin:0;
+}
+.topbar .brand-sub{
+  margin:0; font-size:12px; opacity:.85;
+}
+
+/* Tabs */
+.topbar .tabs{
+  margin-left:auto;
+  display:flex; align-items:center; gap:8px;
+}
+.tab{
+  appearance:none;
+  border:1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.10);
+  color:#fff;
+  font-weight:600;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  cursor:pointer;
+}
+.tab.active{
+  background:#fff;
+  color:#111827;
+}
+.tab[aria-disabled="true"]{
+  opacity:.45;
+  pointer-events:none;
+}
+
+/* ========================================================= */
+/* =============== Layout & GPT shared styles ============== */
+/* ========================================================= */
+
+/* 50/50 layout */
+.layout-2col{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:5px;
+  align-items:start;
+}
+.left-col{ min-width:0; }
+.right-col{ min-width:0; }
+
+/* Slight scale to fit half page comfortably */
+.radar-scale{
+  transform: scale(0.92);
+  transform-origin: top left;
+}
+
+/* Sticky GPT panel */
+.sticky{ position: sticky; top: 120px; }
+
+/* EnablementGPT helpers */
+.gpt-head{ display:flex; align-items:center; gap:8px; padding:14px 16px; border-bottom:1px solid var(--line); }
+.gpt-title{ font-size:16px; font-weight:700; margin:0; }
+.gpt-badge{ margin-left:auto; font-size:12px; color:#059669; background:#ecfdf5; border:1px solid #a7f3d0; padding:2px 8px; border-radius:999px; }
+
+.gpt-body{ padding:12px; display:grid; gap:10px; }
+.gpt-row{ display:grid; grid-template-columns: 1fr auto; gap:8px; }
+.gpt-input{ padding:10px 12px; border:1px solid var(--line); border-radius:10px; outline:none; background:#fff; }
+.gpt-btn{ padding:10px 14px; border-radius:10px; border:1px solid var(--line); background:#111827; color:#fff; font-weight:600; cursor:pointer; }
+.gpt-btn[disabled]{ background:#f3f4f6; color:#6b7280; cursor:default; }
+
+.gpt-presets{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+.gpt-chip{ border:1px solid var(--line); border-radius:999px; padding:6px 10px; font-size:12px; background:#fff; cursor:pointer; }
+.gpt-chip:hover{ background:#f9fafb; }
+
+.gpt-out{
+  white-space:pre-wrap;
+  font-size:14px; line-height:1.55;
+  color:#111827;
+  background:#f9fafb; border:1px dashed var(--line); border-radius:10px; padding:12px; min-height:140px;
+}
+
+.gpt-foot{ display:flex; align-items:center; justify-content:space-between; color:#6b7280; font-size:12px; }
+.gpt-actions{ display:flex; gap:8px; }
+.gpt-action{ border:1px solid var(--line); background:#fff; padding:6px 10px; border-radius:8px; cursor:pointer; font-size:12px; }
+
+/* Responsive */
+@media (max-width: 1024px){
+  .layout-2col{ grid-template-columns: 1fr; }
+  .sticky{ position: static; }
+  .radar-scale{ transform: none; }
+}
