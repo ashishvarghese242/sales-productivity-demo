@@ -42,7 +42,7 @@ const VpEnablement = ({ geo, manager, personId }) => {
   }
 
   return (
-    <div className="p-4 rounded-2xl border">
+    <div className="card">
       <div className="flex items-center justify-between mb-2">
         <h2 className="font-semibold">VP Enablement</h2>
         <div className="text-xs text-slate-500">Boardroom Q&amp;A (uses your filters above)</div>
