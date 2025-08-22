@@ -10,12 +10,14 @@ const LEVERS = [
   'Data Hygiene',
 ]
 
+// Visual tuning for enablement overlay
 const LRS_OVERLAY_MULTIPLIER = 1.8
 
+// ------------------------------ Data hooks ------------------------------
 function useData() {
   const [hris, setHris] = useState([])
   const [crm, setCrm] = useState([])
-  const [lrs, setLrs] = useState({ catalog: [], consumption: [] })
+  const [lrs, setLrs] = useState({ catalog: [], consumption: [] }) // legacy aggregate (CU)
   const [lrsCatalog, setLrsCatalog] = useState([])
   const [lrsEvents, setLrsEvents] = useState([])
 
@@ -30,52 +32,55 @@ function useData() {
   return { hris, crm, lrs, lrsCatalog, lrsEvents }
 }
 
+// ------------------------------ Scoring logic ------------------------------
 function computeScores(personId, crmRow, lrsRow) {
   const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)))
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0
 
   if (crmRow) {
+    // PIPELINE DISCIPLINE
     const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100)
     const stalledScore = (1 - crmRow.stalled_ratio) * 100
     const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100)
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore)
 
-    const winScore = (crmRow.win_rate || 0) * 100
-    const cycleScore = Math.max(0, 100 - ((crmRow.avg_cycle_days || 30) - 30) * 2)
-    const m = crmRow.meddpicc || {}
+    // DEAL EXECUTION
+    const winScore = crmRow.win_rate * 100
+    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2)
     const meddpiccScore =
-      ((m.metrics_pct || 0) +
-        (m.econ_buyer_pct || 0) +
-        (m.decision_criteria_pct || 0) +
-        (m.decision_process_pct || 0) +
-        (m.paper_process_pct || 0) +
-        (m.identify_pain_pct || 0) +
-        (m.champion_pct || 0) +
-        (m.competition_pct || 0)) / 8
+      (crmRow.meddpicc.metrics_pct +
+        crmRow.meddpicc.econ_buyer_pct +
+        crmRow.meddpicc.decision_criteria_pct +
+        crmRow.meddpicc.decision_process_pct +
+        crmRow.meddpicc.paper_process_pct +
+        crmRow.meddpicc.identify_pain_pct +
+        crmRow.meddpicc.champion_pct +
+        crmRow.meddpicc.competition_pct) / 8
     de = clamp(0.4 * winScore + 0.3 * cycleScore + 0.3 * meddpiccScore)
 
-    const v = crmRow.value_co || {}
-    const bc = (v.business_case_rate || 0) * 100
-    const qi = (v.quantified_impact_rate || 0) * 100
-    const execMtg = Math.min(100, ((v.exec_meetings_90d || 0) / 8) * 100)
-    const msp = (v.mutual_success_plan_rate || 0) * 100
+    // VALUE CO-CREATION
+    const bc = crmRow.value_co.business_case_rate * 100
+    const qi = crmRow.value_co.quantified_impact_rate * 100
+    const execMtg = Math.min(100, (crmRow.value_co.exec_meetings_90d / 8) * 100)
+    const msp = crmRow.value_co.mutual_success_plan_rate * 100
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp)
 
-    const h = crmRow.hygiene || {}
-    const ns = h.next_step_filled_pct || 0
-    const nm = h.next_meeting_set_pct || 0
-    const sd = h.stage_date_present_pct || 0
-    const fc = h.forecast_cat_set_pct || 0
-    const cd = h.close_date_valid_pct || 0
+    // DATA HYGIENE
+    const ns = crmRow.hygiene.next_step_filled_pct
+    const nm = crmRow.hygiene.next_meeting_set_pct
+    const sd = crmRow.hygiene.stage_date_present_pct
+    const fc = crmRow.hygiene.forecast_cat_set_pct
+    const cd = crmRow.hygiene.close_date_valid_pct
     dh = clamp((ns + nm + sd + fc + cd) / 5)
   }
 
+  // CAPABILITY UPTAKE (legacy LRS aggregates)
   if (lrsRow) {
-    const comp = Math.min(100, ((lrsRow.completions || 0) / 8) * 100)
-    const minutes = Math.min(100, ((lrsRow.minutes || 0) / 600) * 100)
-    const recency = Math.max(0, 100 - (lrsRow.recency_days || 0) * 2)
-    const assess = lrsRow.assessment_score_avg || 0
-    const certs = Math.min(100, (lrsRow.certifications || 0) * 25)
+    const comp = Math.min(100, (lrsRow.completions / 8) * 100)
+    const minutes = Math.min(100, (lrsRow.minutes / 600) * 100)
+    const recency = Math.max(0, 100 - lrsRow.recency_days * 2)
+    const assess = lrsRow.assessment_score_avg
+    const certs = Math.min(100, lrsRow.certifications * 25)
     const raw = 0.25 * comp + 0.25 * minutes + 0.2 * recency + 0.2 * assess + 0.1 * certs
     const cuScore = Math.max(0, Math.min(100, Math.round(raw)))
     if (!Number.isNaN(cuScore)) cu = cuScore
@@ -93,6 +98,7 @@ function computeScores(personId, crmRow, lrsRow) {
 function indexById(arr, key = 'person_id') {
   return Object.fromEntries(arr.map((r) => [r[key], r]))
 }
+
 function averageScoresForPeople(people, crmById, lrsById) {
   if (!people.length) return Object.fromEntries(LEVERS.map(l => [l, 0]))
   const sums = Object.fromEntries(LEVERS.map(l => [l, 0]))
@@ -104,11 +110,13 @@ function averageScoresForPeople(people, crmById, lrsById) {
   LEVERS.forEach((l) => (avg[l] = Math.round(sums[l] / people.length)))
   return avg
 }
+
 function compositeOf(person, crmById, lrsById) {
   const s = computeScores(person.person_id, crmById[person.person_id], lrsById[person.person_id])
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
+// Enablement overlay (impact-weighted coverage per lever)
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]))
@@ -149,13 +157,16 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   return avgCoverage
 }
 
+// ------------------------------ App ------------------------------
 export default function App() {
   const { hris, crm, lrs, lrsCatalog, lrsEvents } = useData()
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState('All')
+  const [personId, setPersonId] = useState('All') // default aggregate
 
+  // Toggles
+  const [showPerformance, setShowPerformance] = useState(false) // new, default OFF
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
@@ -172,6 +183,7 @@ export default function App() {
       .filter((h) => (manager === 'All' || h.manager_name === manager))
   }, [hris, geo, manager])
 
+  // Reset person if filters hide them
   useEffect(() => {
     if (personId === 'All') return
     const stillVisible = filteredPeople.find((p) => p.person_id === personId)
@@ -220,10 +232,21 @@ export default function App() {
     }
   }, [filteredPeople, crmById, lrsById])
 
+  // Enablement overlay follows current cohort/person selection (independent of toggles)
   const lrsOverlay = useMemo(() => {
     const personIds = personId === 'All' ? filteredPeople.map(p => p.person_id) : [personId]
     return lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents)
   }, [personId, filteredPeople, lrsCatalog, lrsEvents])
+
+  const radarData = useMemo(() => {
+    return LEVERS.map((l) => ({
+      lever: l,
+      selectedScore: selectedScores[l] || 0,
+      topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+      bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+      lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+    }))
+  }, [selectedScores, showTop, showBottom, showLRS, topAvgScores, bottomAvgScores, lrsOverlay])
 
   const selectedComposite = useMemo(() => {
     const s = selectedScores
@@ -237,7 +260,7 @@ export default function App() {
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
         <p className="text-sm text-slate-600">
-          Pentagon radar with HRIS / CRM / LRS (impact-weighted overlay, last 90 days)
+          Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
         </p>
       </header>
 
@@ -277,17 +300,29 @@ export default function App() {
 
               {/* Toggles */}
               <div className="mt-2 grid grid-cols-2 gap-3">
+                <label className="flex items-center gap-2 text-sm col-span-2">
+                  <input
+                    type="checkbox"
+                    className="h-4 w-4 accent-blue-600"
+                    checked={showPerformance}
+                    onChange={(e) => setShowPerformance(e.target.checked)}
+                  />
+                  <span>Performance</span>
+                </label>
+
                 <label className="flex items-center gap-2 text-sm">
                   <input type="checkbox" className="h-4 w-4 accent-green-600" checked={showTop} onChange={(e) => setShowTop(e.target.checked)} />
-                  <span>Top Performers</span>
+                  <span>Top</span>
                 </label>
+
                 <label className="flex items-center gap-2 text-sm">
                   <input type="checkbox" className="h-4 w-4 accent-red-600" checked={showBottom} onChange={(e) => setShowBottom(e.target.checked)} />
-                  <span>Bottom Performers</span>
+                  <span>Bottom</span>
                 </label>
+
                 <label className="flex items-center gap-2 text-sm col-span-2">
                   <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>Enablement</span>
+                  <span>Enablement (Impact-weighted)</span>
                 </label>
               </div>
 
@@ -326,29 +361,29 @@ export default function App() {
           </div>
         </div>
 
-        {/* RIGHT: Radar */}
-        <div className="lg:col-span-2 p-4 rounded-2xl border">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold">Sales Productivity Pentagon</h2>
-            <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
+        {/* RIGHT: Radar + VP Panel */}
+        <div className="lg:col-span-2 space-y-4">
+          <div className="p-4 rounded-2xl border">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-semibold">Sales Productivity Pentagon</h2>
+              <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
+            </div>
+
+            <RadarPentagon
+              data={LEVERS.map((l) => ({
+                lever: l,
+                selectedScore: selectedScores[l] || 0,
+                topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+                bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+                lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+              }))}
+              showPerformance={showPerformance}
+              showTop={showTop}
+              showBottom={showBottom}
+              showLRS={showLRS}
+            />
           </div>
 
-          <RadarPentagon
-            data={LEVERS.map((l) => ({
-              lever: l,
-              selectedScore: selectedScores[l] || 0,
-              topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
-              bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
-              lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
-            }))}
-            showTop={showTop}
-            showBottom={showBottom}
-            showLRS={showLRS}
-          />
-        </div>
-
-        {/* VP Enablement panel as a reusable component */}
-        <div className="lg:col-span-3">
           <VpEnablement geo={geo} manager={manager} personId={personId} />
         </div>
       </div>
