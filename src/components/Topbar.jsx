@@ -4,7 +4,7 @@ export default function Topbar({ activeMenu = "Sales" }) {
   const menus = [
     { name: "Home", key: "Home" },
     { name: "Sales", key: "Sales" },
-    { name: "Customer Success", key: "Customer Success" },
+    { name: "CS", key: "Customer Success" },
     { name: "Production", key: "Production / Engineering" },
   ];
 
