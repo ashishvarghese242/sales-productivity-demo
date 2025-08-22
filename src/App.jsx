@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useEffect, useMemo, useState } from 'react'
 import RadarPentagon from './components/RadarPentagon.jsx'
 
@@ -9,14 +10,16 @@ const LEVERS = [
   'Data Hygiene',
 ]
 
+// Tune this to make the purple overlay more/less prominent
 const LRS_OVERLAY_MULTIPLIER = 1.8
 
+// ------------------------------ Data hooks ------------------------------
 function useData() {
   const [hris, setHris] = useState([])
   const [crm, setCrm] = useState([])
-  const [lrs, setLrs] = useState({ catalog: [], consumption: [] })
-  const [lrsCatalog, setLrsCatalog] = useState([])
-  const [lrsEvents, setLrsEvents] = useState([])
+  const [lrs, setLrs] = useState({ catalog: [], consumption: [] }) // legacy aggregate (for Capability Uptake)
+  const [lrsCatalog, setLrsCatalog] = useState([])                 // activities catalog (lever + impact + fluff)
+  const [lrsEvents, setLrsEvents] = useState([])                   // per-person activity events
 
   useEffect(() => {
     fetch('/data/hris.json').then(r => r.json()).then(setHris)
@@ -29,49 +32,59 @@ function useData() {
   return { hris, crm, lrs, lrsCatalog, lrsEvents }
 }
 
+// ------------------------------ Scoring logic (performance) ------------------------------
 function computeScores(personId, crmRow, lrsRow) {
   const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)))
+
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0
 
   if (crmRow) {
-    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100)
-    const stalledScore = (1 - crmRow.stalled_ratio) * 100
-    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100)
+    // PIPELINE DISCIPLINE
+    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100) // 3.5x target
+    const stalledScore = (1 - crmRow.stalled_ratio) * 100 // lower stalled is better
+    const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100) // 6/mo is strong
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore)
 
-    const winScore = crmRow.win_rate * 100
-    const cycleScore = Math.max(0, 100 - (crmRow.avg_cycle_days - 30) * 2)
+    // DEAL EXECUTION
+    const winScore = (crmRow.win_rate || 0) * 100
+    const cycleScore = Math.max(0, 100 - ((crmRow.avg_cycle_days || 30) - 30) * 2) // 30 days ideal
+    const m = crmRow.meddpicc || {}
     const meddpiccScore =
-      (crmRow.meddpicc.metrics_pct +
-        crmRow.meddpicc.econ_buyer_pct +
-        crmRow.meddpicc.decision_criteria_pct +
-        crmRow.meddpicc.decision_process_pct +
-        crmRow.meddpicc.paper_process_pct +
-        crmRow.meddpicc.identify_pain_pct +
-        crmRow.meddpicc.champion_pct +
-        crmRow.meddpicc.competition_pct) / 8
+      ((m.metrics_pct || 0) +
+        (m.econ_buyer_pct || 0) +
+        (m.decision_criteria_pct || 0) +
+        (m.decision_process_pct || 0) +
+        (m.paper_process_pct || 0) +
+        (m.identify_pain_pct || 0) +
+        (m.champion_pct || 0) +
+        (m.competition_pct || 0)) / 8
     de = clamp(0.4 * winScore + 0.3 * cycleScore + 0.3 * meddpiccScore)
 
-    const bc = crmRow.value_co.business_case_rate * 100
-    const qi = crmRow.value_co.quantified_impact_rate * 100
-    const execMtg = Math.min(100, (crmRow.value_co.exec_meetings_90d / 8) * 100)
-    const msp = crmRow.value_co.mutual_success_plan_rate * 100
+    // VALUE CO-CREATION
+    const v = crmRow.value_co || {}
+    const bc = (v.business_case_rate || 0) * 100
+    const qi = (v.quantified_impact_rate || 0) * 100
+    const execMtg = Math.min(100, ((v.exec_meetings_90d || 0) / 8) * 100)
+    const msp = (v.mutual_success_plan_rate || 0) * 100
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp)
 
-    const ns = crmRow.hygiene.next_step_filled_pct
-    const nm = crmRow.hygiene.next_meeting_set_pct
-    const sd = crmRow.hygiene.stage_date_present_pct
-    const fc = crmRow.hygiene.forecast_cat_set_pct
-    const cd = crmRow.hygiene.close_date_valid_pct
+    // DATA HYGIENE
+    const h = crmRow.hygiene || {}
+    const ns = h.next_step_filled_pct || 0
+    const nm = h.next_meeting_set_pct || 0
+    const sd = h.stage_date_present_pct || 0
+    const fc = h.forecast_cat_set_pct || 0
+    const cd = h.close_date_valid_pct || 0
     dh = clamp((ns + nm + sd + fc + cd) / 5)
   }
 
+  // CAPABILITY UPTAKE (from legacy LRS aggregates)
   if (lrsRow) {
-    const comp = Math.min(100, (lrsRow.completions / 8) * 100)
-    const minutes = Math.min(100, (lrsRow.minutes / 600) * 100)
-    const recency = Math.max(0, 100 - lrsRow.recency_days * 2)
-    const assess = lrsRow.assessment_score_avg
-    const certs = Math.min(100, lrsRow.certifications * 25)
+    const comp = Math.min(100, ((lrsRow.completions || 0) / 8) * 100)
+    const minutes = Math.min(100, ((lrsRow.minutes || 0) / 600) * 100) // 10h cap
+    const recency = Math.max(0, 100 - (lrsRow.recency_days || 0) * 2)
+    const assess = lrsRow.assessment_score_avg || 0
+    const certs = Math.min(100, (lrsRow.certifications || 0) * 25)
     const raw = 0.25 * comp + 0.25 * minutes + 0.2 * recency + 0.2 * assess + 0.1 * certs
     const cuScore = Math.max(0, Math.min(100, Math.round(raw)))
     if (!Number.isNaN(cuScore)) cu = cuScore
@@ -86,6 +99,7 @@ function computeScores(personId, crmRow, lrsRow) {
   }
 }
 
+// ------------------------------ Helpers ------------------------------
 function indexById(arr, key = 'person_id') {
   return Object.fromEntries(arr.map((r) => [r[key], r]))
 }
@@ -107,48 +121,76 @@ function compositeOf(person, crmById, lrsById) {
   return (s['Pipeline Discipline'] + s['Deal Execution'] + s['Value Co-Creation'] + s['Capability Uptake'] + s['Data Hygiene']) / 5
 }
 
+// ------------------------------ NEW: Impact-weighted LRS overlay per lever ------------------------------
+/**
+ * coverage_person_lever =
+ *   ( SUM impact_score of COMPLETED, NON-FLUFF assets for lever × LRS_OVERLAY_MULTIPLIER )
+ * / ( SUM impact_score of ALL NON-FLUFF assets for that lever )
+ * -> clamp 0..100
+ *
+ * Group view (“All”) = average of people’s coverage.
+ */
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]))
   }
-  const leverAssets = {}, leverDenom = {}
+
+  const leverAssets = {}
+  const leverDenom = {}
   LEVERS.forEach(l => { leverAssets[l] = []; leverDenom[l] = 0 })
   lrsCatalog.forEach(a => {
+    if (!LEVERS.includes(a.lever)) return
     if (a.is_fluff) return
     leverAssets[a.lever].push(a)
     leverDenom[a.lever] += (a.impact_score || 0)
   })
+
   const completedByPerson = {}
   personIds.forEach(pid => completedByPerson[pid] = new Set())
-  lrsEvents.forEach(e => { if (e.completed && completedByPerson[e.person_id]) completedByPerson[e.person_id].add(e.asset_id) })
+  lrsEvents.forEach(e => {
+    if (!completedByPerson.hasOwnProperty(e.person_id)) return
+    if (e.completed) completedByPerson[e.person_id].add(e.asset_id)
+  })
+
   const perLeverSums = Object.fromEntries(LEVERS.map(l => [l, 0]))
   personIds.forEach(pid => {
     LEVERS.forEach(lever => {
       const denom = leverDenom[lever] || 0
       if (denom === 0) return
       let num = 0
-      leverAssets[lever].forEach(a => { if (completedByPerson[pid].has(a.asset_id)) num += (a.impact_score || 0) })
-      const pct = Math.max(0, Math.min(100, Math.round(((num * LRS_OVERLAY_MULTIPLIER) / denom) * 100)))
+      leverAssets[lever].forEach(a => {
+        if (completedByPerson[pid].has(a.asset_id)) num += (a.impact_score || 0)
+      })
+      const boosted = num * LRS_OVERLAY_MULTIPLIER
+      const pct = Math.max(0, Math.min(100, Math.round((boosted / denom) * 100)))
       perLeverSums[lever] += pct
     })
   })
+
   const avgCoverage = {}
-  LEVERS.forEach(lever => { avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length) })
+  LEVERS.forEach(lever => {
+    avgCoverage[lever] = Math.round((perLeverSums[lever] || 0) / personIds.length)
+  })
   return avgCoverage
 }
 
+// ------------------------------ App ------------------------------
 export default function App() {
   const { hris, crm, lrs, lrsCatalog, lrsEvents } = useData()
 
   const [geo, setGeo] = useState('All')
   const [manager, setManager] = useState('All')
-  const [personId, setPersonId] = useState('All')
+  const [personId, setPersonId] = useState('All') // default: aggregate
 
-  // 🔽 All OFF by default (clean slate)
-  const [showPerf, setShowPerf] = useState(false)
   const [showTop, setShowTop] = useState(false)
   const [showBottom, setShowBottom] = useState(false)
-  const [showLRS, setShowLRS] = useState(false)
+  const [showLRS, setShowLRS] = useState(false) // “Enablement” overlay toggle
+
+  // VP Enablement (boardroom) states
+  const [vpQuestion, setVpQuestion] = useState('')
+  const [vpAnswer, setVpAnswer] = useState('')
+  const [vpLoading, setVpLoading] = useState(false)
+  const [vpError, setVpError] = useState('')
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -182,18 +224,26 @@ export default function App() {
   )
 
   const selectedScores = useMemo(() => {
-    if (personId === 'All') return averageScoresForPeople(filteredPeople, crmById, lrsById)
+    if (personId === 'All') {
+      return averageScoresForPeople(filteredPeople, crmById, lrsById)
+    }
     return computeScores(personId, crmRow, lrsRow)
   }, [personId, filteredPeople, crmById, lrsById, crmRow, lrsRow])
 
   const { topAvgScores, bottomAvgScores, topCut, bottomCut } = useMemo(() => {
-    if (!filteredPeople.length) return { topAvgScores: null, bottomAvgScores: null, topCut: 0, bottomCut: 0 }
-    const scored = filteredPeople.map((p) => ({ person: p, comp: compositeOf(p, crmById, lrsById) }))
+    if (!filteredPeople.length) {
+      return { topAvgScores: null, bottomAvgScores: null, topCut: 0, bottomCut: 0 }
+    }
+    const scored = filteredPeople.map((p) => ({
+      person: p,
+      comp: compositeOf(p, crmById, lrsById),
+    }))
     scored.sort((a, b) => a.comp - b.comp)
     const n = scored.length
     const groupSize = Math.max(1, Math.floor(n * 0.2))
     const bottomGroup = scored.slice(0, groupSize).map(x => x.person)
     const topGroup = scored.slice(-groupSize).map(x => x.person)
+
     return {
       topAvgScores: averageScoresForPeople(topGroup, crmById, lrsById),
       bottomAvgScores: averageScoresForPeople(bottomGroup, crmById, lrsById),
@@ -224,12 +274,44 @@ export default function App() {
     return Math.round(comp || 0)
   }, [selectedScores])
 
+  // ------------------------------ VP Enablement: call /api/ask-vp ------------------------------
+  async function askVp() {
+    setVpError('')
+    setVpAnswer('')
+    if (!vpQuestion.trim()) {
+      setVpError('Please enter a question.')
+      return
+    }
+    setVpLoading(true)
+    try {
+      const res = await fetch('/api/ask-vp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question: vpQuestion,
+          geo,
+          manager,
+          personId,
+        }),
+      })
+      const data = await res.json()
+      if (!res.ok || data?.ok === false) {
+        throw new Error(data?.error || 'Request failed')
+      }
+      setVpAnswer(data.answer || 'No answer returned.')
+    } catch (e) {
+      setVpError(String(e.message || e))
+    } finally {
+      setVpLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen p-6 bg-white text-slate-900">
       <header className="mb-6">
         <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
         <p className="text-sm text-slate-600">
-          Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
+          Pentagon radar with HRIS / CRM / LRS (impact-weighted overlay, last 90 days)
         </p>
       </header>
 
@@ -243,7 +325,7 @@ export default function App() {
                 Geo
                 <select className="w-full border rounded-lg px-2 py-1 mt-1" value={geo} onChange={(e) => setGeo(e.target.value)}>
                   <option>All</option>
-                  {Array.from(new Set(hris.map(h => h.geo))).map((g) => (<option key={g}>{g}</option>))}
+                  {geos.map((g) => (<option key={g}>{g}</option>))}
                 </select>
               </label>
 
@@ -251,7 +333,7 @@ export default function App() {
                 Manager
                 <select className="w-full border rounded-lg px-2 py-1 mt-1" value={manager} onChange={(e) => setManager(e.target.value)}>
                   <option>All</option>
-                  {Array.from(new Set(hris.map(h => h.manager_name))).map((m) => (<option key={m}>{m}</option>))}
+                  {managers.map((m) => (<option key={m}>{m}</option>))}
                 </select>
               </label>
 
@@ -267,12 +349,8 @@ export default function App() {
                 </select>
               </label>
 
-              {/* Toggles — all OFF by default */}
+              {/* Toggles */}
               <div className="mt-2 grid grid-cols-2 gap-3">
-                <label className="flex items-center gap-2 text-sm">
-                  <input type="checkbox" className="h-4 w-4 accent-slate-700" checked={showPerf} onChange={(e) => setShowPerf(e.target.checked)} />
-                  <span>Overall Performance</span>
-                </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input type="checkbox" className="h-4 w-4 accent-green-600" checked={showTop} onChange={(e) => setShowTop(e.target.checked)} />
                   <span>Top Performers</span>
@@ -283,7 +361,7 @@ export default function App() {
                 </label>
                 <label className="flex items-center gap-2 text-sm col-span-2">
                   <input type="checkbox" className="h-4 w-4 accent-purple-600" checked={showLRS} onChange={(e) => setShowLRS(e.target.checked)} />
-                  <span>Enablement (Impact-weighted)</span>
+                  <span>Enablement</span>
                 </label>
               </div>
 
@@ -301,17 +379,7 @@ export default function App() {
                   <div>People in view: <strong>{filteredPeople.length}</strong></div>
                   <div>Geo filter: {geo}</div>
                   <div>Manager filter: {manager}</div>
-                  {showPerf && (
-                    <div className="pt-2">Avg Composite: <span className="font-semibold">
-                      {Math.round(
-                        (selectedScores['Pipeline Discipline'] +
-                         selectedScores['Deal Execution'] +
-                         selectedScores['Value Co-Creation'] +
-                         selectedScores['Capability Uptake'] +
-                         selectedScores['Data Hygiene']) / 5
-                      )}
-                    </span>/100</div>
-                  )}
+                  <div className="pt-2">Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
                 </>
               ) : (
                 (() => {
@@ -323,15 +391,7 @@ export default function App() {
                       <div>Manager: {s.manager_name}</div>
                       <div>Geo: {s.geo}</div>
                       <div>Role: {s.role_type}</div>
-                      {showPerf && (
-                        <div className="pt-2">Composite: <span className="font-semibold">{Math.round(
-                          (selectedScores['Pipeline Discipline'] +
-                           selectedScores['Deal Execution'] +
-                           selectedScores['Value Co-Creation'] +
-                           selectedScores['Capability Uptake'] +
-                           selectedScores['Data Hygiene']) / 5
-                        )}</span>/100</div>
-                      )}
+                      <div className="pt-2">Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
                     </>
                   )
                 })()
@@ -348,12 +408,48 @@ export default function App() {
           </div>
 
           <RadarPentagon
-            data={radarData}
-            showPerf={showPerf}
+            data={LEVERS.map((l) => ({
+              lever: l,
+              selectedScore: selectedScores[l] || 0,
+              topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+              bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+              lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+            }))}
             showTop={showTop}
             showBottom={showBottom}
             showLRS={showLRS}
           />
+        </div>
+
+        {/* VP Enablement Panel (full-width below) */}
+        <div className="lg:col-span-3 p-4 rounded-2xl border">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-semibold">VP Enablement</h2>
+            <div className="text-xs text-slate-500">Boardroom Q&A (uses your filters above)</div>
+          </div>
+
+          <textarea
+            className="w-full border rounded-lg px-3 py-2 text-sm min-h-[96px]"
+            placeholder="Ask anything about enablement, productivity, performance… e.g., Where is enablement moving the needle vs wasted effort?"
+            value={vpQuestion}
+            onChange={(e) => setVpQuestion(e.target.value)}
+          />
+          <div className="mt-2 flex items-center gap-3">
+            <button
+              onClick={askVp}
+              disabled={vpLoading}
+              className="px-4 py-2 rounded-lg text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60"
+            >
+              {vpLoading ? 'Thinking…' : 'Ask'}
+            </button>
+            {vpError && <span className="text-sm text-red-600">{vpError}</span>}
+          </div>
+
+          {vpAnswer && (
+            <div className="mt-4 p-4 rounded-xl bg-slate-50 border text-sm whitespace-pre-wrap">
+              {vpAnswer}
+            </div>
+          )}
         </div>
       </div>
     </div>
