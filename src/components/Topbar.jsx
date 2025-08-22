@@ -9,11 +9,19 @@ export default function Topbar({ activeMenu = "Sales" }) {
   ];
 
   return (
-    <div className="topbar">
-      <div className="topbar-inner" style={{ minHeight: 90 }}>
-        <div className="brand" style={{ minWidth: 0 }}>
-          {/* Placeholder for logo: will fix in next step */}
-          <div style={{ height: 56, width: 56, marginRight: 16 }}></div>
+    <div className="topbar" style={{ minHeight: 96, padding: "0 32px" }}>
+      <div className="topbar-inner" style={{ display: "flex", alignItems: "center", minHeight: 96 }}>
+        <div className="brand" style={{ display: "flex", alignItems: "center", minWidth: 0 }}>
+          <img
+            src="/assets/img/cpo-logo.png"
+            alt="Chief Productivity Officer"
+            style={{
+              height: 56,
+              width: "auto",
+              marginRight: 20,
+              display: "block"
+            }}
+          />
           <div>
             <div className="brand-title" style={{ fontSize: 28, fontWeight: 800 }}>
               Productivity OS
@@ -23,21 +31,27 @@ export default function Topbar({ activeMenu = "Sales" }) {
             </div>
           </div>
         </div>
-        <div className="tabs" style={{ marginLeft: 48, flex: 1, display: 'flex', gap: '12px' }}>
+        <div className="tabs" style={{
+          marginLeft: 48,
+          flex: 1,
+          display: 'flex',
+          gap: '8px',
+          justifyContent: 'flex-start',
+        }}>
           {menus.map((menu) => (
             <a
               key={menu.key}
               href="#"
               className={`tab${activeMenu === menu.key ? " active" : ""}`}
               style={{
-                fontSize: 16,                  // smaller font
+                fontSize: 15,                  // smaller font
                 fontWeight: 600,
-                padding: "6px 18px",           // less padding
+                padding: "4px 16px",           // less padding
                 borderRadius: 8,
                 transition: "background 0.2s",
                 ...(activeMenu === menu.key
-                  ? { background: "#fff", color: "#222" }
-                  : {}),
+                  ? { background: "#fff", color: "#222", boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)" }
+                  : { background: "rgba(255,255,255,0.12)", color: "#fff" }),
               }}
             >
               {menu.name}
