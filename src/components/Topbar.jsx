@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Topbar({ activeMenu = "Sales" }) {
-  // Menu items
   const menus = [
     { name: "Home", key: "Home" },
     { name: "Sales", key: "Sales" },
@@ -13,11 +12,8 @@ export default function Topbar({ activeMenu = "Sales" }) {
     <div className="topbar">
       <div className="topbar-inner" style={{ minHeight: 90 }}>
         <div className="brand" style={{ minWidth: 0 }}>
-          <img
-            src="/assets/img/cpo-logo.png"
-            alt="Chief Productivity Officer"
-            style={{ height: 56, width: "auto", marginRight: 16 }}
-          />
+          {/* Placeholder for logo: will fix in next step */}
+          <div style={{ height: 56, width: 56, marginRight: 16 }}></div>
           <div>
             <div className="brand-title" style={{ fontSize: 28, fontWeight: 800 }}>
               Productivity OS
@@ -27,16 +23,18 @@ export default function Topbar({ activeMenu = "Sales" }) {
             </div>
           </div>
         </div>
-        <div className="tabs" style={{ marginLeft: 48, flex: 1 }}>
+        <div className="tabs" style={{ marginLeft: 48, flex: 1, display: 'flex', gap: '12px' }}>
           {menus.map((menu) => (
             <a
               key={menu.key}
               href="#"
               className={`tab${activeMenu === menu.key ? " active" : ""}`}
               style={{
-                fontSize: 18,
+                fontSize: 16,                  // smaller font
                 fontWeight: 600,
-                padding: "10px 24px",
+                padding: "6px 18px",           // less padding
+                borderRadius: 8,
+                transition: "background 0.2s",
                 ...(activeMenu === menu.key
                   ? { background: "#fff", color: "#222" }
                   : {}),
