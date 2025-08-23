@@ -1,29 +1,23 @@
 // api/ask-vp.js
-// Serverless boardroom endpoint: loads your JSONs, computes KPIs, and asks OpenAI for a board-ready answer.
-
 import fs from "fs/promises";
 import path from "path";
 import OpenAI from "openai";
 
-// ---------- Config ----------
 const MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-// Utility: respond JSON
 function json(res, status, data) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json");
   res.end(JSON.stringify(data));
 }
 
-// Resolve a safe base URL to fetch static JSON if fs read fails
 function resolveBaseUrl(req) {
   const host = req.headers["x-forwarded-host"] || req.headers.host;
   const proto = req.headers["x-forwarded-proto"] || "https";
   return `${proto}://${host}`;
 }
 
-// Try fs first (for local dev), else fall back to HTTP fetch
 async function loadJson(req, relUrl) {
   try {
     const filePath = path.join(process.cwd(), "public", relUrl.replace(/^\//, ""));
@@ -38,7 +32,6 @@ async function loadJson(req, relUrl) {
   }
 }
 
-// ----- Scoring logic (match your app) -----
 const LEVERS = [
   "Pipeline Discipline",
   "Deal Execution",
@@ -49,17 +42,14 @@ const LEVERS = [
 
 const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)));
 
-function computeScoresFromCRM(crmRow, lrsRow /* optional legacy CU */) {
+function computeScoresFromCRM(crmRow, lrsRow) {
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0;
-
   if (crmRow) {
-    // Pipeline Discipline
-    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100); // target ~3.5x
+    const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100);
     const stalledScore = (1 - crmRow.stalled_ratio) * 100;
     const newOppsScore = Math.min(100, (crmRow.new_opps_last_30 / 6) * 100);
     pd = clamp(0.4 * coverageScore + 0.3 * stalledScore + 0.3 * newOppsScore);
 
-    // Deal Execution
     const winScore = (crmRow.win_rate || 0) * 100;
     const cycleScore = Math.max(0, 100 - ((crmRow.avg_cycle_days || 30) - 30) * 2);
     const m = crmRow.meddpicc || {};
@@ -74,7 +64,6 @@ function computeScoresFromCRM(crmRow, lrsRow /* optional legacy CU */) {
         (m.competition_pct || 0)) / 8;
     de = clamp(0.4 * winScore + 0.3 * cycleScore + 0.3 * meddpiccScore);
 
-    // Value Co-Creation
     const v = crmRow.value_co || {};
     const bc = (v.business_case_rate || 0) * 100;
     const qi = (v.quantified_impact_rate || 0) * 100;
@@ -82,7 +71,6 @@ function computeScoresFromCRM(crmRow, lrsRow /* optional legacy CU */) {
     const msp = (v.mutual_success_plan_rate || 0) * 100;
     vc = clamp(0.3 * bc + 0.3 * qi + 0.2 * execMtg + 0.2 * msp);
 
-    // Data Hygiene
     const h = crmRow.hygiene || {};
     const ns = h.next_step_filled_pct || 0;
     const nm = h.next_meeting_set_pct || 0;
@@ -92,7 +80,6 @@ function computeScoresFromCRM(crmRow, lrsRow /* optional legacy CU */) {
     dh = clamp((ns + nm + sd + fc + cd) / 5);
   }
 
-  // Capability Uptake (from legacy LRS agg if present)
   if (lrsRow) {
     const comp = Math.min(100, ((lrsRow.completions || 0) / 8) * 100);
     const minutes = Math.min(100, ((lrsRow.minutes || 0) / 600) * 100);
@@ -129,7 +116,7 @@ function indexBy(arr, key = "person_id") {
   return o;
 }
 
-// ---------------- Natural-language constraint parsing ----------------
+// --------- Simple parsing helpers (as before) ----------
 function parseWindowDays(q) {
   if (!q) return null;
   const m = q.toLowerCase().match(/last\s+(\d+)\s*(day|days|week|weeks|month|months)/);
@@ -139,7 +126,7 @@ function parseWindowDays(q) {
   const unit = m[2];
   if (unit.startsWith("day")) return n;
   if (unit.startsWith("week")) return n * 7;
-  if (unit.startsWith("month")) return n * 30; // simple month ≈ 30d
+  if (unit.startsWith("month")) return n * 30;
   return null;
 }
 
@@ -151,14 +138,15 @@ function parseConstraintsFromQuestion(q, hris) {
   const managers = Array.from(new Set(hris.map(p => String(p.manager_name || "")).filter(Boolean)));
 
   let geo = null, manager = null, personId = null, personName = null;
-  // match person_id like P0xx
+
+  // explicit ID like P0xx
   const pidMatch = lower.match(/\b(p\d{3})\b/);
   if (pidMatch) {
     const pid = pidMatch[1].toUpperCase();
     if (hris.some(p => p.person_id === pid)) personId = pid;
   }
 
-  // match person name (case-insensitive, whole word)
+  // person name
   if (!personId) {
     for (const p of hris) {
       const name = String(p.name || "");
@@ -187,77 +175,124 @@ function parseConstraintsFromQuestion(q, hris) {
   }
 
   const windowDays = parseWindowDays(q);
-
-  const mode = personId ? "person"
-    : (geo || manager) ? "cohort"
-    : "org";
+  const mode = personId ? "person" : (geo || manager) ? "cohort" : "org";
 
   return { mode, windowDays, geo, manager, personId, personName };
 }
 
-// Content effectiveness: compare top vs bottom completions/minutes on impactful assets
-function contentEffectiveness(hrisPeople, crm, catalog, events, windowDays /* may be null */) {
-  const crmBy = indexBy(crm, "person_id");
+// --------- NEW: Resolve references using threadCtx and current results ----------
+function resolveReferences(question, parsed, ctx, hris, scored) {
+  const q = (question || "").toLowerCase();
+  const pronounRef = /\b(they|them|their|that person|he|she)\b/.test(q);
+  const mentionsTop = /\b(top performer|best performer|highest performer)\b/.test(q);
+  const mentionsBottom = /\b(bottom performer|lowest performer|worst performer)\b/.test(q);
 
-  // Time filter on events if windowDays requested
-  let filteredEvents = events;
+  // If user explicitly named a person this turn, let parsed handle it.
+  if (parsed.personId) {
+    return {
+      mode: "person",
+      personId: parsed.personId,
+      personName: parsed.personName || (hris.find(p => p.person_id === parsed.personId)?.name || null),
+      windowDays: parsed.windowDays ?? null,
+    };
+  }
+
+  // If they referred to top/bottom performer, pick from current scored list
+  if (mentionsTop && scored.length) {
+    const top = scored[scored.length - 1];
+    return {
+      mode: "person",
+      personId: top.person.person_id,
+      personName: top.person.name,
+      windowDays: parsed.windowDays ?? null,
+      resolvedFrom: "top-performer",
+    };
+  }
+  if (mentionsBottom && scored.length) {
+    const bottom = scored[0];
+    return {
+      mode: "person",
+      personId: bottom.person.person_id,
+      personName: bottom.person.name,
+      windowDays: parsed.windowDays ?? null,
+      resolvedFrom: "bottom-performer",
+    };
+  }
+
+  // If pronoun and we have a focus person in thread context, use it
+  if (pronounRef && ctx?.focus_person?.person_id) {
+    const pid = ctx.focus_person.person_id;
+    const p = hris.find(x => x.person_id === pid);
+    if (p) {
+      return {
+        mode: "person",
+        personId: p.person_id,
+        personName: p.name,
+        windowDays: parsed.windowDays ?? null,
+        resolvedFrom: "threadCtx-pronoun",
+      };
+    }
+  }
+
+  // Fall back to the original parsed scope (org/cohort) with any time window
+  if (parsed.mode === "cohort") {
+    return { mode: "cohort", geo: parsed.geo, manager: parsed.manager, windowDays: parsed.windowDays ?? null };
+  }
+  return { mode: "org", windowDays: parsed.windowDays ?? null };
+}
+
+// --------- Person-focused enablement summary (for “what are THEY consuming?”) ----------
+function personEnablementSummary(personId, events, catalog, windowDays /* may be null */) {
+  const catBy = Object.fromEntries(catalog.map(a => [a.asset_id, a]));
+  let filtered = events.filter(e => e.person_id === personId);
+
   if (windowDays && Number.isFinite(windowDays)) {
     const cutoff = new Date();
     cutoff.setDate(cutoff.getDate() - windowDays);
-    filteredEvents = events.filter(e => {
+    filtered = filtered.filter(e => {
       if (!e.date) return false;
       const d = new Date(e.date);
       return !isNaN(d.getTime()) && d >= cutoff;
     });
   }
 
-  // Scores -> rank -> top/bottom
-  const scored = hrisPeople.map((p) => {
-    const s = computeScoresFromCRM(crmBy[p.person_id], null);
-    return { id: p.person_id, comp: composite(s) };
-  }).sort((a, b) => a.comp - b.comp);
+  const byLever = {};
+  let completedCount = 0;
+  let minutes = 0;
+  const recent = [];
 
-  const n = scored.length;
-  const k = Math.max(1, Math.floor(n * 0.2));
-  const bottomIds = new Set(scored.slice(0, k).map(x => x.id));
-  const topIds = new Set(scored.slice(-k).map(x => x.id));
+  for (const e of filtered) {
+    const meta = catBy[e.asset_id] || { lever: e.lever, title: e.title, is_fluff: false };
+    const lever = meta.lever || e.lever || "Unknown";
+    byLever[lever] ||= { completed: 0, minutes: 0 };
+    if (e.completed) {
+      byLever[lever].completed += 1;
+      completedCount += 1;
+    }
+    minutes += (e.minutes || 0);
+    byLever[lever].minutes += (e.minutes || 0);
 
-  // Impactful assets only
-  const impactfulSet = new Set(catalog.filter(a => !a.is_fluff).map(a => a.asset_id));
-  const byAsset = {};
-  for (const e of filteredEvents) {
-    if (!impactfulSet.has(e.asset_id)) continue;
-    if (!hrisPeople.some(p => p.person_id === e.person_id)) continue; // ensure in cohort
-    const bucket = bottomIds.has(e.person_id) ? "bottom" : (topIds.has(e.person_id) ? "top" : "mid");
-    byAsset[e.asset_id] ||= { title: e.title, lever: e.lever, top: {c:0,m:0}, bottom: {c:0,m:0}, mid: {c:0,m:0} };
-    const b = byAsset[e.asset_id][bucket];
-    b.c += (e.completed ? 1 : 0);
-    b.m += (e.minutes || 0);
+    if (e.completed && e.date) {
+      recent.push({ date: e.date, title: meta.title || e.title || e.asset_id, lever });
+    }
   }
 
-  // Rank winners/laggards
-  const scores = Object.entries(byAsset).map(([asset_id, v]) => {
-    const topLift = v.top.c + v.top.m / 10;
-    const bottomLift = v.bottom.c + v.bottom.m / 10;
-    return { asset_id, title: v.title, lever: v.lever, lift: +(topLift - bottomLift).toFixed(2) };
-  });
+  recent.sort((a,b)=> new Date(b.date) - new Date(a.date));
+  const top5 = recent.slice(0,5);
 
-  const winners = [...scores].sort((a,b)=>b.lift-a.lift).slice(0,5);
-  const laggards = [...scores].sort((a,b)=>a.lift-b.lift).slice(0,5);
-
-  return { winners, laggards, cohortSizes: { top: k, bottom: k } };
+  return { completedCount, minutes, byLever, recent: top5 };
 }
 
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") {
-      return json(res, 405, { error: "Use POST with JSON body: { question }" });
+      return json(res, 405, { error: "Use POST with JSON body: { question, threadCtx? }" });
     }
-
     if (!OPENAI_API_KEY) {
       return json(res, 500, { error: "Missing OPENAI_API_KEY environment variable." });
     }
 
+    // Parse body
     const body = await (async () => {
       const chunks = [];
       for await (const c of req) chunks.push(c);
@@ -265,49 +300,56 @@ export default async function handler(req, res) {
       try { return JSON.parse(raw); } catch { return {}; }
     })();
 
-    const { question = "" } = body;
+    const { question = "", threadCtx = {} } = body;
 
-    // Load data (full org, all history by default)
+    // Load data (org-wide by default)
     const hris = await loadJson(req, "/data/hris.json");
     const crm = await loadJson(req, "/data/crm_agg.json");
-    // Optional legacy LRS aggregate (for CU): tolerate missing file
     let lrsAgg = { consumption: [] };
     try { lrsAgg = await loadJson(req, "/data/lrs.json"); } catch {}
-
     const catalog = await loadJson(req, "/data/lrs_catalog.json");
     const events = await loadJson(req, "/data/lrs_activity_events.json");
 
-    // Parse constraints from natural language
-    const parsed = parseConstraintsFromQuestion(question, hris);
-
-    // Build cohort
-    let cohort = hris;
-    if (parsed.mode === "cohort") {
-      cohort = hris
-        .filter(p => (parsed.geo ? p.geo === parsed.geo : true))
-        .filter(p => (parsed.manager ? p.manager_name === parsed.manager : true));
-    } else if (parsed.mode === "person") {
-      cohort = hris.filter(p => p.person_id === parsed.personId);
-    }
-    const visibleIds = new Set(cohort.map(p => p.person_id));
-
-    // Indexes
+    // Baseline: org-wide scored list (for “top/bottom performer” resolution)
     const crmBy = indexBy(crm, "person_id");
     const lrsBy = indexBy(lrsAgg.consumption || [], "person_id");
 
-    // Compute scores per person in cohort
-    const scored = cohort.map(p => {
-      const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
-      return { person: p, scores: s, comp: composite(s) };
-    }).sort((a,b) => a.comp - b.comp);
+    const scoredOrg = hris
+      .map(p => {
+        const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
+        return { person: p, scores: s, comp: composite(s) };
+      })
+      .sort((a,b)=> a.comp - b.comp);
 
-    // Top/Bottom cohorts
+    // Step 1: parse constraints from the current question
+    const parsed = parseConstraintsFromQuestion(question, hris);
+
+    // Step 2: resolve references using threadCtx + current scored list
+    const resolved = resolveReferences(question, parsed, threadCtx, hris, scoredOrg);
+
+    // Build cohort for this turn
+    let cohort = hris;
+    if (resolved.mode === "cohort") {
+      cohort = hris
+        .filter(p => (resolved.geo ? p.geo === resolved.geo : true))
+        .filter(p => (resolved.manager ? p.manager_name === resolved.manager : true));
+    } else if (resolved.mode === "person") {
+      cohort = hris.filter(p => p.person_id === resolved.personId);
+    }
+
+    // Re-score within this cohort (used for top/bottom within cohort if asked)
+    const scored = cohort
+      .map(p => {
+        const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
+        return { person: p, scores: s, comp: composite(s) };
+      })
+      .sort((a,b)=> a.comp - b.comp);
+
     const n = scored.length || 1;
     const k = Math.max(1, Math.floor(n * 0.2));
     const bottom = scored.slice(0, k);
     const top = scored.slice(-k);
 
-    // Averages for the board
     const avg = (arr) => Math.round(arr.reduce((s,v)=>s+v,0) / Math.max(1, arr.length));
     const leverAvg = (arr, lever) => avg(arr.map(x => x.scores[lever] || 0));
     const leverSummary = Object.fromEntries(
@@ -318,30 +360,37 @@ export default async function handler(req, res) {
         gap_top_vs_bottom: Math.max(0, leverAvg(top, l) - leverAvg(bottom, l))
       }])
     );
-
-    // Overall composite summary
     const compAll = avg(scored.map(x => x.comp));
     const compTop = avg(top.map(x => x.comp));
     const compBottom = avg(bottom.map(x => x.comp));
 
-    // Enablement content effectiveness (respect parsed.windowDays if specified; else all history)
-    const eff = contentEffectiveness(cohort, crm, catalog, events, parsed.windowDays);
+    // If this turn is person-focused, pre-compute their enablement summary for the model
+    let personFocus = null;
+    if (resolved.mode === "person" && resolved.personId) {
+      const p = hris.find(x => x.person_id === resolved.personId);
+      if (p) {
+        const en = personEnablementSummary(resolved.personId, events, catalog, resolved.windowDays);
+        personFocus = {
+          person_id: p.person_id,
+          name: p.name,
+          manager: p.manager_name,
+          geo: p.geo,
+          role: p.role_type,
+          composite: scored.find(s => s.person.person_id === p.person_id)?.comp || null,
+          enablement: en,
+        };
+      }
+    }
 
-    // Build a compact “brief” for the model
+    // Build brief for the model
     const brief = {
-      parsed_constraints: {
-        scope: parsed.mode,           // "org" | "cohort" | "person"
-        geo: parsed.geo || null,
-        manager: parsed.manager || null,
-        person_id: parsed.personId || null,
-        person_name: parsed.personName || null,
-        window_days: parsed.windowDays || null,  // null = all history
-        cohort_size: n
-      },
-      composites: { all: compAll, top: compTop, bottom: compBottom, cohort_bucket_size: k },
+      resolved_scope: resolved,
+      cohort_size: n,
+      composites: { all: compAll, top: compTop, bottom: compBottom, bucket_size: k },
       levers: leverSummary,
-      content_effectiveness: eff,
-      reps_sample: scored.slice(0, 10).map(r => ({
+      person_focus: personFocus, // null unless the turn is about a single person
+      // small sample to cite names if needed
+      sample: scored.slice(0, 10).map(r => ({
         person_id: r.person.person_id,
         name: r.person.name,
         manager: r.person.manager_name,
@@ -351,25 +400,42 @@ export default async function handler(req, res) {
       }))
     };
 
-    // Call OpenAI
+    // Maintain/return a tiny thread context so next turn can say “they”
+    const newCtx = {
+      ...threadCtx,
+      // If this question asked about a person (explicitly or via “top performer”), remember them
+      ...(personFocus
+        ? { focus_person: { person_id: personFocus.person_id, name: personFocus.name } }
+        : threadCtx?.focus_person
+        ? { focus_person: threadCtx.focus_person }
+        : {}),
+      // Also handy: last computed top/bottom in this scope
+      last_top: top.length ? { person_id: top[top.length - 1].person.person_id, name: top[top.length - 1].person.name } : null,
+      last_bottom: bottom.length ? { person_id: bottom[0].person.person_id, name: bottom[0].person.name } : null,
+    };
+
+    // Ask OpenAI (executive style)
     const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
     const system = `
-You are the VP of Enablement in a board meeting.
-Speak in concise, executive language. Structure answers as:
+You are a boardroom-level VP of Enablement with Ph.D.-level mastery in instructional design, adult education, finance, program management, SaaS, certifications, and manufacturing. 
+You possess elite analytical abilities, immediate access to best-in-class data, and deliver concise, actionable recommendations. 
+Your insight spotlights root causes, gaps, risks, and opportunities with relentless precision. Every response translates complex challenges into targeted actions, maximizing measurable business impact. 
+Trusted by CEOs and boards, your guidance is incisive and strategic, driving continuous optimization of talent, performance, COI, and ROI in dynamic enterprise environments.
 • Headline (1 line)
 • 2–5 bullet proof points with numbers
-• “So what” (impact/risk/decision)
-If helpful, give a short “Do next” list (max 3 items).
-Use ONLY the data I give you. Do not invent.
-If constraints are parsed, honor them. If none, treat as org-wide and all history.
-    `.trim();
+• “Brutal Truth” (impact/risk/decision)
+Optionally: “Do next” (max 3, only if asked)
+Use ONLY the data you have access to. Do not invent. Or Hallucinate.
+Honor the resolved_scope: if it's a single person, talk about THAT person specifically.
+If person_focus.enablement is present, cite the most relevant lever(s)/assets.
+`.trim();
 
     const user = `
-Question: ${question || "Summarize enablement, productivity, and performance for this org."}
+Question: ${question || "(no question provided)"}
 
 DATA BRIEF:
 ${JSON.stringify(brief, null, 2)}
-    `.trim();
+`.trim();
 
     const completion = await openai.chat.completions.create({
       model: MODEL,
@@ -381,14 +447,13 @@ ${JSON.stringify(brief, null, 2)}
     });
 
     const answer = completion.choices?.[0]?.message?.content || "No answer generated.";
+
     return json(res, 200, {
       ok: true,
       model: MODEL,
       answer,
-      debug: {
-        parsed_constraints: brief.parsed_constraints,
-        counts: { people: n, top: k, bottom: k }
-      }
+      ctx: newCtx, // <-- return updated context so the next question can say “they”
+      debug: { resolved_scope: resolved, counts: { people: n, top: k, bottom: k } }
     });
 
   } catch (err) {
