@@ -405,7 +405,7 @@ export default function App() {
         </div>
 
         {/* --- FULL WIDTH VP ENABLEMENT PANEL --- */}
-        <div className="mt-6 card">
+        <div className="card">
           <VpEnablement geo={geo} manager={manager} personId={personId} />
         </div>
       </div>
