@@ -13,7 +13,7 @@ export default function VpEnablement() {
     {
       role: "assistant",
       content:
-        "Ask me anything about Sales Productivity. I default to the entire org and all available history unless you specify a geo/manager/person/time in your question.",
+        "Ask me anything about Productivity.",
     },
   ]);
   const [threadCtx, setThreadCtx] = useState({}); // <-- NEW: sticky context for pronouns/entities
@@ -75,9 +75,6 @@ export default function VpEnablement() {
   }
 
   const suggestions = [
-    "Who is our top performer right now?",
-    "What enablement are THEY consuming?",
-    "Where is the biggest execution gap and why?",
     "Which assets correlate most with top performance?",
     "What should bottom performers do first?",
   ];
