@@ -18,7 +18,6 @@ function json(res, status, data) {
 
 // Resolve a safe base URL to fetch static JSON if fs read fails
 function resolveBaseUrl(req) {
-  // Vercel passes x-forwarded-host and x-forwarded-proto
   const host = req.headers["x-forwarded-host"] || req.headers.host;
   const proto = req.headers["x-forwarded-proto"] || "https";
   return `${proto}://${host}`;
@@ -26,13 +25,11 @@ function resolveBaseUrl(req) {
 
 // Try fs first (for local dev), else fall back to HTTP fetch
 async function loadJson(req, relUrl) {
-  // Attempt to read from the repo's public directory at runtime
   try {
     const filePath = path.join(process.cwd(), "public", relUrl.replace(/^\//, ""));
     const txt = await fs.readFile(filePath, "utf8");
     return JSON.parse(txt);
   } catch {
-    // Fallback: fetch from deployed static URL
     const base = resolveBaseUrl(req);
     const url = `${base}${relUrl}`;
     const r = await fetch(url, { cache: "no-store" });
@@ -111,7 +108,7 @@ function computeScoresFromCRM(crmRow, lrsRow /* optional legacy CU */) {
     "Pipeline Discipline": pd,
     "Deal Execution": de,
     "Value Co-Creation": vc,
-    "Capability Uptake": cu, // if not present from LRS agg, stays 0 (UI shows overlay separately anyway)
+    "Capability Uptake": cu,
     "Data Hygiene": dh,
   };
 }
@@ -132,12 +129,90 @@ function indexBy(arr, key = "person_id") {
   return o;
 }
 
+// ---------------- Natural-language constraint parsing ----------------
+function parseWindowDays(q) {
+  if (!q) return null;
+  const m = q.toLowerCase().match(/last\s+(\d+)\s*(day|days|week|weeks|month|months)/);
+  if (!m) return null;
+  const n = parseInt(m[1], 10);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  const unit = m[2];
+  if (unit.startsWith("day")) return n;
+  if (unit.startsWith("week")) return n * 7;
+  if (unit.startsWith("month")) return n * 30; // simple month ≈ 30d
+  return null;
+}
+
+function parseConstraintsFromQuestion(q, hris) {
+  if (!q) return { mode: "org", windowDays: null, geo: null, manager: null, personId: null, personName: null };
+  const lower = q.toLowerCase();
+
+  const geos = Array.from(new Set(hris.map(p => String(p.geo || "")).filter(Boolean)));
+  const managers = Array.from(new Set(hris.map(p => String(p.manager_name || "")).filter(Boolean)));
+
+  let geo = null, manager = null, personId = null, personName = null;
+  // match person_id like P0xx
+  const pidMatch = lower.match(/\b(p\d{3})\b/);
+  if (pidMatch) {
+    const pid = pidMatch[1].toUpperCase();
+    if (hris.some(p => p.person_id === pid)) personId = pid;
+  }
+
+  // match person name (case-insensitive, whole word)
+  if (!personId) {
+    for (const p of hris) {
+      const name = String(p.name || "");
+      if (!name) continue;
+      const re = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
+      if (re.test(q)) {
+        personId = p.person_id;
+        personName = p.name;
+        break;
+      }
+    }
+  }
+
+  // geo
+  for (const g of geos) {
+    if (!g) continue;
+    const re = new RegExp(`\\b${String(g).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
+    if (re.test(q)) { geo = g; break; }
+  }
+
+  // manager
+  for (const m of managers) {
+    if (!m) continue;
+    const re = new RegExp(`\\b${String(m).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
+    if (re.test(q)) { manager = m; break; }
+  }
+
+  const windowDays = parseWindowDays(q);
+
+  const mode = personId ? "person"
+    : (geo || manager) ? "cohort"
+    : "org";
+
+  return { mode, windowDays, geo, manager, personId, personName };
+}
+
 // Content effectiveness: compare top vs bottom completions/minutes on impactful assets
-function contentEffectiveness(hris, crm, catalog, events) {
+function contentEffectiveness(hrisPeople, crm, catalog, events, windowDays /* may be null */) {
   const crmBy = indexBy(crm, "person_id");
 
+  // Time filter on events if windowDays requested
+  let filteredEvents = events;
+  if (windowDays && Number.isFinite(windowDays)) {
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - windowDays);
+    filteredEvents = events.filter(e => {
+      if (!e.date) return false;
+      const d = new Date(e.date);
+      return !isNaN(d.getTime()) && d >= cutoff;
+    });
+  }
+
   // Scores -> rank -> top/bottom
-  const scored = hris.map((p) => {
+  const scored = hrisPeople.map((p) => {
     const s = computeScoresFromCRM(crmBy[p.person_id], null);
     return { id: p.person_id, comp: composite(s) };
   }).sort((a, b) => a.comp - b.comp);
@@ -150,8 +225,9 @@ function contentEffectiveness(hris, crm, catalog, events) {
   // Impactful assets only
   const impactfulSet = new Set(catalog.filter(a => !a.is_fluff).map(a => a.asset_id));
   const byAsset = {};
-  for (const e of events) {
+  for (const e of filteredEvents) {
     if (!impactfulSet.has(e.asset_id)) continue;
+    if (!hrisPeople.some(p => p.person_id === e.person_id)) continue; // ensure in cohort
     const bucket = bottomIds.has(e.person_id) ? "bottom" : (topIds.has(e.person_id) ? "top" : "mid");
     byAsset[e.asset_id] ||= { title: e.title, lever: e.lever, top: {c:0,m:0}, bottom: {c:0,m:0}, mid: {c:0,m:0} };
     const b = byAsset[e.asset_id][bucket];
@@ -161,14 +237,13 @@ function contentEffectiveness(hris, crm, catalog, events) {
 
   // Rank winners/laggards
   const scores = Object.entries(byAsset).map(([asset_id, v]) => {
-    // simple lift: (top completions + minutes) - (bottom completions + minutes/10)
     const topLift = v.top.c + v.top.m / 10;
     const bottomLift = v.bottom.c + v.bottom.m / 10;
     return { asset_id, title: v.title, lever: v.lever, lift: +(topLift - bottomLift).toFixed(2) };
   });
 
-  const winners = scores.sort((a,b)=>b.lift-a.lift).slice(0,5);
-  const laggards = scores.sort((a,b)=>a.lift-b.lift).slice(0,5);
+  const winners = [...scores].sort((a,b)=>b.lift-a.lift).slice(0,5);
+  const laggards = [...scores].sort((a,b)=>a.lift-b.lift).slice(0,5);
 
   return { winners, laggards, cohortSizes: { top: k, bottom: k } };
 }
@@ -176,7 +251,7 @@ function contentEffectiveness(hris, crm, catalog, events) {
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") {
-      return json(res, 405, { error: "Use POST with JSON body: { question, geo, manager, personId }" });
+      return json(res, 405, { error: "Use POST with JSON body: { question }" });
     }
 
     if (!OPENAI_API_KEY) {
@@ -190,9 +265,9 @@ export default async function handler(req, res) {
       try { return JSON.parse(raw); } catch { return {}; }
     })();
 
-    const { question = "", geo = "All", manager = "All", personId = "All" } = body;
+    const { question = "" } = body;
 
-    // Load data
+    // Load data (full org, all history by default)
     const hris = await loadJson(req, "/data/hris.json");
     const crm = await loadJson(req, "/data/crm_agg.json");
     // Optional legacy LRS aggregate (for CU): tolerate missing file
@@ -202,20 +277,26 @@ export default async function handler(req, res) {
     const catalog = await loadJson(req, "/data/lrs_catalog.json");
     const events = await loadJson(req, "/data/lrs_activity_events.json");
 
-    // Filters (Geo / Manager / Person)
-    const people = hris
-      .filter(p => geo === "All" || p.geo === geo)
-      .filter(p => manager === "All" || p.manager_name === manager);
+    // Parse constraints from natural language
+    const parsed = parseConstraintsFromQuestion(question, hris);
 
-    const visiblePeople = personId === "All" ? people : people.filter(p => p.person_id === personId);
-    const visibleIds = new Set(visiblePeople.map(p => p.person_id));
+    // Build cohort
+    let cohort = hris;
+    if (parsed.mode === "cohort") {
+      cohort = hris
+        .filter(p => (parsed.geo ? p.geo === parsed.geo : true))
+        .filter(p => (parsed.manager ? p.manager_name === parsed.manager : true));
+    } else if (parsed.mode === "person") {
+      cohort = hris.filter(p => p.person_id === parsed.personId);
+    }
+    const visibleIds = new Set(cohort.map(p => p.person_id));
 
     // Indexes
     const crmBy = indexBy(crm, "person_id");
     const lrsBy = indexBy(lrsAgg.consumption || [], "person_id");
 
-    // Compute scores per visible person
-    const scored = visiblePeople.map(p => {
+    // Compute scores per person in cohort
+    const scored = cohort.map(p => {
       const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
       return { person: p, scores: s, comp: composite(s) };
     }).sort((a,b) => a.comp - b.comp);
@@ -243,17 +324,24 @@ export default async function handler(req, res) {
     const compTop = avg(top.map(x => x.comp));
     const compBottom = avg(bottom.map(x => x.comp));
 
-    // Enablement content effectiveness
-    const eff = contentEffectiveness(visiblePeople, crm, catalog, events);
+    // Enablement content effectiveness (respect parsed.windowDays if specified; else all history)
+    const eff = contentEffectiveness(cohort, crm, catalog, events, parsed.windowDays);
 
-    // Build a compact “brief” for the model (privacy-conscious)
+    // Build a compact “brief” for the model
     const brief = {
-      filters: { geo, manager, personId, visible_count: n },
-      composites: { all: compAll, top: compTop, bottom: compBottom, cohort_size: k },
+      parsed_constraints: {
+        scope: parsed.mode,           // "org" | "cohort" | "person"
+        geo: parsed.geo || null,
+        manager: parsed.manager || null,
+        person_id: parsed.personId || null,
+        person_name: parsed.personName || null,
+        window_days: parsed.windowDays || null,  // null = all history
+        cohort_size: n
+      },
+      composites: { all: compAll, top: compTop, bottom: compBottom, cohort_bucket_size: k },
       levers: leverSummary,
       content_effectiveness: eff,
-      // anonymize names by default, but include person ids & managers (PII is OK per your confirmation)
-      reps: scored.slice(0, 10).map(r => ({
+      reps_sample: scored.slice(0, 10).map(r => ({
         person_id: r.person.person_id,
         name: r.person.name,
         manager: r.person.manager_name,
@@ -273,12 +361,13 @@ Speak in concise, executive language. Structure answers as:
 • “So what” (impact/risk/decision)
 If helpful, give a short “Do next” list (max 3 items).
 Use ONLY the data I give you. Do not invent.
+If constraints are parsed, honor them. If none, treat as org-wide and all history.
     `.trim();
 
     const user = `
-Question: ${question || "Summarize enablement, productivity, and performance for this view."}
+Question: ${question || "Summarize enablement, productivity, and performance for this org."}
 
-DATA BRIEF (last 90 days):
+DATA BRIEF:
 ${JSON.stringify(brief, null, 2)}
     `.trim();
 
@@ -296,7 +385,10 @@ ${JSON.stringify(brief, null, 2)}
       ok: true,
       model: MODEL,
       answer,
-      debug: { counts: { people: n, top: k, bottom: k }, filters: { geo, manager, personId } }
+      debug: {
+        parsed_constraints: brief.parsed_constraints,
+        counts: { people: n, top: k, bottom: k }
+      }
     });
 
   } catch (err) {
@@ -304,5 +396,3 @@ ${JSON.stringify(brief, null, 2)}
     return json(res, 500, { error: String(err?.message || err) });
   }
 }
-
-// Vercel default export compatibility
