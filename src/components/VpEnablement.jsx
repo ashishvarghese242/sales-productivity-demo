@@ -2,11 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 /**
- * VP Enablement panel
- * - DEFAULTS: Entire org, all available history (no cap) unless user specifies constraints in the question.
- * - Ignores page filters (geo/manager/person) entirely.
- * - Sends only { question } to /api/ask-vp.
- * - Renders answers with markdown in chat-style bubbles.
+ * VP Enablement panel with chat-like UI + markdown rendering.
+ * NOW: maintains a lightweight conversation context (threadCtx)
+ *      so follow-ups like “what are THEY consuming?” resolve
+ *      to the last referenced person (e.g., top performer).
  */
 export default function VpEnablement() {
   const [question, setQuestion] = useState("");
@@ -14,35 +13,31 @@ export default function VpEnablement() {
     {
       role: "assistant",
       content:
-        "I’m your VP of Enablement. I default to the **entire org** and **all available history** unless you specify constraints in your question.\n\n" +
-        "**Examples you can ask:**\n" +
-        "- *Top 10 reps by composite score and why?*\n" +
-        "- *Compare Top vs Bottom across the 5 levers.*\n" +
-        "- *What enablement moved the needle the most? What didn’t?*\n" +
-        "- *Focus on LATAM last 60 days—where are the gaps?*\n" +
-        "- *List bottom performers and what they should do first.*",
+        "Ask me anything about Sales Productivity. I default to the entire org and all available history unless you specify a geo/manager/person/time in your question.",
     },
   ]);
+  const [threadCtx, setThreadCtx] = useState({}); // <-- NEW: sticky context for pronouns/entities
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
 
-  // Smooth scroll to the latest message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [conversation, loading]);
 
   async function askVpEnablement(q) {
-    if (!q?.trim()) return;
-    const userMsg = { role: "user", content: q.trim() };
-    setConversation((prev) => [...prev, userMsg]);
+    const clean = (q || "").trim();
+    if (!clean) return;
+
+    // show user message
+    setConversation((prev) => [...prev, { role: "user", content: clean }]);
     setLoading(true);
 
     try {
       const res = await fetch("/api/ask-vp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        // IMPORTANT: no filters sent; API will parse constraints from natural language if present
-        body: JSON.stringify({ question: q.trim() }),
+        // IMPORTANT: send threadCtx so backend can resolve “they / top performer”
+        body: JSON.stringify({ question: clean, threadCtx }),
       });
 
       if (!res.ok) {
@@ -51,14 +46,18 @@ export default function VpEnablement() {
       }
       const data = await res.json();
 
-      // Expecting { answer: string } from your endpoint
       const answer =
         (data && (data.answer || data.text || data.content)) ||
         "No answer returned.";
+
+      // show assistant message
       setConversation((prev) => [
         ...prev,
         { role: "assistant", content: answer },
       ]);
+
+      // store updated context (if returned)
+      if (data && data.ctx) setThreadCtx(data.ctx);
     } catch (err) {
       setConversation((prev) => [
         ...prev,
@@ -75,23 +74,23 @@ export default function VpEnablement() {
     }
   }
 
-  // Suggested follow-ups (kept simple; you can tune later)
   const suggestions = [
+    "Who is our top performer right now?",
+    "What enablement are THEY consuming?",
     "Where is the biggest execution gap and why?",
-    "Which enablement assets correlate most with top performance?",
-    "Who are bottom performers and what should they do first?",
-    "How do Top vs Bottom differ across the 5 levers?",
-    "If I invest in enablement, where’s the highest ROI?",
+    "Which assets correlate most with top performance?",
+    "What should bottom performers do first?",
   ];
 
   return (
     <div className="card w-full">
       <div className="flex items-center justify-between mb-3">
         <h2 className="font-semibold">VP Enablement</h2>
-        {/* Removed filters summary — chat ignores page filters by design */}
+        {/* No page-filter binding by default */}
+        <div className="text-xs text-slate-500">Org-wide • All history</div>
       </div>
 
-      {/* Conversation area */}
+      {/* Conversation */}
       <div className="h-80 overflow-y-auto space-y-4 pr-1">
         {conversation.map((msg, i) => {
           const isUser = msg.role === "user";
@@ -107,9 +106,7 @@ export default function VpEnablement() {
                 {isUser ? (
                   <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
                 ) : (
-                  <ReactMarkdown
-                    className="prose max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:text-indigo-600"
-                  >
+                  <ReactMarkdown className="prose max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:text-indigo-600">
                     {msg.content}
                   </ReactMarkdown>
                 )}
@@ -127,7 +124,7 @@ export default function VpEnablement() {
         <div ref={bottomRef} />
       </div>
 
-      {/* Suggestions */}
+      {/* Quick suggestions */}
       <div className="mt-4 flex flex-wrap gap-2">
         {suggestions.map((s, idx) => (
           <button
