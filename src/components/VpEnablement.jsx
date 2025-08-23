@@ -2,18 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 /**
- * VP Enablement panel (Step 1: ChatGPT-like rendering only)
- * - Keeps your /api/ask-vp endpoint
- * - Renders answers with markdown (headings/lists/bold/etc.)
- * - Chat bubbles UI + simple suggestions
+ * VP Enablement panel
+ * - DEFAULTS: Entire org, all available history (no cap) unless user specifies constraints in the question.
+ * - Ignores page filters (geo/manager/person) entirely.
+ * - Sends only { question } to /api/ask-vp.
+ * - Renders answers with markdown in chat-style bubbles.
  */
-export default function VpEnablement({ geo = "All", manager = "All", personId = "All" }) {
+export default function VpEnablement() {
   const [question, setQuestion] = useState("");
   const [conversation, setConversation] = useState([
     {
       role: "assistant",
       content:
-        "Ask me anything about Sales Productivity. I’ll use your current filters (Geo, Manager, Person) and last 90 days by default.",
+        "I’m your VP of Enablement. I default to the **entire org** and **all available history** unless you specify constraints in your question.\n\n" +
+        "**Examples you can ask:**\n" +
+        "- *Top 10 reps by composite score and why?*\n" +
+        "- *Compare Top vs Bottom across the 5 levers.*\n" +
+        "- *What enablement moved the needle the most? What didn’t?*\n" +
+        "- *Focus on LATAM last 60 days—where are the gaps?*\n" +
+        "- *List bottom performers and what they should do first.*",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -34,10 +41,8 @@ export default function VpEnablement({ geo = "All", manager = "All", personId = 
       const res = await fetch("/api/ask-vp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question: q.trim(),
-          filters: { geo, manager, personId, windowDays: 90 },
-        }),
+        // IMPORTANT: no filters sent; API will parse constraints from natural language if present
+        body: JSON.stringify({ question: q.trim() }),
       });
 
       if (!res.ok) {
@@ -47,8 +52,13 @@ export default function VpEnablement({ geo = "All", manager = "All", personId = 
       const data = await res.json();
 
       // Expecting { answer: string } from your endpoint
-      const answer = (data && (data.answer || data.text || data.content)) || "No answer returned.";
-      setConversation((prev) => [...prev, { role: "assistant", content: answer }]);
+      const answer =
+        (data && (data.answer || data.text || data.content)) ||
+        "No answer returned.";
+      setConversation((prev) => [
+        ...prev,
+        { role: "assistant", content: answer },
+      ]);
     } catch (err) {
       setConversation((prev) => [
         ...prev,
@@ -65,7 +75,7 @@ export default function VpEnablement({ geo = "All", manager = "All", personId = 
     }
   }
 
-  // Suggested follow-ups (simple + relevant to your domain)
+  // Suggested follow-ups (kept simple; you can tune later)
   const suggestions = [
     "Where is the biggest execution gap and why?",
     "Which enablement assets correlate most with top performance?",
@@ -78,10 +88,7 @@ export default function VpEnablement({ geo = "All", manager = "All", personId = 
     <div className="card w-full">
       <div className="flex items-center justify-between mb-3">
         <h2 className="font-semibold">VP Enablement</h2>
-        <div className="text-xs text-slate-500">
-          Filters → Geo: <strong>{geo}</strong> · Manager: <strong>{manager}</strong> · Person:{" "}
-          <strong>{personId}</strong>
-        </div>
+        {/* Removed filters summary — chat ignores page filters by design */}
       </div>
 
       {/* Conversation area */}
@@ -100,7 +107,6 @@ export default function VpEnablement({ geo = "All", manager = "All", personId = 
                 {isUser ? (
                   <p className="whitespace-pre-wrap leading-relaxed">{msg.content}</p>
                 ) : (
-                  // Assistant: render markdown like ChatGPT
                   <ReactMarkdown
                     className="prose max-w-none prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:my-1 prose-strong:text-indigo-600"
                   >
