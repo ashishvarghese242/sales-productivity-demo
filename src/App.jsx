@@ -405,9 +405,9 @@ export default function App() {
         </div>
 
         {/* --- FULL WIDTH VP ENABLEMENT PANEL --- */}
-        <div className="card">
+       
           <VpEnablement geo={geo} manager={manager} personId={personId} />
-        </div>
+      
       </div>
     </>
   )
