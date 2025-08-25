@@ -376,32 +376,23 @@ export default function App() {
             </div>
 
             <div className="card">
-              <h3 className="font-semibold mb-2">{personId === 'All' ? 'Aggregate (All)' : 'Person'}</h3>
-              <div className="text-sm space-y-1">
-                {personId === 'All' ? (
-                  <>
-                    <div>People in view: <strong>{filteredPeople.length}</strong></div>
-                    <div>Geo filter: {geo}</div>
-                    <div>Manager filter: {manager}</div>
-                    <div className="pt-2">Avg Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
-                  </>
-                ) : (
-                  (() => {
-                    const s = selected
-                    if (!s) return null
-                    return (
-                      <>
-                        <div><strong>{s.name}</strong> — {s.title}</div>
-                        <div>Manager: {s.manager_name}</div>
-                        <div>Geo: {s.geo}</div>
-                        <div>Role: {s.role_type}</div>
-                        <div className="pt-2">Composite: <span className="font-semibold">{selectedComposite}</span>/100</div>
-                      </>
-                    )
-                  })()
-                )}
-              </div>
-            </div>
+              <div className="text-sm space-y-2">
+  <p className="text-slate-700 leading-relaxed">
+    {summaryLoading
+      ? "Summarizing selection…"
+      : (summary || "—")}
+  </p>
+
+  <div className="text-xs text-slate-500 pt-1">
+    {personId === "All"
+      ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People: <strong>{filteredPeople.length}</strong></>
+      : (() => {
+          const s = selected; if (!s) return null;
+          return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
+        })()
+    }
+  </div>
+</div>
           </div>
 
           {/* RIGHT: Radar */}
