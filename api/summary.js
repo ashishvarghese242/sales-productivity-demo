@@ -301,7 +301,7 @@ Write a crisp 2–3 sentence summary:
 1) Say what the selection is (person or cohort) and the *story* (e.g., strengths/gaps).
 2) Compare performance vs enablement only if it supports the story (alignment or misalignment).
 3) End with 1 clear recommended action for impact (coach/invest/remove/redirect), not a list.
-Do not restate too many numbers; pick only those that support the narrative. Recomend using the chat below for more insigts.
+Do not restate too many numbers; pick only those that support the narrative. Recommend using the chat below for more insigts.
 `.trim();
 
     const user = `
