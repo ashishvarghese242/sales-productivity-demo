@@ -202,24 +202,36 @@ export default function App() {
   const [summary, setSummary] = useState("");
   const [summaryLoading, setSummaryLoading] = useState(false);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setSummaryLoading(true);
-        const res = await fetch("/api/summary", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ geo, manager, personId }),
-        });
-        const data = await res.json();
-        setSummary(data.summary || "");
-      } catch {
-        setSummary("");
-      } finally {
-        setSummaryLoading(false);
-      }
-    })();
-  }, [geo, manager, personId]);
+  // fetch whenever selection OR toggles change
+useEffect(() => {
+  (async () => {
+    try {
+      setSummaryLoading(true);
+      const res = await fetch("/api/summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          geo,
+          manager,
+          personId,
+          // let the API know what's visible (it's okay if the API ignores these today)
+          showPerformance,
+          showTop,
+          showBottom,
+          showLRS
+        }),
+      });
+      const data = await res.json();
+      setSummary(data.summary || "");
+    } catch {
+      setSummary("");
+    } finally {
+      setSummaryLoading(false);
+    }
+  })();
+  // 👇 make sure all toggles are listed here so the effect re-runs
+}, [geo, manager, personId, showPerformance, showTop, showBottom, showLRS]);
+
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
