@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useEffect, useMemo, useState } from 'react'
 import Topbar from './components/Topbar.jsx'
 import RadarPentagon from './components/RadarPentagon.jsx'
@@ -198,7 +199,7 @@ export default function App() {
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
 
-   const [summary, setSummary] = useState("");
+  const [summary, setSummary] = useState("");
   const [summaryLoading, setSummaryLoading] = useState(false);
 
   useEffect(() => {
@@ -220,7 +221,6 @@ export default function App() {
     })();
   }, [geo, manager, personId]);
 
-  
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
 
@@ -377,22 +377,23 @@ export default function App() {
 
             <div className="card">
               <div className="text-sm space-y-2">
-  <p className="text-slate-700 leading-relaxed">
-    {summaryLoading
-      ? "Summarizing selection…"
-      : (summary || "—")}
-  </p>
+                <p className="text-slate-700 leading-relaxed">
+                  {summaryLoading
+                    ? "Summarizing selection…"
+                    : (summary || "—")}
+                </p>
 
-  <div className="text-xs text-slate-500 pt-1">
-    {personId === "All"
-      ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People: <strong>{filteredPeople.length}</strong></>
-      : (() => {
-          const s = selected; if (!s) return null;
-          return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
-        })()
-    }
-  </div>
-</div>
+                <div className="text-xs text-slate-500 pt-1">
+                  {personId === "All"
+                    ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People: <strong>{filteredPeople.length}</strong></>
+                    : (() => {
+                        const s = selected; if (!s) return null;
+                        return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
+                      })()
+                  }
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* RIGHT: Radar */}
