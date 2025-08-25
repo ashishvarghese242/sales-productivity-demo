@@ -33,6 +33,26 @@ function useData() {
   return { hris, crm, lrs, lrsCatalog, lrsEvents }
 }
 
+// fetch whenever selection changes
+useEffect(() => {
+  (async () => {
+    try {
+      setSummaryLoading(true);
+      const res = await fetch("/api/summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ geo, manager, personId }),
+      });
+      const data = await res.json();
+      setSummary(data.summary || "");
+    } catch {
+      setSummary("");
+    } finally {
+      setSummaryLoading(false);
+    }
+  })();
+}, [geo, manager, personId]);
+
 // ------------------------------ Scoring logic ------------------------------
 function computeScores(personId, crmRow, lrsRow) {
   const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)))
@@ -197,6 +217,10 @@ export default function App() {
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
 
+  const [summary, setSummary] = useState("");
+  const [summaryLoading, setSummaryLoading] = useState(false);
+
+  
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
 
