@@ -398,7 +398,7 @@ export default function App() {
                     Adjust the filters above to focus on a person, team, or cohort. Then generate a quick summary of performance and enablement alignment.
                   </p>
                   <button
-                    className="w-full rounded-lg bg-slate-900 hover:bg-slate-800 text-white px-4 py-2"
+                    className="w-full rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-4 py-2"
                     onClick={runSummary}
                   >
                     Analyze
@@ -432,7 +432,7 @@ export default function App() {
                     <div className="flex items-center gap-3 p-2 rounded-md bg-slate-50 border border-slate-200">
                       <span className="text-xs text-slate-600">Parameters changed.</span>
                       <button
-                        className="ml-auto rounded-md bg-slate-900 hover:bg-slate-800 text-white text-sm px-3 py-1.5"
+                        className="ml-auto rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-1.5"
                         onClick={runSummary}
                       >
                         Re-analyze
