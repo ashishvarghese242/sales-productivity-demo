@@ -258,7 +258,6 @@ export default async function handler(req, res) {
     );
 
     // Simple signals of alignment/misalignment per lever
-    // (e.g., low performance & low enablement => invest; low performance & high enablement => ineffective content/coach)
     const leverSignals = {};
     for (const lever of LEVERS) {
       const perf = perfAvgByLever[lever] || 0;
@@ -268,7 +267,6 @@ export default async function handler(req, res) {
       if (perf < 65 && enab < 30) signal = "under-enabled";
       else if (perf < 65 && enab >= 30) signal = "training-ineffective-or-misaligned";
       else if (perf >= 75 && enab >= 30) signal = "working";
-      // else stays neutral
 
       leverSignals[lever] = { perf, enab, signal };
     }
@@ -282,7 +280,7 @@ export default async function handler(req, res) {
       who = `${geo !== "All" ? geo : "All geos"}${manager !== "All" ? ` · ${manager}` : ""}`.replace(/^All geos · /, "");
     }
 
-    // Build a tight brief for the model (no raw PII dump beyond what we show in UI)
+    // Build a tight brief for the model
     const brief = {
       selection: { label: who, counts: { people: n, top_k: k } },
       composite: { all: compAll, top: compTop, bottom: compBottom },
@@ -301,7 +299,7 @@ Write a crisp 2–3 sentence summary:
 1) Say what the selection is (person or cohort) and the *story* (e.g., strengths/gaps).
 2) Compare performance vs enablement only if it supports the story (alignment or misalignment).
 3) End with 1 clear recommended action for impact (coach/invest/remove/redirect), not a list.
-Do not restate too many numbers; pick only those that support the narrative. Recommend using the chat below for more insigts.
+Do NOT invent. Do not restate too many numbers; pick only those that support the narrative. Recommend using the chat below for more insigts.
 `.trim();
 
     const user = `
