@@ -197,6 +197,11 @@ export default function App() {
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
 
+  // --- Executive Summary state (button-triggered) ---
+  const [summary, setSummary] = useState("")
+  const [summaryLoading, setSummaryLoading] = useState(false)
+  const [isDirty, setIsDirty] = useState(false) // becomes true when filters/toggles change after last run
+
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
 
@@ -269,16 +274,31 @@ export default function App() {
     return Math.round(comp || 0)
   }, [selectedScores])
 
-  // ---------- CHART DATA: force numbers (fix polygon vs tooltip mismatch) ----------
-  const chartData = useMemo(() => {
-    return LEVERS.map((l) => ({
-      lever: l,
-      selectedScore: Number.isFinite(+selectedScores[l]) ? +selectedScores[l] : 0,
-      topAvg: topAvgScores && Number.isFinite(+topAvgScores[l]) ? +topAvgScores[l] : undefined,
-      bottomAvg: bottomAvgScores && Number.isFinite(+bottomAvgScores[l]) ? +bottomAvgScores[l] : undefined,
-      lrsOverlay: lrsOverlay && Number.isFinite(+lrsOverlay[l]) ? +lrsOverlay[l] : undefined,
-    }))
-  }, [selectedScores, topAvgScores, bottomAvgScores, lrsOverlay])
+  // Mark summary as stale when user changes cohort or toggles
+  useEffect(() => {
+    setIsDirty(true)
+  }, [geo, manager, personId, showPerformance, showTop, showBottom, showLRS])
+
+  async function runSummary() {
+    try {
+      setSummaryLoading(true)
+      const res = await fetch("/api/summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          geo, manager, personId,
+          showPerformance, showTop, showBottom, showLRS
+        }),
+      })
+      const data = await res.json()
+      setSummary(data.summary || "")
+      setIsDirty(false)
+    } catch {
+      // keep old summary on error
+    } finally {
+      setSummaryLoading(false)
+    }
+  }
 
   return (
     <>
@@ -295,8 +315,9 @@ export default function App() {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* LEFT: Filters + Card */}
+          {/* LEFT: Filters + Summary */}
           <div className="lg:col-span-1 space-y-4">
+            {/* Filters */}
             <div className="card">
               <h2 className="font-semibold mb-3">Filters</h2>
               <div className="space-y-3">
@@ -362,10 +383,47 @@ export default function App() {
               </div>
             </div>
 
+            {/* Executive Summary (button-only model) */}
             <div className="card">
-              <div className="text-sm space-y-2">
-                {/* Your summary content lives here; unchanged */}
-                {/* … */}
+              <h3 className="font-semibold mb-2">Executive Summary</h3>
+
+              <div className="text-sm text-slate-700 leading-relaxed">
+                {summary ? (
+                  <p>{summary}</p>
+                ) : (
+                  <p className="text-slate-500">
+                    Adjust the filters and toggles above to focus on a person, team, or cohort.
+                    Then generate a quick summary of performance and enablement alignment.
+                  </p>
+                )}
+              </div>
+
+              <div className="text-xs text-slate-500 mt-3">
+                {personId === "All"
+                  ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People in view: <strong>{filteredPeople.length}</strong></>
+                  : (() => {
+                      const s = selected; if (!s) return null;
+                      return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
+                    })()
+                }
+              </div>
+
+              <div className="mt-3">
+                <button
+                  onClick={runSummary}
+                  disabled={summaryLoading}
+                  className="px-4 py-2 rounded-lg text-white font-medium shadow-sm
+                             disabled:opacity-60 disabled:cursor-not-allowed"
+                  style={{ background: 'linear-gradient(90deg,#6d28d9,#2563eb)' }}
+                >
+                  {summary ? (isDirty ? "Re-analyze" : (summaryLoading ? "Analyzing…" : "Analyze again"))
+                           : (summaryLoading ? "Analyzing…" : "Analyze")}
+                </button>
+                {summary && isDirty && (
+                  <span className="ml-2 text-xs text-amber-600 align-middle">
+                    Filters/toggles changed — summary may be out of date.
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -377,9 +435,14 @@ export default function App() {
                 <h2 className="font-semibold">Sales Productivity</h2>
                 <div className="text-xs text-slate-500">PD / DE / VC / CU / DH</div>
               </div>
-
               <RadarPentagon
-                data={chartData}
+                data={LEVERS.map((l) => ({
+                  lever: l,
+                  selectedScore: selectedScores[l] || 0,
+                  topAvg: showTop && topAvgScores ? topAvgScores[l] : undefined,
+                  bottomAvg: showBottom && bottomAvgScores ? bottomAvgScores[l] : undefined,
+                  lrsOverlay: showLRS && lrsOverlay ? lrsOverlay[l] : undefined,
+                }))}
                 showPerformance={showPerformance}
                 showTop={showTop}
                 showBottom={showBottom}
