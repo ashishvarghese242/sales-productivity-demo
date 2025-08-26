@@ -199,39 +199,38 @@ export default function App() {
   const [showBottom, setShowBottom] = useState(false)
   const [showLRS, setShowLRS] = useState(false)
 
-  const [summary, setSummary] = useState("");
-  const [summaryLoading, setSummaryLoading] = useState(false);
+  // --- Executive Summary (button-only model) ---
+  const [summary, setSummary] = useState("")
+  const [summaryLoading, setSummaryLoading] = useState(false)
+  const [summaryRequested, setSummaryRequested] = useState(false) // has user ever clicked Analyze?
+  const [summaryDirty, setSummaryDirty] = useState(false)         // have params changed since last run?
 
-  // fetch whenever selection OR toggles change
-useEffect(() => {
-  (async () => {
+  // mark summary as "dirty" whenever the inputs change after a run
+  useEffect(() => {
+    if (summaryRequested) setSummaryDirty(true)
+  }, [geo, manager, personId, showPerformance, showTop, showBottom, showLRS, summaryRequested])
+
+  async function runSummary() {
     try {
-      setSummaryLoading(true);
-      const res = await fetch("/api/summary", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          geo,
-          manager,
-          personId,
-          // let the API know what's visible (it's okay if the API ignores these today)
-          showPerformance,
-          showTop,
-          showBottom,
-          showLRS
-        }),
-      });
-      const data = await res.json();
-      setSummary(data.summary || "");
+      setSummaryLoading(true)
+      // Send only selection (your API ignores the extra flags if you later add/remove them)
+      const res = await fetch('/api/summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ geo, manager, personId })
+      })
+      const data = await res.json()
+      setSummary(data.summary || '—')
+      setSummaryRequested(true)
+      setSummaryDirty(false)
     } catch {
-      setSummary("");
+      setSummary('—')
+      setSummaryRequested(true)
+      setSummaryDirty(false)
     } finally {
-      setSummaryLoading(false);
+      setSummaryLoading(false)
     }
-  })();
-  // 👇 make sure all toggles are listed here so the effect re-runs
-}, [geo, manager, personId, showPerformance, showTop, showBottom, showLRS]);
-
+  }
 
   const managers = useMemo(() => Array.from(new Set(hris.map((h) => h.manager_name))), [hris])
   const geos = useMemo(() => Array.from(new Set(hris.map((h) => h.geo))), [hris])
@@ -313,15 +312,16 @@ useEffect(() => {
       {/* Main content */}
       <div className="min-h-screen p-6 bg-white text-slate-900">
         <header className="mb-6">
-          <h1 className="text-2xl font-bold">Sales Productivity Demo</h1>
+          <h1 className="text-2xl font-bold">Productivity OS</h1>
           <p className="text-sm text-slate-600">
-            Pentagon radar with HRIS / CRM / Enablement (impact-weighted overlay, last 90 days)
+            Strengthen the competencies that move outcomes
           </p>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* LEFT: Filters + Card */}
+          {/* LEFT: Filters + Cards */}
           <div className="lg:col-span-1 space-y-4">
+            {/* Filters */}
             <div className="card">
               <h2 className="font-semibold mb-3">Filters</h2>
               <div className="space-y-3">
@@ -387,24 +387,60 @@ useEffect(() => {
               </div>
             </div>
 
+            {/* Executive Summary panel */}
             <div className="card">
-              <div className="text-sm space-y-2">
-                <p className="text-slate-700 leading-relaxed">
-                  {summaryLoading
-                    ? "Summarizing selection…"
-                    : (summary || "—")}
-                </p>
+              <h3 className="font-semibold mb-2">Executive Summary</h3>
 
-                <div className="text-xs text-slate-500 pt-1">
-                  {personId === "All"
-                    ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People: <strong>{filteredPeople.length}</strong></>
-                    : (() => {
-                        const s = selected; if (!s) return null;
-                        return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
-                      })()
-                  }
+              {/* Placeholder – shown until first Analyze */}
+              {!summaryRequested && !summaryLoading && (
+                <div className="space-y-3">
+                  <p className="text-sm text-slate-700">
+                    Adjust the filters above to focus on a person, team, or cohort. Then generate a quick summary of performance and enablement alignment.
+                  </p>
+                  <button
+                    className="w-full rounded-lg bg-slate-900 hover:bg-slate-800 text-white px-4 py-2"
+                    onClick={runSummary}
+                  >
+                    Analyze
+                  </button>
                 </div>
-              </div>
+              )}
+
+              {/* Loading */}
+              {summaryLoading && (
+                <p className="text-sm text-slate-500">Analyzing…</p>
+              )}
+
+              {/* Summary content (persists even when dirty) */}
+              {summaryRequested && !summaryLoading && (
+                <div className="space-y-3">
+                  <p className="text-sm text-slate-700 leading-relaxed">{summary || '—'}</p>
+
+                  {/* Context line */}
+                  <div className="text-xs text-slate-500">
+                    {personId === 'All'
+                      ? <>Cohort: <strong>{geo}</strong> · <strong>{manager}</strong> · People: <strong>{filteredPeople.length}</strong></>
+                      : (() => {
+                          const s = selected; if (!s) return null;
+                          return <>Person: <strong>{s.name}</strong> · {s.role_type} · {s.geo} · Manager: {s.manager_name}</>;
+                        })()
+                    }
+                  </div>
+
+                  {/* Re-analyze bar when params changed */}
+                  {summaryDirty && (
+                    <div className="flex items-center gap-3 p-2 rounded-md bg-slate-50 border border-slate-200">
+                      <span className="text-xs text-slate-600">Parameters changed.</span>
+                      <button
+                        className="ml-auto rounded-md bg-slate-900 hover:bg-slate-800 text-white text-sm px-3 py-1.5"
+                        onClick={runSummary}
+                      >
+                        Re-analyze
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
