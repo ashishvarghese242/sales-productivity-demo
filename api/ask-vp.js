@@ -1,11 +1,15 @@
 // api/ask-vp.js
+// Serverless boardroom endpoint: loads your JSONs, computes KPIs, and asks OpenAI with adaptive formatting.
+
 import fs from "fs/promises";
 import path from "path";
 import OpenAI from "openai";
 
+// ---------- Config ----------
 const MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+// ---------- Helpers ----------
 function json(res, status, data) {
   res.statusCode = status;
   res.setHeader("Content-Type", "application/json");
@@ -42,8 +46,9 @@ const LEVERS = [
 
 const clamp = (v) => Math.max(0, Math.min(100, Math.round(v)));
 
-function computeScoresFromCRM(crmRow, lrsRow) {
+function computeScoresFromCRM(crmRow, lrsRow /* optional */) {
   let pd = 0, de = 0, vc = 0, cu = 0, dh = 0;
+
   if (crmRow) {
     const coverageScore = Math.min(100, (crmRow.pipeline_coverage / 3.5) * 100);
     const stalledScore = (1 - crmRow.stalled_ratio) * 100;
@@ -116,177 +121,63 @@ function indexBy(arr, key = "person_id") {
   return o;
 }
 
-// --------- Simple parsing helpers (as before) ----------
-function parseWindowDays(q) {
-  if (!q) return null;
-  const m = q.toLowerCase().match(/last\s+(\d+)\s*(day|days|week|weeks|month|months)/);
-  if (!m) return null;
-  const n = parseInt(m[1], 10);
-  if (!Number.isFinite(n) || n <= 0) return null;
-  const unit = m[2];
-  if (unit.startsWith("day")) return n;
-  if (unit.startsWith("week")) return n * 7;
-  if (unit.startsWith("month")) return n * 30;
-  return null;
+// Content effectiveness (unchanged)
+function contentEffectiveness(hris, crm, catalog, events) {
+  const crmBy = indexBy(crm, "person_id");
+
+  const scored = hris.map((p) => {
+    const s = computeScoresFromCRM(crmBy[p.person_id], null);
+    return { id: p.person_id, comp: composite(s) };
+  }).sort((a, b) => a.comp - b.comp);
+
+  const n = scored.length;
+  const k = Math.max(1, Math.floor(n * 0.2));
+  const bottomIds = new Set(scored.slice(0, k).map(x => x.id));
+  const topIds = new Set(scored.slice(-k).map(x => x.id));
+
+  const impactfulSet = new Set(catalog.filter(a => !a.is_fluff).map(a => a.asset_id));
+  const byAsset = {};
+  for (const e of events) {
+    if (!impactfulSet.has(e.asset_id)) continue;
+    const bucket = bottomIds.has(e.person_id) ? "bottom" : (topIds.has(e.person_id) ? "top" : "mid");
+    byAsset[e.asset_id] ||= { title: e.title, lever: e.lever, top: {c:0,m:0}, bottom: {c:0,m:0}, mid: {c:0,m:0} };
+    const b = byAsset[e.asset_id][bucket];
+    b.c += (e.completed ? 1 : 0);
+    b.m += (e.minutes || 0);
+  }
+
+  const scores = Object.entries(byAsset).map(([asset_id, v]) => {
+    const topLift = v.top.c + v.top.m / 10;
+    const bottomLift = v.bottom.c + v.bottom.m / 10;
+    return { asset_id, title: v.title, lever: v.lever, lift: +(topLift - bottomLift).toFixed(2) };
+  });
+
+  const winners = [...scores].sort((a,b)=>b.lift-a.lift).slice(0,5);
+  const laggards = [...scores].sort((a,b)=>a.lift-b.lift).slice(0,5);
+
+  return { winners, laggards, cohortSizes: { top: k, bottom: k } };
 }
 
-function parseConstraintsFromQuestion(q, hris) {
-  if (!q) return { mode: "org", windowDays: null, geo: null, manager: null, personId: null, personName: null };
-  const lower = q.toLowerCase();
-
-  const geos = Array.from(new Set(hris.map(p => String(p.geo || "")).filter(Boolean)));
-  const managers = Array.from(new Set(hris.map(p => String(p.manager_name || "")).filter(Boolean)));
-
-  let geo = null, manager = null, personId = null, personName = null;
-
-  // explicit ID like P0xx
-  const pidMatch = lower.match(/\b(p\d{3})\b/);
-  if (pidMatch) {
-    const pid = pidMatch[1].toUpperCase();
-    if (hris.some(p => p.person_id === pid)) personId = pid;
-  }
-
-  // person name
-  if (!personId) {
-    for (const p of hris) {
-      const name = String(p.name || "");
-      if (!name) continue;
-      const re = new RegExp(`\\b${name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
-      if (re.test(q)) {
-        personId = p.person_id;
-        personName = p.name;
-        break;
-      }
-    }
-  }
-
-  // geo
-  for (const g of geos) {
-    if (!g) continue;
-    const re = new RegExp(`\\b${String(g).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
-    if (re.test(q)) { geo = g; break; }
-  }
-
-  // manager
-  for (const m of managers) {
-    if (!m) continue;
-    const re = new RegExp(`\\b${String(m).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i");
-    if (re.test(q)) { manager = m; break; }
-  }
-
-  const windowDays = parseWindowDays(q);
-  const mode = personId ? "person" : (geo || manager) ? "cohort" : "org";
-
-  return { mode, windowDays, geo, manager, personId, personName };
-}
-
-// --------- NEW: Resolve references using threadCtx and current results ----------
-function resolveReferences(question, parsed, ctx, hris, scored) {
+// ---------- NEW: simple intent detector ----------
+function inferStyle(question) {
   const q = (question || "").toLowerCase();
-  const pronounRef = /\b(they|them|their|that person|he|she)\b/.test(q);
-  const mentionsTop = /\b(top performer|best performer|highest performer)\b/.test(q);
-  const mentionsBottom = /\b(bottom performer|lowest performer|worst performer)\b/.test(q);
 
-  // If user explicitly named a person this turn, let parsed handle it.
-  if (parsed.personId) {
-    return {
-      mode: "person",
-      personId: parsed.personId,
-      personName: parsed.personName || (hris.find(p => p.person_id === parsed.personId)?.name || null),
-      windowDays: parsed.windowDays ?? null,
-    };
-  }
+  // list/lookup requests => plain list/table
+  const listRe = /(list|show|which|give me|display)\s+(the\s+)?(courses|training|assets|catalog|content|people|reps|names)/i;
+  if (listRe.test(q)) return "list";
 
-  // If they referred to top/bottom performer, pick from current scored list
-  if (mentionsTop && scored.length) {
-    const top = scored[scored.length - 1];
-    return {
-      mode: "person",
-      personId: top.person.person_id,
-      personName: top.person.name,
-      windowDays: parsed.windowDays ?? null,
-      resolvedFrom: "top-performer",
-    };
-  }
-  if (mentionsBottom && scored.length) {
-    const bottom = scored[0];
-    return {
-      mode: "person",
-      personId: bottom.person.person_id,
-      personName: bottom.person.name,
-      windowDays: parsed.windowDays ?? null,
-      resolvedFrom: "bottom-performer",
-    };
-  }
+  // exec/board ask => headline/bullets
+  const execRe = /(exec|board|summary|summarize|brief|story|gaps?|so what|recommend|priorit(y|ies)|where.+roi)/i;
+  if (execRe.test(q)) return "exec";
 
-  // If pronoun and we have a focus person in thread context, use it
-  if (pronounRef && ctx?.focus_person?.person_id) {
-    const pid = ctx.focus_person.person_id;
-    const p = hris.find(x => x.person_id === pid);
-    if (p) {
-      return {
-        mode: "person",
-        personId: p.person_id,
-        personName: p.name,
-        windowDays: parsed.windowDays ?? null,
-        resolvedFrom: "threadCtx-pronoun",
-      };
-    }
-  }
-
-  // Fall back to the original parsed scope (org/cohort) with any time window
-  if (parsed.mode === "cohort") {
-    return { mode: "cohort", geo: parsed.geo, manager: parsed.manager, windowDays: parsed.windowDays ?? null };
-  }
-  return { mode: "org", windowDays: parsed.windowDays ?? null };
-}
-
-// --------- Person-focused enablement summary (for “what are THEY consuming?”) ----------
-function personEnablementSummary(personId, events, catalog, windowDays /* may be null */) {
-  const catBy = Object.fromEntries(catalog.map(a => [a.asset_id, a]));
-  let filtered = events.filter(e => e.person_id === personId);
-
-  if (windowDays && Number.isFinite(windowDays)) {
-    const cutoff = new Date();
-    cutoff.setDate(cutoff.getDate() - windowDays);
-    filtered = filtered.filter(e => {
-      if (!e.date) return false;
-      const d = new Date(e.date);
-      return !isNaN(d.getTime()) && d >= cutoff;
-    });
-  }
-
-  const byLever = {};
-  let completedCount = 0;
-  let minutes = 0;
-  const recent = [];
-
-  for (const e of filtered) {
-    const meta = catBy[e.asset_id] || { lever: e.lever, title: e.title, is_fluff: false };
-    const lever = meta.lever || e.lever || "Unknown";
-    byLever[lever] ||= { completed: 0, minutes: 0 };
-    if (e.completed) {
-      byLever[lever].completed += 1;
-      completedCount += 1;
-    }
-    minutes += (e.minutes || 0);
-    byLever[lever].minutes += (e.minutes || 0);
-
-    if (e.completed && e.date) {
-      recent.push({ date: e.date, title: meta.title || e.title || e.asset_id, lever });
-    }
-  }
-
-  recent.sort((a,b)=> new Date(b.date) - new Date(a.date));
-  const top5 = recent.slice(0,5);
-
-  return { completedCount, minutes, byLever, recent: top5 };
+  // otherwise minimal direct answer
+  return "direct";
 }
 
 export default async function handler(req, res) {
   try {
     if (req.method !== "POST") {
-      return json(res, 405, { error: "Use POST with JSON body: { question, threadCtx? }" });
+      return json(res, 405, { error: "Use POST with JSON body: { question, geo, manager, personId }" });
     }
     if (!OPENAI_API_KEY) {
       return json(res, 500, { error: "Missing OPENAI_API_KEY environment variable." });
@@ -300,50 +191,33 @@ export default async function handler(req, res) {
       try { return JSON.parse(raw); } catch { return {}; }
     })();
 
-    const { question = "", threadCtx = {} } = body;
+    const { question = "", geo = "All", manager = "All", personId = "All" } = body;
 
-    // Load data (org-wide by default)
+    // Load data
     const hris = await loadJson(req, "/data/hris.json");
     const crm = await loadJson(req, "/data/crm_agg.json");
     let lrsAgg = { consumption: [] };
     try { lrsAgg = await loadJson(req, "/data/lrs.json"); } catch {}
-    const catalog = await loadJson(req, "/data/lrs_catalog.json");
-    const events = await loadJson(req, "/data/lrs_activity_events.json");
 
-    // Baseline: org-wide scored list (for “top/bottom performer” resolution)
+    const catalog = await loadJson(req, "/data/lrs_catalog.json");
+    const events  = await loadJson(req, "/data/lrs_activity_events.json");
+
+    // Filters (Geo / Manager / Person)
+    const people = hris
+      .filter(p => geo === "All" || p.geo === geo)
+      .filter(p => manager === "All" || p.manager_name === manager);
+
+    const visiblePeople = personId === "All" ? people : people.filter(p => p.person_id === personId);
+    const visibleIds = new Set(visiblePeople.map(p => p.person_id));
+
     const crmBy = indexBy(crm, "person_id");
     const lrsBy = indexBy(lrsAgg.consumption || [], "person_id");
 
-    const scoredOrg = hris
-      .map(p => {
-        const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
-        return { person: p, scores: s, comp: composite(s) };
-      })
-      .sort((a,b)=> a.comp - b.comp);
-
-    // Step 1: parse constraints from the current question
-    const parsed = parseConstraintsFromQuestion(question, hris);
-
-    // Step 2: resolve references using threadCtx + current scored list
-    const resolved = resolveReferences(question, parsed, threadCtx, hris, scoredOrg);
-
-    // Build cohort for this turn
-    let cohort = hris;
-    if (resolved.mode === "cohort") {
-      cohort = hris
-        .filter(p => (resolved.geo ? p.geo === resolved.geo : true))
-        .filter(p => (resolved.manager ? p.manager_name === resolved.manager : true));
-    } else if (resolved.mode === "person") {
-      cohort = hris.filter(p => p.person_id === resolved.personId);
-    }
-
-    // Re-score within this cohort (used for top/bottom within cohort if asked)
-    const scored = cohort
-      .map(p => {
-        const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
-        return { person: p, scores: s, comp: composite(s) };
-      })
-      .sort((a,b)=> a.comp - b.comp);
+    // Compute and rank
+    const scored = visiblePeople.map(p => {
+      const s = computeScoresFromCRM(crmBy[p.person_id], lrsBy[p.person_id]);
+      return { person: p, scores: s, comp: composite(s) };
+    }).sort((a,b) => a.comp - b.comp);
 
     const n = scored.length || 1;
     const k = Math.max(1, Math.floor(n * 0.2));
@@ -360,37 +234,36 @@ export default async function handler(req, res) {
         gap_top_vs_bottom: Math.max(0, leverAvg(top, l) - leverAvg(bottom, l))
       }])
     );
+
     const compAll = avg(scored.map(x => x.comp));
     const compTop = avg(top.map(x => x.comp));
     const compBottom = avg(bottom.map(x => x.comp));
 
-    // If this turn is person-focused, pre-compute their enablement summary for the model
-    let personFocus = null;
-    if (resolved.mode === "person" && resolved.personId) {
-      const p = hris.find(x => x.person_id === resolved.personId);
-      if (p) {
-        const en = personEnablementSummary(resolved.personId, events, catalog, resolved.windowDays);
-        personFocus = {
-          person_id: p.person_id,
-          name: p.name,
-          manager: p.manager_name,
-          geo: p.geo,
-          role: p.role_type,
-          composite: scored.find(s => s.person.person_id === p.person_id)?.comp || null,
-          enablement: en,
-        };
-      }
+    const eff = contentEffectiveness(visiblePeople, crm, catalog, events);
+
+    // Pick a primary_subject to resolve pronouns like “they/this person”
+    let primary = null;
+    if (personId !== "All") {
+      primary = visiblePeople.find(p => p.person_id === personId) || null;
+    } else {
+      // top performer in current view
+      const topOne = scored[scored.length - 1];
+      primary = topOne ? topOne.person : null;
     }
 
-    // Build brief for the model
     const brief = {
-      resolved_scope: resolved,
-      cohort_size: n,
-      composites: { all: compAll, top: compTop, bottom: compBottom, bucket_size: k },
+      filters: { geo, manager, personId, visible_count: n },
+      composites: { all: compAll, top: compTop, bottom: compBottom, cohort_size: k },
       levers: leverSummary,
-      person_focus: personFocus, // null unless the turn is about a single person
-      // small sample to cite names if needed
-      sample: scored.slice(0, 10).map(r => ({
+      content_effectiveness: eff,
+      primary_subject: primary ? {
+        person_id: primary.person_id,
+        name: primary.name,
+        manager: primary.manager_name,
+        geo: primary.geo,
+        role: primary.role_type,
+      } : null,
+      reps: scored.slice(0, 10).map(r => ({
         person_id: r.person.person_id,
         name: r.person.name,
         manager: r.person.manager_name,
@@ -400,43 +273,46 @@ export default async function handler(req, res) {
       }))
     };
 
-    // Maintain/return a tiny thread context so next turn can say “they”
-    const newCtx = {
-      ...threadCtx,
-      // If this question asked about a person (explicitly or via “top performer”), remember them
-      ...(personFocus
-        ? { focus_person: { person_id: personFocus.person_id, name: personFocus.name } }
-        : threadCtx?.focus_person
-        ? { focus_person: threadCtx.focus_person }
-        : {}),
-      // Also handy: last computed top/bottom in this scope
-      last_top: top.length ? { person_id: top[top.length - 1].person.person_id, name: top[top.length - 1].person.name } : null,
-      last_bottom: bottom.length ? { person_id: bottom[0].person.person_id, name: bottom[0].person.name } : null,
-    };
+    // ---------- Adaptive prompt ----------
+    const style = inferStyle(question);
 
-    // Ask OpenAI (executive style)
-    const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
-    const system = `
-You are a boardroom-level VP of Enablement with Ph.D.-level mastery in instructional design, adult education, finance, program management, SaaS, certifications, and manufacturing. 
-You possess elite analytical abilities, immediate access to best-in-class data, and deliver concise, actionable recommendations. 
-Your insight spotlights root causes, gaps, risks, and opportunities with relentless precision. Every response translates complex challenges into targeted actions, maximizing measurable business impact. 
-Trusted by CEOs and boards, your guidance is incisive and strategic, driving continuous optimization of talent, performance, COI, and ROI in dynamic enterprise environments.
-• Headline (1 line)
-• 2–5 bullet proof points with numbers
-• “Brutal Truth” (impact/risk/decision)
-Optionally: “Do next” (max 3, only if asked)
-Use ONLY the data you have access to. Do not invent. Or Hallucinate.
-Honor the resolved_scope: if it's a single person, talk about THAT person specifically.
-If person_focus.enablement is present, cite the most relevant lever(s)/assets.
+    const baseRules = `
+You are the VP of Enablement. Use ONLY the provided data brief. Be precise and avoid fluff.
+If the user uses pronouns (e.g., "they/this person"), assume they refer to primary_subject in the brief when present.
+Never repeat boilerplate. Keep answers short and fit the user's intent.
 `.trim();
 
+    const styleRules = {
+      exec: `
+FORMAT: Board-ready.
+- Headline (1 short line)
+- 2–5 bullet proof points with numbers
+- "So what" (impact/decision)
+If helpful, include a tiny "Do next" (max 3 items).
+`.trim(),
+      list: `
+FORMAT: Plain list or compact markdown table ONLY (no headline, no bullets section, no "so what").
+Return just the items requested (e.g., titles/IDs/levers). No extra commentary.
+`.trim(),
+      direct: `
+FORMAT: Direct answer in 1–4 sentences, no headline, no boilerplate.
+If the user asked to "list" something, return a tight bullet list.
+`.trim()
+    };
+
+    const system = `${baseRules}\n\n${styleRules[style]}`;
+
     const user = `
-Question: ${question || "(no question provided)"}
+STYLE: ${style.toUpperCase()}
+
+QUESTION:
+${question || "Summarize enablement, productivity, and performance for this view."}
 
 DATA BRIEF:
 ${JSON.stringify(brief, null, 2)}
 `.trim();
 
+    const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
     const completion = await openai.chat.completions.create({
       model: MODEL,
       messages: [
@@ -447,13 +323,11 @@ ${JSON.stringify(brief, null, 2)}
     });
 
     const answer = completion.choices?.[0]?.message?.content || "No answer generated.";
-
     return json(res, 200, {
       ok: true,
       model: MODEL,
       answer,
-      ctx: newCtx, // <-- return updated context so the next question can say “they”
-      debug: { resolved_scope: resolved, counts: { people: n, top: k, bottom: k } }
+      debug: { style, counts: { people: n, top: k, bottom: k } }
     });
 
   } catch (err) {
