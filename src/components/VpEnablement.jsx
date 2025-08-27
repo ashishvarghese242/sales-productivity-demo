@@ -19,9 +19,12 @@ export default function VpEnablement() {
   const [threadCtx, setThreadCtx] = useState({}); // <-- NEW: sticky context for pronouns/entities
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
   }, [conversation, loading]);
 
   async function askVpEnablement(q) {
@@ -88,7 +91,7 @@ export default function VpEnablement() {
       </div>
 
       {/* Conversation */}
-      <div className="h-80 overflow-y-auto space-y-4 pr-1">
+      <div ref={chatRef} className="h-80 overflow-y-auto space-y-4 pr-1">
         {conversation.map((msg, i) => {
           const isUser = msg.role === "user";
           return (
@@ -118,7 +121,7 @@ export default function VpEnablement() {
             </div>
           </div>
         )}
-        <div ref={bottomRef} />
+        
       </div>
 
       {/* Quick suggestions */}
