@@ -119,7 +119,7 @@ function compositeOf(person, crmById, lrsById) {
 
 // Enablement overlay (impact-weighted coverage per lever)
 function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
-  const EVENT_WINDOW_DAYS = 120
+  const EVENT_WINDOW_DAYS = 90
   if (!personIds?.length || !lrsCatalog?.length) {
     return Object.fromEntries(LEVERS.map(l => [l, 0]));
   }
