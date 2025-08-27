@@ -55,7 +55,11 @@ export default function Topbar({ activeMenu = "Sales" }) {
           {menus.map((menu) => (
             <a
               key={menu.key}
-              href="#"
+              href={
+                menu.key === "Home"
+                  ? "https://chiefproductivityofficer.ai"
+                  : "#"
+              }
               className={`tab${activeMenu === menu.key ? " active" : ""}`}
               style={{
                 fontSize: 15,
@@ -71,6 +75,8 @@ export default function Topbar({ activeMenu = "Sales" }) {
                     }
                   : { background: "rgba(255,255,255,0.12)", color: "#fff" }),
               }}
+              target={menu.key === "Home" ? "_blank" : undefined}
+              rel={menu.key === "Home" ? "noopener noreferrer" : undefined}
             >
               {menu.name}
             </a>
