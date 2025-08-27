@@ -12,7 +12,7 @@ const LEVERS = [
 ]
 
 // Visual tuning for enablement overlay
-const LRS_OVERLAY_MULTIPLIER = 2.4
+const LRS_OVERLAY_MULTIPLIER = 1.0
 
 // ------------------------------ Data hooks ------------------------------
 function useData() {
