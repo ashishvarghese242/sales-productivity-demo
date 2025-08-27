@@ -170,7 +170,7 @@ function lrsImpactCoverageForPeople(personIds, lrsCatalog, lrsEvents) {
       const boosted = num * LRS_OVERLAY_MULTIPLIER;
       let pct = Math.round((boosted / denom) * 100);
 
-      if (hasAny && pct > 0 && pct < 12) pct = 12;
+      //if (hasAny && pct > 0 && pct < 12) pct = 12; //
 
       pct = Math.max(0, Math.min(100, pct));
       sums[lever] += pct;
