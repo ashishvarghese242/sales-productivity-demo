@@ -85,7 +85,7 @@ export default function VpEnablement() {
   return (
     <div className="card w-full">
       <div className="flex items-center justify-between mb-3">
-        <h2 className="font-semibold">VP Enablement</h2>
+        <h2 className="font-semibold">Chief Productivity Officer</h2>
         {/* No page-filter binding by default */}
         <div className="text-xs text-slate-500">Org-wide • All history</div>
       </div>
